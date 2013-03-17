@@ -12,14 +12,15 @@ DEFAULT_LANG = u'en'
 # Theme it
 THEME = "themes/pelican-bootstrap-responsive-theme"
 # Blogroll
-LINKS =  (('Pelican', 'http://docs.notmyidea.org/alexis/pelican/'),
-          ('Python.org', 'http://python.org'),
-          ('BCARS.org', 'http://bcars.org'),
-          ('Jinja2', 'http://jinja.pocoo.org'),
-          ('You can modify those links in your config file', '#'),)
-
+LINKS =  (
+          ('id Graphics', 'http://www.idgraphics.net'),
+          ('Bedford County Amateur Radio Society', 'http://bcars.org'),
+	  ('Everett, PA', 'http://www.everettpa.net'),
+ 	  ('Raystown Wireless', 'http://www.raystownwireless.net'),
+         )
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Myself', 'http://www.facebook.com/johnhogenmiller/'),
+          ('Robin', 'http://www.facebook.com/robin.hogenmiller/'),
+         )
 
 DEFAULT_PAGINATION = 10
