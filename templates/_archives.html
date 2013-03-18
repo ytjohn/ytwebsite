@@ -17,7 +17,7 @@
            <!-- now to collapse by month -->
             <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse{{ year }}"
                href="#collapse{{ articles[ 0 ].date.strftime( '%B' ) }}">
-               {{ articles[ 0 ].date.strftime( '%B' ) }}
+               {{ articles[ 0 ].date.strftime( '%B' ) }} ({{articles|count}}) 
             </a>
            <div id="collapse{{ articles[ 0 ].date.strftime( '%B' ) }}" class="accordion-body collapse">
            <div class="accordion-inner">
