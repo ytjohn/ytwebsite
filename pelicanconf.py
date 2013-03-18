@@ -12,6 +12,12 @@ TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = u'en'
 
+# Go to google.com/cse to build a custom search
+
+# blog.yourtech.us: 008176316909509740226:lgxj0_nm9mu
+# pelican.ytnoc.net: 008176316909509740226:yycjdi2wzp0
+GOOGLE_CX = '008176316909509740226:yycjdi2wzp0'
+
 PLUGINS = ['pelican.plugins.gravatar',]
 
 # Theme it
