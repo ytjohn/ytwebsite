@@ -2,25 +2,20 @@
 <img src="{{ AUTHOR_IMAGE }}" class="img-rounded"/>
 {% endif %}
 
+{# disabed until I know what to do with it...
 {% include "_about.html" %}
-{% include "_archives.html" %}
+#}
+
+
 
 {% if LINKS or SOCIAL %}
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
-          <script>
-       (function() {
-         var cx = '008176316909509740226:lgxj0_nm9mu';
-         var gcse = document.createElement('script');
-         gcse.type = 'text/javascript';
-         gcse.async = true;
-         gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-             '//www.google.com/cse/cse.js?cx=' + cx;
-         var s = document.getElementsByTagName('script')[0];
-         s.parentNode.insertBefore(gcse, s);
-       })();
-     </script>
-     <gcse:search></gcse:search>
+    <li> {% include "_search.html" %} </li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> {% include "_archives.html" %} </li>
   </ul>
 
   {% if LINKS %}
