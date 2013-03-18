@@ -26,8 +26,8 @@ LINKS =  (
  	  ('Raystown Wireless', 'http://www.raystownwireless.net'),
          )
 # Social widget
-SOCIAL = (('Myself', 'http://www.facebook.com/johnhogenmiller/'),
-          ('Robin', 'http://www.facebook.com/robin.hogenmiller/'),
+SOCIAL = (('My Facebook', '//www.facebook.com/johnhogenmiller/'),
+          ('My Google+', '//plus.google.com/107348408305555858514'),
          )
 
 DEFAULT_PAGINATION = 10
