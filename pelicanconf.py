@@ -6,6 +6,8 @@ AUTHOR_EMAIL = u'john@hogenmiller.net'
 SITENAME = u'Pelican Test Site'
 SITEURL = 'http://pelican.yourtech.us'
 
+SITEABOUT = "Welcome to the website. This currently is a placeholder, but it will describe me, link to a contact page, my sotrey, and various other assorted sundries."
+
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = u'en'
