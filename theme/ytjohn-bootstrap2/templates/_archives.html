@@ -1,0 +1,36 @@
+<h4><a href="archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+{% for year, date_year in dates|groupby( 'date.year' )|sort(reverse=True) %}
+  <!-- year {{ year }} -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse{{ year }}">
+        {{ year }}
+      </a>
+    </div>
+
+    <div id="collapse{{ year }}" class="accordion-body collapse">
+    {% for month, articles in date_year|groupby( 'date.month' ) %}
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse{{ year }}"
+               href="#collapse{{ articles[ 0 ].date.strftime( '%B' ) }}">
+               {{ articles[ 0 ].date.strftime( '%B' ) }} ({{articles|count}}) 
+            </a>
+           <div id="collapse{{ articles[ 0 ].date.strftime( '%B' ) }}" class="accordion-body collapse">
+           <div class="accordion-inner">
+           {% for article in articles %}
+                        <a href="{{ article.url }}">{{ article.title }}</a><br />
+           {% endfor %}
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    {% endfor %}
+    </div>
+ </div>
+{% endfor %}
+</div>
+
