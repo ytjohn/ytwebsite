@@ -21,7 +21,7 @@ GOOGLE_CX = '008176316909509740226:yycjdi2wzp0'
 PLUGINS = ['pelican.plugins.gravatar',]
 
 # Theme it
-THEME = "themes/pelican-bootstrap-responsive-theme"
+THEME = "theme/ytjohn-bootstrap2"
 # THEME = "notmyidea"
 
 # Blogroll
