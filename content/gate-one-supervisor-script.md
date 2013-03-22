@@ -2,15 +2,15 @@ Title: Gate One supervisor script
 Date: 2012-08-02 07:10
 Author: John Hogenmiller (john@hogenmiller.net)
 
-Yesterday, I [setup gateone][] to run as a non-root user. I also spent
+Yesterday, I [setup gateone] to run as a non-root user. I also spent
 some time looking at potential init scripts for starting and stopping
 this. The gateone project does not currently provide any init scripts,
-but this is planned for the future ([Issue \#47][]). I tried to use one
+but this is planned for the future ([Issue \#47]). I tried to use one
 of the scripts in that thread, but I wasn't really pleased with them.
 The big issue is that gateone.py doesn't fork. However, I believe there
 is a better solution.
 
-[supervisord][] is a python script designed to control and monitor
+[supervisord] is a python script designed to control and monitor
 non-daemonizing python scripts. As Gate One is a foreground only
 process, it seems particularly suited to this task - more so than
 writing my own script in python or daemontools.
@@ -18,39 +18,44 @@ writing my own script in python or daemontools.
 Installation can be done with python-pip or easy\_install. On newer
 systems, pip is recommended.
 
-~~~~ {.prettyprint .linenums}
-sudo pip install supervisor
-~~~~
+    sudo pip install supervisor
 
 On Ubuntu, pip installs supervisord to /usr/local/bin. By default,
 /usr/local/bin is not in root's path, so it makes sense (to me at least)
 to create symlinks to /usr/sbin.
 
-~~~~ {.prettyprint .linenums}
-johnh@puppet2:~$ ls /usr/local/binecho_supervisord_conf  pidproxy  supervisorctl  supervisordjohnh@puppet2:~$ sudo ln -s /usr/local/bin/supervisord /usr/sbinjohnh@puppet2:~$ sudo ln -s /usr/local/bin/supervisorctl /usr/sbin
-~~~~
+    johnh@puppet2:~$ ls /usr/local/bin
+    echo_supervisord_conf  pidproxy  supervisorctl  
+    supervisordjohnh@puppet2:~$ sudo ln -s /usr/local/bin/supervisord /usr/sbin
+    johnh@puppet2:~$ sudo ln -s /usr/local/bin/supervisorctl /usr/sbin
 
 Now, we need to create a configuration file. Supervisord has a utility
 to generate a sample one.
 
-~~~~ {.prettyprint .linenums}
-echo_supervisord_conf  > supervisord.conf
-~~~~
+    echo_supervisord_conf  > supervisord.conf
 
 To get started, we can use the sample configuration and just add a
 couple lines to the bottom for gateone.
 
-~~~~ {.prettyprint .linenums}
-[program:gateone]command=/opt/gateone/gateone.pydirectory=/opt/gateone;user=johnh     ; Default is root. Add a user= to setuid
-~~~~
+     [program:gateone]
+     command=/opt/gateone/gateone.py
+     directory=/opt/gateone;user=johnh   ; Default is root. Add a user= to setuid
 
 Now, copy supervisord.conf to /etc/supervisord.conf and start
 supervisord. Make sure gateone.py is not currently running. Then we'll
 run supervisorctl to test things out.
 
-~~~~ {.prettyprint .linenums}
-johnh@puppet2:~$ sudo cp supervisord.conf /etcjohnh@puppet2:~$ sudo supervisordjohnh@puppet2:~$ sudo supervisorctl statusgateone                          RUNNING    pid 9549, uptime 0:00:05johnh@puppet2:~$ ps ax | grep gateone 9549 ?        Sl     0:00 python /opt/gateone/gateone.pyjohnh@puppet2:~$ sudo supervisorctl stop gateonegateone: stoppedjohnh@puppet2:~$ ps ax | grep gateone 9605 ?        Ss     0:00 dtach -c /opt/gateone/tmp/gateone/../dtach_3 -E -z -r none /opt/gateone/plugins/ssh/scripts/ssh_connect.py -S /tmp/gateone/.../%SHORT_SOCKET% --sshfp -a -oUserKnownHostsFile=/opt/gateone/users/user1@puppet2/ssh/known_hosts 9606 pts/3    Ss+    0:00 python /opt/gateone/plugins/ssh/scripts/ssh_connect.py -S /tmp/gateone/.../%SHORT_SOCKET% --sshfp -a -oUserKnownHostsFile=/opt/gateone/users/user1@puppet2/ssh/known_hosts
-~~~~
+    johnh@puppet2:~$ sudo cp supervisord.conf /etc
+    johnh@puppet2:~$ sudo supervisord
+    johnh@puppet2:~$ sudo supervisorctl statusgateone
+                              RUNNING    pid 9549, uptime 0:00:05
+    johnh@puppet2:~$ ps ax | grep
+     gateone 9549 ?        Sl     0:00 python /opt/gateone/gateone.py
+    johnh@puppet2:~$ sudo supervisorctl stop gateone
+    gateone: stopped
+    johnh@puppet2:~$ ps ax | grep gateone
+     9605 ?        Ss     0:00 dtach -c /opt/gateone/tmp/gateone/../dtach_3 -E -z -r none /opt/gateone/plugins/ssh/scripts/ssh_connect.py -S /tmp/gateone/.../%SHORT_SOCKET% --sshfp -a -oUserKnownHostsFile=/opt/gateone/users/user1@puppet2/ssh/known_hosts 
+    9606 pts/3    Ss+    0:00 python /opt/gateone/plugins/ssh/scripts/ssh_connect.py -S /tmp/gateone/.../%SHORT_SOCKET% --sshfp -a -oUserKnownHostsFile=/opt/gateone/users/user1@puppet2/ssh/known_hosts
 
 In this example, we see that gateone.py is started and stopped by
 supervisorctl, but because we have dtach enabled, our sessions are still
@@ -65,7 +70,7 @@ shutting down the OS will kill these terminals.
 
 Finally, we need a way to start and stop supervisord itself.
 Fortunately, the supervisord project has provided a number of [init
-scripts][]. I was able to use the [Debian script][] in Ubuntu with only
+scripts]. I was able to use the [Debian script] in Ubuntu with only
 a few minor changes.
 
 1.  I had symlinked supervisord and supervisorctl to /usr/sbin. The
