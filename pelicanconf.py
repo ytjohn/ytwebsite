@@ -3,14 +3,16 @@
 
 AUTHOR = u'John Hogenmiller'
 AUTHOR_EMAIL = u'john@hogenmiller.net'
-SITENAME = u'John\'s new website'
+SITENAME = u'ytjohn'
 SITEURL = 'http://pelican.ytnoc.net'
 
-SITEABOUT = "Welcome to the website. This currently is a placeholder, but it will describe me, link to a contact page, my story, and various other assorted sundries."
-
+# SITEABOUT = "Welcome to the website. This currently is a placeholder, but it will describe me, link to a contact page, my story, and various other assorted sundries."
+SITEABOUT = ""
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = u'en'
+
+DEFAULT_CATEGORY = ('posts')
 
 # Go to google.com/cse to build a custom search
 
@@ -23,6 +25,12 @@ PLUGINS = ['pelican.plugins.gravatar',]
 # Theme it
 THEME = "theme/ytjohn-bootstrap2"
 # THEME = "notmyidea"
+
+ARTICLE_URL = '/{date:%Y}/{date:%m}/{slug}.html'
+ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}.html'
+PAGE_URL = '/pages/{slug}.html'
+PAGE_SAVE_AS = 'pages/{slug}.html'
+
 
 # Blogroll
 LINKS =  (
