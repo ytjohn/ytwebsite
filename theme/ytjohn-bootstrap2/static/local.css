@@ -16,6 +16,31 @@ div.highlight pre {
   font-size: 11px;
 }
 
+.navbar-inner {
+
+background: #ffb76b; /* Old browsers */
+background: -moz-linear-gradient(top, #ffb76b 0%, #ffa73d 37%, #ff7f04 72%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffb76b), color-stop(37%,#ffa73d), color-stop(72%,#ff7f04)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #ffb76b 0%,#ffa73d 37%,#ff7f04 72%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #ffb76b 0%,#ffa73d 37%,#ff7f04 72%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #ffb76b 0%,#ffa73d 37%,#ff7f04 72%); /* IE10+ */
+background: linear-gradient(to bottom, #ffb76b 0%,#ffa73d 37%,#ff7f04 72%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */
+
+}
+
+.navbar .nav > li > a {
+    color: #f9ed9d;
+    color: black;
+    }
+
+.navbar-fixed-top .brand {
+    color: #634c08;
+    color: white;
+    }
+
+
+
 .summary * { display: inline; }
 .summary pre { display: none; }
 
