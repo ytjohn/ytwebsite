@@ -28,9 +28,8 @@ also decided to stop Apache so that Passenger wouldn't be running the
 existing redmine instance. If I had other sites running on this server,
 I would have disabled this virtual host or put up a maintenance page.
 
-~~~~ {.prettyprint}
-cp /etc/default/database.yml /usr/local/redmine-2.0/configcp /var/lib/redmine/default/files/* /usr/local/redmine-2.0/files
-~~~~
+    cp /etc/default/database.yml /usr/local/redmine-2.0/config
+    cp /var/lib/redmine/default/files/* /usr/local/redmine-2.0/files
 
 I didn't have any plugins, but if I did they would either be in
 /usr/share/redmine/vendor/plugins or /usr/share/redmine/lib/plugins. I
