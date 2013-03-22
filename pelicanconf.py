@@ -20,7 +20,8 @@ DEFAULT_CATEGORY = ('posts')
 # pelican.ytnoc.net: 008176316909509740226:yycjdi2wzp0
 GOOGLE_CX = '008176316909509740226:yycjdi2wzp0'
 
-PLUGINS = ['pelican.plugins.gravatar',]
+from pelican.plugins import gravatar
+PLUGINS = [gravatar,]
 
 # Theme it
 THEME = "theme/ytjohn-bootstrap2"
@@ -40,7 +41,7 @@ LINKS =  (
  	  ('Raystown Wireless', 'http://www.raystownwireless.net'),
          )
 # Social widget
-SOCIAL = (('My Facebook', '//www.facebook.com/johnhogenmiller/'),
+SOCIAL = (('GitHub/ytjohn', '//github.com/ytjohn'),
           ('My Google+', '//plus.google.com/107348408305555858514'),
          )
 
