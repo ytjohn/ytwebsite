@@ -1,6 +1,6 @@
 Title: Sending messages using xmpppy
 Date: 2011-04-05
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 In continuing working with XMPP and Python, I managed to get xmpppy
 working.  

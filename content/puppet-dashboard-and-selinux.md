@@ -1,6 +1,6 @@
 Title: Puppet Dashboard and selinux
 Date: 2012-06-25
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 Tags: puppet selinux
 
 Once I got a rough handle on setting up Puppet, I decided to get [Puppet

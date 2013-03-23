@@ -1,6 +1,6 @@
 Title: Exploring GateOne Browser SSH terminal
 Date: 2012-08-01 12:09
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 I came across a program called [Gate One] by LiftOff Software that
 just amazed me. This is an open-source, web-based ssh terminal. It is

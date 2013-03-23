@@ -1,6 +1,6 @@
 Title: Expanding a raw image file
 Date: 2011-01-13 05:57
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
  On one of my customer's devices, the backup software requires that the
 backups go to a separate partition (or drive).  However, the customer

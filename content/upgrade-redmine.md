@@ -1,6 +1,6 @@
 Title: Upgrade Redmine
 Date: 2012-08-09 03:00
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 Currently, I have Redmine version redmine 1.3.3 installed via the
 [ondrej/redmine PPA]. I have been wanting to upgrade to the 2.x series

@@ -1,6 +1,6 @@
 Title: Markdown Blogging
 Date: 2012-08-06
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 I recently have started a process of migrating my website over to
 [blogger.com][]. One of the main reasons for this was because in my last

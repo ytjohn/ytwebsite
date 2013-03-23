@@ -1,6 +1,6 @@
 Title: Jabbering about Python
 Date: 2011-02-27 11:11
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
  I am getting more and more into the idea of using XMPP for sending
 messages.  XMPP (also known as jabber) is a very open protocol.  Anyone

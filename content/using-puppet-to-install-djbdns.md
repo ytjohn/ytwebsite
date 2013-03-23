@@ -1,6 +1,6 @@
 Title: Using puppet to install djbdns
 Date: 2012-06-22 12:30
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 This is a basic walkthrough of getting a slightly complex "step by step
 to install" program like djbdns to install under puppet (in this case,

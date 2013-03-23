@@ -1,6 +1,6 @@
 Title: Starting with Ruby and AWS
 Date: 2012-11-02 23:29
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 This weekend I decided to takle both learning Ruby and working with AWS
 via the Ruby API. Having only played with both of these in the past,

@@ -1,6 +1,6 @@
 Title: pysphere - VMWare in Python
 Date: 2012-08-23 22:30
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 Tags: api, python, programming, vmware, pysphere
 
 I do a good bit of work with VMWare vSphere and I've been wanting to

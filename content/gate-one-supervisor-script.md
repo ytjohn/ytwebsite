@@ -1,6 +1,6 @@
 Title: Gate One supervisor script
 Date: 2012-08-02 07:10
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller
 
 Yesterday, I [setup gateone] to run as a non-root user. I also spent
 some time looking at potential init scripts for starting and stopping

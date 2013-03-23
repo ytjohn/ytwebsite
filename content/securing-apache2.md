@@ -1,6 +1,6 @@
 Title: Securing Apache2
 Date: 2010-01-02
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
  A client wanted to make files available available to the web browser
 from within their LAN and a handful of static IPs without requiring any

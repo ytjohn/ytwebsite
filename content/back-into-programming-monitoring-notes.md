@@ -1,6 +1,6 @@
 Title: Back into programming, monitoring notes
 Date: 2009-08-25
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 I have been out of the programming circuit for a few years and have been
 looking at getting back into it.  My traditional programming style is an

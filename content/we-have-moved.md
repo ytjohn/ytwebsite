@@ -1,6 +1,6 @@
 Title: We have moved!
 Date: 2010-09-06
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
   
 

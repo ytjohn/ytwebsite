@@ -1,6 +1,6 @@
 Title: Learning Python
 Date: 2011-01-03
-Author: John Hogenmiller (john@hogenmiller.net)
+Author: John Hogenmiller 
 
 I am reasonably familiar with Perl and PHP languages.  Recently though,
 I have taken it upon myself to learn Python.  I've played with Python a
