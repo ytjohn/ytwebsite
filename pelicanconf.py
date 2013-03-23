@@ -23,9 +23,6 @@ DEFAULT_CATEGORY = ('posts')
 
 GOOGLE_CX = '008176316909509740226:1osf0ptylds'
 
-from pelican.plugins import gravatar
-PLUGINS = [gravatar,]
-
 # Theme it
 THEME = "theme/ytjohn-bootstrap2"
 # THEME = "notmyidea"
@@ -54,7 +51,7 @@ SOCIAL = (('GitHub/ytjohn', '//github.com/ytjohn'),
 
 DEFAULT_PAGINATION = 10
 
-PLUGINS=['pelican.plugins.sitemap',]
+PLUGINS=['pelican.plugins.sitemap', 'pelican.plugins.gravatar']
 
 SITEMAP = {
     'format': 'xml',
