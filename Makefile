@@ -15,6 +15,7 @@ SSH_HOST=pelican.ytnoc.net
 SSH_PORT=22
 SSH_USER=ytjohn
 SSH_TARGET_DIR=/home/ytjohn/pelican.ytnoc.net
+SSH_TARGET_DIR=/home/ytjohn/yourtech.us
 
 DROPBOX_DIR=~/Dropbox/Public/
 
