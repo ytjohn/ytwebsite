@@ -9,6 +9,8 @@ SITEURL = 'http://www.yourtech.us'
 
 # SITEABOUT = "Welcome to the website. This currently is a placeholder, but it will describe me, link to a contact page, my story, and various other assorted sundries."
 SITEABOUT = "soawesomejohn :: yourtechjohn :: ytjohn :: johnh :: squegie"
+SITEABOUT = "My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href=\"/pages/the-story.html\">story</a>, or you could simply be looking for a way to <a href=\"/pages/contact.html\">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information."
+
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = u'en'
