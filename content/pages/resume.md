@@ -1,4 +1,8 @@
 title: Resume
+date: 2013-10-23
+
+
+_Resume is canonically maintained on [github](https://www.github.com/ytjohn/resume)._
 
 John Hogenmiller
 ================
