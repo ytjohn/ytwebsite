@@ -58,7 +58,8 @@ SOCIAL = (('GitHub/ytjohn', '//github.com/ytjohn'),
 
 DEFAULT_PAGINATION = 10
 
-PLUGINS=['pelican.plugins.sitemap', 'pelican.plugins.gravatar']
+from pelican.plugins import gravatar
+PLUGINS=['pelican.plugins.sitemap', gravatar]
 
 SITEMAP = {
     'format': 'xml',
