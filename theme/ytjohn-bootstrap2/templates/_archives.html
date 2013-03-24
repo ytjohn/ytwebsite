@@ -11,7 +11,7 @@
     </div>
 
     <div id="collapse{{ year }}" class="accordion-body collapse">
-    {% for month, articles in date_year|groupby( 'date.month' ) %}
+    {% for month, articles in date_year|groupby( 'date.month' )|sort(reverse=True) %}
          <div class="accordion-inner">
 
            <!-- now to collapse by month -->
