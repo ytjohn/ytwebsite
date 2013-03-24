@@ -32,6 +32,13 @@ ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}.html'
 PAGE_URL = '/pages/{slug}.html'
 PAGE_SAVE_AS = 'pages/{slug}.html'
 
+# much longer pages/summaries
+SUMMARY_MAX_LENGTH = 300
+
+# make sure the sources are available
+OUTPUT_SOURCES = True
+OUTPUT_SOURCES_EXTENSION = '.text'
+
 # add any extra files (robots.txt, favicon.ico)
 FILES_TO_COPY = (
                  ('extra/favicon.ico', 'favicon.ico'),
