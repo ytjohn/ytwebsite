@@ -84,8 +84,8 @@ a few minor changes.
     unless /var/run/supervisord.pid is current.
     
 Here is my complete init script for Ubuntu:
-    
-    #! /bin/sh
+
+    #!/bin/sh
     ### BEGIN INIT INFO
     # Provides:          supervisord
     # Required-Start:    $local_fs $remote_fs $networking
@@ -93,7 +93,7 @@ Here is my complete init script for Ubuntu:
     # Default-Start:     2 3 4 5
     # Default-Stop:      0 1 6
     # Short-Description: Starts supervisord - see http://supervisord.org
-    # Description:       Starts and stops supervisord as needed - see http://supervisord.org
+    # Description:       Starts and stops supervisord as needed 
     ### END INIT INFO
     # Author: Leonard Norrgard 
     # Version 1.0-alpha
@@ -105,7 +105,9 @@ Here is my complete init script for Ubuntu:
     PATH=/sbin:/usr/sbin:/bin:/usr/bin
     DESC="Run a set of applications as daemons."
     NAME=supervisord
-    DAEMON=/usr/sbin/$NAME   # Supervisord is installed in /usr/bin by default, but /usr/sbin would make more sense.
+    # Supervisord is installed in /usr/bin by default, but /usr/sbin would 
+    # make more sense
+    DAEMON=/usr/sbin/$NAME   
     SUPERVISORCTL=/usr/sbin/supervisorctl
     PIDFILE=/var/run/$NAME.pid
     DAEMON_ARGS="--pidfile ${PIDFILE}"
@@ -149,7 +151,8 @@ Here is my complete init script for Ubuntu:
             [ -e $PIDFILE ] || return 1
             # Stop all processes under supervisord control.
             $SUPERVISORCTL stop all
-            start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
+            start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE \ 
+                 --name $NAME
             RETVAL="$?"
             [ "$RETVAL" = 2 ] && return 2
             # Wait for children to finish too if this is a daemon that forks
@@ -258,8 +261,9 @@ And here is a complete copy of my supervisord.conf file:
     stdout_logfile=/opt/gateone/logs/supervisor.log
     user=johnh
 
-  [setup gateone]: http://blog.yourtech.us/2012/08/exploring-gateone-browser-ssh-terminal.html
-  [Issue \#47]: https://github.com/liftoff/GateOne/issues/47
-  [supervisord]: http://www.supervisord.org/
-  [init scripts]: https://github.com/Supervisor/initscripts
-  [Debian script]: https://raw.github.com/Supervisor/initscripts/master/debian-norrgard
+
+[setup gateone]: http://blog.yourtech.us/2012/08/exploring-gateone-browser-ssh-terminal.html
+[Issue \#47]: https://github.com/liftoff/GateOne/issues/47
+[supervisord]: http://www.supervisord.org/
+[init scripts]: https://github.com/Supervisor/initscripts
+[Debian script]: https://raw.github.com/Supervisor/initscripts/master/debian-norrgard
