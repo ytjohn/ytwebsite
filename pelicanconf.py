@@ -34,8 +34,8 @@ ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}.html'
 PAGE_URL = '/pages/{slug}.html'
 PAGE_SAVE_AS = 'pages/{slug}.html'
 
-# much longer pages/summaries
-SUMMARY_MAX_LENGTH = 300
+# how many words longer pages/summaries
+SUMMARY_MAX_LENGTH = 75
 
 # make sure the sources are available
 OUTPUT_SOURCES = True
@@ -58,7 +58,7 @@ SOCIAL = (('GitHub/ytjohn', '//github.com/ytjohn'),
           ('My Google+', '//plus.google.com/107348408305555858514'),
          )
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 4
 
 from pelican.plugins import gravatar
 PLUGINS=['pelican.plugins.sitemap', gravatar]
