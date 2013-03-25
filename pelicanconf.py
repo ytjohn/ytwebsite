@@ -25,6 +25,9 @@ DEFAULT_CATEGORY = ('posts')
 
 GOOGLE_CX = '008176316909509740226:1osf0ptylds'
 
+# commenting system
+DISQUS_SITENAME = "yourtechwww"
+
 # Theme it
 THEME = "theme/ytjohn-bootstrap2"
 # THEME = "notmyidea"
