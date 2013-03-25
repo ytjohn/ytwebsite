@@ -14,18 +14,6 @@
     <li> {% include "_search.html" %} </li>
   </ul>
 
-  <ul class="nav nav-list">
-   <li> {% include "_archives.html" %} </li>
-  </ul>
-
-  {% if LINKS %}
-  <ul class="nav nav-list">
-    <li class="nav-header">Blogroll</li>
-    {% for name, link in LINKS %}
-    <li><a href="{{ link }}">{{ name }}</a></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
   {% if SOCIAL %}
   <ul class="nav nav-list social">
     <li class="nav-header">Elsewhere</li>
@@ -34,5 +22,19 @@
     {% endfor %}
   </ul>
   {% endif %}
+
+  {% if LINKS %}
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    {% for name, link in LINKS %}
+    <li><a href="{{ link }}">{{ name }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <ul class="nav nav-list">
+   <li> {% include "_archives.html" %} </li>
+  </ul>
+
 </div><!--/.well -->
 {% endif %}
