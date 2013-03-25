@@ -1,15 +1,13 @@
 Title: Contact
 Date: 2013-03-24
 
-<html>
+<img src="http://www.gravatar.com/avatar/26ec2a20892eab20866c6dffe2b3166e.png" title="John Hogenmiller" alt="gravatar icon" style="float: right;"><b>John Hogenmiller</b>
   <ul class="social">
-   <li>John Hogenmiller</li>
    <li>Personal email: <a href="mailto:john@hogenmiller.net">john@hogenmiller.net</a> (also  <a href="xmpp://john@hogenmiller.net">GoogleTalk</a>>
    <li>YourTech email: <a href="mailto:john@yourtech.us">john@yourtech.us</a> (also  <a href="xmpp://john@yourtech.us">XMPP/Jabber/GoogleTalkable</a>)
    <li><a href="https://plus.google.com/107348408305555858514">google+</a></li>
    <li><a href="https://github.com/ytjohn">github</a></li>
   </ul>
-</html>
 
 If you want to email me securely, I utilize GPG. My public key is [online](http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x3ADEC236B7E2FC61). Any text you encrypt using this key and send me (which you can do [here](http://www.hanewin.net/encrypt/PGcrypt.htm)) can only be read be me.
 
