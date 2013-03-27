@@ -19,11 +19,16 @@
 	  {% endif %}
 	  {% for cat, null in categories %}
 	  <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-	  {% endfor %}
+    {% endfor %}
 	</ul>
 	<p class="navbar-text pull-right">
 	  <a class="navbar-link" href="{{ SITEURL }}/archives.html">[archives]</a>
-	  <a class="navbar-link" href="{{ SITEURL }}/tags.html">[tags]</a>
+    <a class="navbar-link" href="{{ SITEURL }}/tags.html">[tags]</a>
+     {% if MENU_LINKS %}
+     {% for mname, mlink in MENU_LINKS %}
+     :: <a style="color: red;" href="{{mlink}}">{{ mname }}</a> 
+     {% endfor %}
+     {% endif %}
 	</p>
       </div><!--/.nav-collapse -->
     </div>

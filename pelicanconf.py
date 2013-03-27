@@ -11,6 +11,11 @@ SITEURL = 'http://www.yourtech.us'
 SITEABOUT = "soawesomejohn :: yourtechjohn :: ytjohn :: johnh :: squegie"
 SITEABOUT = "My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href=\"/pages/the-story.html\">story</a>, or you could simply be looking for a way to <a href=\"/pages/contact.html\">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information."
 
+MENU_LINKS = (
+    ('Billing', 'https://hub.yourtech.us/billing/'),
+    ('DNS Admin', 'https://hub.yourtech.us/dnsadmin/'),
+    )
+
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = u'en'
@@ -26,7 +31,7 @@ DEFAULT_CATEGORY = ('posts')
 GOOGLE_CX = '008176316909509740226:1osf0ptylds'
 
 # commenting system
-DISQUS_SITENAME = "yourtechwww"
+DISQUS_SITENAME = "yourtechjohn"
 
 # Theme it
 THEME = "theme/ytjohn-bootstrap2"
@@ -34,8 +39,8 @@ THEME = "theme/ytjohn-bootstrap2"
 
 ARTICLE_URL = '/{date:%Y}/{date:%m}/{slug}.html'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}.html'
-PAGE_URL = '/pages/{slug}.html'
-PAGE_SAVE_AS = 'pages/{slug}.html'
+PAGE_URL = '/p/{slug}.html'
+PAGE_SAVE_AS = 'p/{slug}.html'
 
 # how many words longer pages/summaries
 SUMMARY_MAX_LENGTH = 75
@@ -45,8 +50,10 @@ OUTPUT_SOURCES = True
 OUTPUT_SOURCES_EXTENSION = '.text'
 
 # add any extra files (robots.txt, favicon.ico)
+
 FILES_TO_COPY = (
                  ('extra/favicon.ico', 'favicon.ico'),
+                 ('extra/htaccess', '.htaccess'),
                 )
 
 # Blogroll
