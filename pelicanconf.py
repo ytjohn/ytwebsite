@@ -49,8 +49,10 @@ SUMMARY_MAX_LENGTH = 75
 OUTPUT_SOURCES = True
 OUTPUT_SOURCES_EXTENSION = '.text'
 
-# add any extra files (robots.txt, favicon.ico)
+#PDF_GENERATOR = True
 
+# add any extra files (robots.txt, favicon.ico)
+# the htaccess bit doesn't seem to work on the ssh upload
 FILES_TO_COPY = (
                  ('extra/favicon.ico', 'favicon.ico'),
                  ('extra/htaccess', '.htaccess'),

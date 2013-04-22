@@ -1,5 +1,5 @@
--title: Resume
--date: 2013-04-10
+title: Resume
+date: 2013-04-10
 
 John Hogenmiller
 ================
