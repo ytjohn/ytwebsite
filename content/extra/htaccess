@@ -12,3 +12,11 @@ RewriteEngine On
 RedirectPermanent 301 /p/contracting.html /p/contact.html
 RedirectPermanent 301 /p/providing-access.html /p/contact.html
 RedirectPermanent 301 /p/services.html /p/contact.html
+
+# Redirect 301 /oldpage.html http://www.yoursite.com/newpage.html
+Redirect 301 /plus https://plus.google.com/+JohnHogenmiller
+Redirect 301 /gh   https://github.com/ytjohn/
+Redirect 301 /fb   https://www.facebook.com/johnhogenmiller
+Redirect 301 /stack http://stackoverflow.com/users/895866/ytjohn
+
+

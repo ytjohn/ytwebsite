@@ -51,10 +51,17 @@ OUTPUT_SOURCES_EXTENSION = '.text'
 
 # add any extra files (robots.txt, favicon.ico)
 # the htaccess bit doesn't seem to work on the ssh upload
-FILES_TO_COPY = (
-                 ('extra/favicon.ico', 'favicon.ico'),
-                 ('extra/htaccess', '.htaccess'),
-                )
+STATIC_PATHS = [
+     'extra/favicon.ico',
+     'extra/htaccess'
+     ]
+
+
+EXTRA_PATH_METADATA = {
+    'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/htaccess': {'path': '.htaccess'}
+    }
+
 
 # Blogroll
 LINKS =  (

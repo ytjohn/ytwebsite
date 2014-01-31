@@ -3,3 +3,4 @@
 *.pid
 *.swp
 output/
+pelican-plugins/
