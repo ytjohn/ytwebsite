@@ -68,8 +68,8 @@ LINKS =  (
          )
 
 # Social widget
-SOCIAL = (('GitHub/ytjohn', '//github.com/ytjohn'),
-          ('My Google+', '//plus.google.com/107348408305555858514'),
+SOCIAL = (('GitHub/ytjohn', '//www.yourtech.us/gh'),
+          ('My Google+', '//www.yourtech.us/plus'),
          )
 
 DEFAULT_PAGINATION = 4
