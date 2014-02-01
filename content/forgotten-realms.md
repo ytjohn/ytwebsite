@@ -1,6 +1,6 @@
-Title: Forgotten Realms
-Date: 2009-09-30
-Author: John Hogenmiller 
+Title: Forgotten Realms  
+Date: 2009-09-30  
+Author: John Hogenmiller  
 
  Yesterday I was working on a very old server -- a [Cobalt RAQ 4][].  I
 actually leased a RAQ 3 for web hosting back in 2001 and thought it was
@@ -65,5 +65,3 @@ Forgotten realms By YourTech John on September 30, 2009 8:00 AM
   [BeOS]: http://en.wikipedia.org/wiki/BeOS
   [Haiku]: http://www.haiku-os.org/
 
-
--jth    
