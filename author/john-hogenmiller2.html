@@ -83,6 +83,43 @@ My name is John Hogenmiller, I am a father, husband, Linux system engineer, amat
 </div>	      </div>
 
 <div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/09/dingus-problems.html">dingus problems</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/09/dingus-problems.html">On 20 Sep 2012 at 1250</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/09/dingus-problems.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/09/dingus-problems.html#disqus_thread">Comments</a></div>
+  <div><p>Yesterday, I ran into a small, but confusing issue converting from markdown to html for a post. A markdown process will convert html in a code block to html escaped entities. That way, when you use the resulting html, your html example code doesn't get interpreted as html.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span class="nt">&lt;p&gt;</span>This is a <span class="nt">&lt;strong&gt;</span>strong<span class="nt">&lt;/strong&gt;</span> example.<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>Gets converted to:</p>
+<div class="highlight"><pre><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>This is a <span class="ni">&amp;lt;</span>strong<span class="ni">&amp;gt;</span>strong<span class="ni">&amp;lt;</span>/strong<span class="ni">&amp;gt;</span> example.<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
+<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</pre></div>
+
+
+<p>In the "dingus" I made, this didn't appear to be happening. The above example rendered as:</p>
+<div class="highlight"><pre><span class="nt">&lt;pre&gt;&lt;code&gt;</span>This is a <span class="nt">&lt;strong&gt;</span>strong<span class="nt">&lt;/strong&gt;</span> example.<span class="nt">&lt;/p&gt;&lt;/code&gt;&lt;/pre&gt;</span>
+</pre></div>
+
+
+<p>Furthermore, it worked perfectly fine using the "official" php-markdown <a href="http://michelf.ca/projects/php-markdown/dingus/">dingus</a>. I was using their library, and it's incredibly simple to implement. After some digging, I discovered that in my dingus, the code was being converted properly in my preview section, but not in my HTML Source textarea. I was printing the same <code>$render</code> variable in both sections, but getting different results in my browser. </p>
+<p>As it turns out, most html elements are "CDATA" and a textarea is "PCDATA". When all is said and done, this means that instead of needing to send &lt;, I need to send &amp;lt to the browser. Fortunately, php has a function called htmlspecialchars() that does this for me. For my HTML Output, I just needed to change <code>print $render</code> to <code>print htmlspecialchars($render)</code>.</p>
+<p>20120920</p></div>
+  <!-- <div class="summary"><p>Yesterday, I ran into a small, but confusing issue converting from markdown to html for a post. A markdown process will convert html in a code block to html escaped entities. That way, when you use the resulting html, your html example code doesn't get interpreted as html.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span class="nt">&lt;p&gt;</span>This is a <span class="nt">&lt;strong&gt;</span>strong<span class="nt">&lt;/strong&gt;</span> example.<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>Gets converted to:</p>
+<div class="highlight"><pre><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>This is a <span class="ni">&amp;lt;</span>strong<span class="ni">&amp;gt;</span>strong ...</pre></div></div> -->
+  
+Tagged as: </div>
+<div class='article'>
   <h2><a href="http://www.yourtech.us/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a></h2>
   <div class="well small"><a class="more" href="http://www.yourtech.us//2012/09/bootstrap-and-cdns.html">On 18 Sep 2012 at 1826</a>
 by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
@@ -300,130 +337,6 @@ my current language of choice. I could work in Perl or Java, but I want
 to develop a web application, which ...</p></div> -->
   
 Tagged as: <a href="http://www.yourtech.us/tag/api.html">api</a> <a href="http://www.yourtech.us/tag/python.html">python</a> <a href="http://www.yourtech.us/tag/programming.html">programming</a> <a href="http://www.yourtech.us/tag/vmware.html">vmware</a> <a href="http://www.yourtech.us/tag/pysphere.html">pysphere</a> </div>
-<div class='article'>
-  <h2><a href="http://www.yourtech.us/2012/08/upgrade-redmine.html">Upgrade Redmine</a></h2>
-  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/upgrade-redmine.html">On 09 Aug 2012 at 0300</a>
-by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
-in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
- | <a href="http://www.yourtech.us/2012/08/upgrade-redmine.text">{source}</a>
- | <a href="http://www.yourtech.us//2012/08/upgrade-redmine.html#disqus_thread">Comments</a></div>
-  <div><p>Currently, I have Redmine version redmine 1.3.3 installed via the
-<a href="https://launchpad.net/~ondrej/+archive/redmine" title="ppa:ondrej/redmine">ondrej/redmine PPA</a>. I have been wanting to upgrade to the 2.x series
-of redmine, but no PPA currently exists for it. Redmine is officially
-provided by Ubuntu, but the version for Precise is 1.3.2, and Ondřej's
-PPA is on 1.4.3. While I usually prefer to have my software installation
-and updates handled by packages, it looks like to get to the 2.x series,
-I'll have to go back to source.</p>
-<p>I will be following the <a href="http://www.redmine.org/projects/redmine/wiki/RedmineUpgrade" title="Upgrade to 2.x">official upgrade guide</a> closely, but with a
-few variations.</p>
-<ol>
-<li>The apt-get/ppa version uses multiple file locations for source code
-    and configuration. I'll have to consolidate to one place.</li>
-<li>My ruby and passenger modules were installed and modified to work
-    with the ppa version of redmine. Adjustments will be needed.</li>
-</ol>
-<p>My ruby version is 1.8.7 (1.8.7 min), rails 2.3.14 (2.3.6 min) and gem
-1.8.15 (1.8 min. Already having the minimum requirements makes this a
-bit easier.</p>
-<p>After performing a mysql backup (hint: database.yml is in
-/etc/redmine/default), I downloaded redmine to /usr/local/redmine-2.0. I
-also decided to stop Apache so that Passenger wouldn't be running the
-existing redmine instance. If I had other sites running on this server,
-I would have disabled this virtual host or put up a maintenance page.</p>
-<div class="highlight"><pre><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">database</span><span class="p">.</span><span class="n">yml</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">config</span>
-<span class="n">cp</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">redmine</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">files</span><span class="o">/*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">files</span>
-</pre></div>
-
-
-<p>I didn't have any plugins, but if I did they would either be in
-/usr/share/redmine/vendor/plugins or /usr/share/redmine/lib/plugins. I
-do intend to install a couple plugins when I get into 2.x though.</p>
-<p>I found in step 3 that the rake commands didn't work. This is probably
-because I wasn't working from an existing rails directory. I went to the
-<a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall" title="Install Guide">Redmine Installer</a> page, which gave me the answer. "Since 1.4.0,
-Redmine uses Bundler to manage gems dependencies. You need to install
-<a href="http://gembundler.com/">Bundler</a> first.".</p>
-<div class="highlight"><pre><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">database</span><span class="p">.</span><span class="n">yml</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">config</span>
-<span class="n">cp</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">redmine</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">files</span><span class="o">/*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">files</span>
-</pre></div>
-
-
-<p>I ran into an error when bundle was installing json 1.7.4.</p>
-<div class="highlight"><pre><span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
-<span class="cp"># run the next command from /usr/local/redmine-2.0</span>
-<span class="cp"># it reads the file &quot;Gemfile&quot;</span>
-<span class="n">bundle</span> <span class="n">install</span> <span class="o">--</span><span class="n">without</span> <span class="n">development</span> <span class="n">test</span>
-</pre></div>
-
-
-<p>According to an <a href="http://ruby.about.com/od/faqs/qt/Extconf-Rb-1-In-Require-No-Such-File-To-Load-Mkmf-Loaderror.htm">about.com page</a>, I need build-essentials,
-libopenssl-ruby, and ruby1.8-dev installed. The one I was missing was
-ruby1.8-dev. This is easily fixed with an <code>apt-get install ruby1.8-dev</code>.</p>
-<p>I had to install the following other packages for certain gems. The
-Gemfile includes items for postgresql and sqlite, even if you don't use
-it. The <a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall" title="Install Guide">install guide</a> lets you know that you can
-skip these with the --without option. You would just add "pg sqlite
-rmagick" to the end of your bundle install line (above).</p>
-<ul>
-<li>json: build-essentials, libopenssl-ruby, and ruby1.8-dev</li>
-<li>mysql: libmysqlclient-dev</li>
-<li>pg: libpq-dev (alternatively: add pg to the --without list)</li>
-<li>rmagick: libmagickcore-dev, libmagickwand-dev (alternatively: add
-    rmagick to the --without list)</li>
-<li>sqlite: libsqlite3-dev</li>
-</ul>
-<p>Once we got Bundler installed and all the required gems, we switch back
-to the <a href="http://www.redmine.org/projects/redmine/wiki/RedmineUpgrade" title="Upgrade to 2.x">Upgrade Guide</a> to update our session
-store and migrate the database. I had no plugins, so I'm skipping that
-step.</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ruby1</span><span class="mf">.8</span> <span class="n">extconf</span><span class="p">.</span><span class="n">rb</span>
-<span class="n">extconf</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="n">in</span> <span class="err">`</span><span class="n">require</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">no</span> <span class="n">such</span> <span class="n">file</span> <span class="n">to</span> <span class="n">load</span> <span class="o">--</span> <span class="n">mkmf</span> <span class="p">(</span><span class="n">LoadError</span><span class="p">)</span>
-<span class="n">from</span> <span class="n">extconf</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">1</span>
-</pre></div>
-
-
-<p>Let's start this locally before we mess with passenger or apache (be
-sure to allow port 3000 via iptables or ufw).</p>
-<div class="highlight"><pre><span class="n">rake</span> <span class="n">generate_secret_token</span>
-<span class="n">rake</span> <span class="n">db</span><span class="o">:</span><span class="n">migrate</span> <span class="n">RAILS_ENV</span><span class="o">=</span><span class="n">production</span> 
-<span class="cp"># unecessary, as this is a new directory, but why not clean up?</span>
-<span class="n">rake</span> <span class="n">tmp</span><span class="o">:</span><span class="n">cache</span><span class="o">:</span><span class="n">clear</span>
-<span class="n">rake</span> <span class="n">tmp</span><span class="o">:</span><span class="n">sessions</span><span class="o">:</span><span class="n">clear</span>
-</pre></div>
-
-
-<p>This worked without a hitch for me. Now on to my passenger setup. I
-already has this configured and installed previously, so all I have to
-do is change my VirtualHost directory.</p>
-<div class="highlight"><pre><span class="n">ServerName</span> <span class="n">projects</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
-<span class="n">DocumentRoot</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">public</span>
-<span class="n">RailsSpawnMethod</span> <span class="n">smart</span>
-<span class="cp"># Keep the application instances alive longer. Default is 300 (seconds)</span>
-<span class="n">PassengerPoolIdleTime</span> <span class="mi">1000</span>
-<span class="n">RailsAppSpawnerIdleTime</span> <span class="mi">0</span>
-<span class="n">RailsFrameworkSpawnerIdleTime</span> <span class="mi">0</span>
-<span class="n">PassengerMaxRequests</span> <span class="mi">5000</span>
-<span class="n">PassengerStatThrottleRate</span> <span class="mi">5</span>
-
-        <span class="n">AllowOverride</span> <span class="n">all</span>
-        <span class="n">Options</span> <span class="o">-</span><span class="n">MultiViews</span>
-</pre></div>
-
-
-<p>I did have to change a few permisssions (all files installed as owned by
-root)</p>
-<div class="highlight"><pre><span class="n">chgrp</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">config</span>
-<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">files</span>
-<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">log</span>
-</pre></div></div>
-  <!-- <div class="summary"><p>Currently, I have Redmine version redmine 1.3.3 installed via the
-<a href="https://launchpad.net/~ondrej/+archive/redmine" title="ppa:ondrej/redmine">ondrej/redmine PPA</a>. I have been wanting to upgrade to the 2.x series
-of redmine, but no PPA currently exists for it. Redmine is officially
-provided by Ubuntu, but the version for Precise is 1.3.2, and Ondřej's
-PPA is on 1.4.3. While I usually prefer to have my software installation
-and updates handled by packages, it looks ...</p></div> -->
-  
-Tagged as: </div>
 
 <div class="pagination">
 <ul>
@@ -485,6 +398,31 @@ Tagged as: </div>
    <li> <h4><a href="/archives.html">Archives</a></h4>
 <!-- bootstrap collapsible archive list -->
 <div class="accordion" id="sidebararchive">
+  <!-- year 2014 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2014">
+        2014
+      </a>
+    </div>
+
+    <div id="collapse2014" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2014"
+               href="#collapse2014February">
+               February (1) 
+            </a>
+           <div id="collapse2014February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2014/02/c270-review.html">C270 Review</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
   <!-- year 2013 -->
   <div class="accordion-group">
     <div class="accordion-heading">

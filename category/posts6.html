@@ -83,6 +83,72 @@ My name is John Hogenmiller, I am a father, husband, Linux system engineer, amat
 </div>	      </div>
 
 <div class='article'>
+  <h2><a href="http://www.yourtech.us/2010/01/securing-apache2.html">Securing Apache2</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2010/01/securing-apache2.html">On 02 Jan 2010 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2010/01/securing-apache2.text">{source}</a>
+ | <a href="http://www.yourtech.us//2010/01/securing-apache2.html#disqus_thread">Comments</a></div>
+  <div><p>A client wanted to make files available available to the web browser
+from within their LAN and a handful of static IPs without requiring any
+sort of username or password.  This is the web equivalent of a shared,
+read only folder.  This is no big issue, you can create an .htaccess
+file like so:  </p>
+<blockquote>
+<p><strong>Order deny,allow<br />
+Deny from all<br />
+Allow from 10.10.0.1/16<br />
+Allow from 127.0.0.1/32<br />
+Allow from 1.1.1.1/32</strong></p>
+</blockquote>
+<p>However, they would also like to access it from a remote location with a
+username and password.  </p>
+<p>First, we need to create a password file.  In the old days, you would
+use "AuthType Basic", but a more secure method is the Digest method.  To
+use this, you must have the auth_digest module loaded into your Apache
+configuration.  If you are running a Debian or Ubuntu version, you can
+do this by executing "<strong>sudo a2enmod auth_digest</strong>".  Using digest
+authentication prevents your username and password from being sent in
+the clear (however, I always recommend that any site requiring
+authentication should utilize https).  </p>
+<p>Next,  you create your htdigest file:  </p>
+<blockquote>
+<p><strong>htdigest -c .htdigest *authname username</strong>*</p>
+</blockquote>
+<p>When prompted, you would enter a password for <em>username</em>.  </p>
+<p>Finally, you need to modify your .htaccess file to allow either method:  </p>
+<blockquote>
+<p><strong>Order deny,allow<br />
+Deny from all<br />
+AuthName "authname"<br />
+AuthType Digest<br />
+AuthUserFile /var/www/.htpasswd<br />
+require valid-userAllow from 10.10.0.1/16<br />
+Allow from 127.0.0.1/32<br />
+Allow from 1.1.1.1/32<br />
+Satisfy Any</strong>  </p>
+</blockquote>
+<p>Now, a user can come from the 10.10.x.x network, localhost, or 1.1.1.1
+without requiring authentication.  If they later come from an
+unrecognized IP, they can enter their username and password and be
+granted access.  </p>
+<p>--<br />
+Securing Apache2 by IP or Username By YourTech John on January 2, 2010
+8:40 AM</p></div>
+  <!-- <div class="summary"><p>A client wanted to make files available available to the web browser
+from within their LAN and a handful of static IPs without requiring any
+sort of username or password.  This is the web equivalent of a shared,
+read only folder.  This is no big issue, you can create an .htaccess
+file like so:  </p>
+<blockquote>
+<p><strong>Order deny,allow<br />
+Deny from all<br />
+Allow from 10.10.0.1/16<br />
+Allow from 127.0.0.1/32<br />
+Allow ...</strong></p></blockquote></div> -->
+  
+Tagged as: </div>
+<div class='article'>
   <h2><a href="http://www.yourtech.us/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a></h2>
   <div class="well small"><a class="more" href="http://www.yourtech.us//2009/10/backing-up-with-duplicity-and-amazon-s3.html">On 26 Oct 2009 at 0000</a>
 by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
@@ -525,6 +591,31 @@ Tagged as: </div>
    <li> <h4><a href="/archives.html">Archives</a></h4>
 <!-- bootstrap collapsible archive list -->
 <div class="accordion" id="sidebararchive">
+  <!-- year 2014 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2014">
+        2014
+      </a>
+    </div>
+
+    <div id="collapse2014" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2014"
+               href="#collapse2014February">
+               February (1) 
+            </a>
+           <div id="collapse2014February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2014/02/c270-review.html">C270 Review</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
   <!-- year 2013 -->
   <div class="accordion-group">
     <div class="accordion-heading">

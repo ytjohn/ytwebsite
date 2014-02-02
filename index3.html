@@ -83,6 +83,130 @@ My name is John Hogenmiller, I am a father, husband, Linux system engineer, amat
 </div>	      </div>
 
 <div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/upgrade-redmine.html">Upgrade Redmine</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/upgrade-redmine.html">On 09 Aug 2012 at 0300</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/upgrade-redmine.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/upgrade-redmine.html#disqus_thread">Comments</a></div>
+  <div><p>Currently, I have Redmine version redmine 1.3.3 installed via the
+<a href="https://launchpad.net/~ondrej/+archive/redmine" title="ppa:ondrej/redmine">ondrej/redmine PPA</a>. I have been wanting to upgrade to the 2.x series
+of redmine, but no PPA currently exists for it. Redmine is officially
+provided by Ubuntu, but the version for Precise is 1.3.2, and Ondřej's
+PPA is on 1.4.3. While I usually prefer to have my software installation
+and updates handled by packages, it looks like to get to the 2.x series,
+I'll have to go back to source.</p>
+<p>I will be following the <a href="http://www.redmine.org/projects/redmine/wiki/RedmineUpgrade" title="Upgrade to 2.x">official upgrade guide</a> closely, but with a
+few variations.</p>
+<ol>
+<li>The apt-get/ppa version uses multiple file locations for source code
+    and configuration. I'll have to consolidate to one place.</li>
+<li>My ruby and passenger modules were installed and modified to work
+    with the ppa version of redmine. Adjustments will be needed.</li>
+</ol>
+<p>My ruby version is 1.8.7 (1.8.7 min), rails 2.3.14 (2.3.6 min) and gem
+1.8.15 (1.8 min. Already having the minimum requirements makes this a
+bit easier.</p>
+<p>After performing a mysql backup (hint: database.yml is in
+/etc/redmine/default), I downloaded redmine to /usr/local/redmine-2.0. I
+also decided to stop Apache so that Passenger wouldn't be running the
+existing redmine instance. If I had other sites running on this server,
+I would have disabled this virtual host or put up a maintenance page.</p>
+<div class="highlight"><pre><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">database</span><span class="p">.</span><span class="n">yml</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">config</span>
+<span class="n">cp</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">redmine</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">files</span><span class="o">/*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">files</span>
+</pre></div>
+
+
+<p>I didn't have any plugins, but if I did they would either be in
+/usr/share/redmine/vendor/plugins or /usr/share/redmine/lib/plugins. I
+do intend to install a couple plugins when I get into 2.x though.</p>
+<p>I found in step 3 that the rake commands didn't work. This is probably
+because I wasn't working from an existing rails directory. I went to the
+<a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall" title="Install Guide">Redmine Installer</a> page, which gave me the answer. "Since 1.4.0,
+Redmine uses Bundler to manage gems dependencies. You need to install
+<a href="http://gembundler.com/">Bundler</a> first.".</p>
+<div class="highlight"><pre><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">database</span><span class="p">.</span><span class="n">yml</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">config</span>
+<span class="n">cp</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">redmine</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">files</span><span class="o">/*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">files</span>
+</pre></div>
+
+
+<p>I ran into an error when bundle was installing json 1.7.4.</p>
+<div class="highlight"><pre><span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
+<span class="cp"># run the next command from /usr/local/redmine-2.0</span>
+<span class="cp"># it reads the file &quot;Gemfile&quot;</span>
+<span class="n">bundle</span> <span class="n">install</span> <span class="o">--</span><span class="n">without</span> <span class="n">development</span> <span class="n">test</span>
+</pre></div>
+
+
+<p>According to an <a href="http://ruby.about.com/od/faqs/qt/Extconf-Rb-1-In-Require-No-Such-File-To-Load-Mkmf-Loaderror.htm">about.com page</a>, I need build-essentials,
+libopenssl-ruby, and ruby1.8-dev installed. The one I was missing was
+ruby1.8-dev. This is easily fixed with an <code>apt-get install ruby1.8-dev</code>.</p>
+<p>I had to install the following other packages for certain gems. The
+Gemfile includes items for postgresql and sqlite, even if you don't use
+it. The <a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall" title="Install Guide">install guide</a> lets you know that you can
+skip these with the --without option. You would just add "pg sqlite
+rmagick" to the end of your bundle install line (above).</p>
+<ul>
+<li>json: build-essentials, libopenssl-ruby, and ruby1.8-dev</li>
+<li>mysql: libmysqlclient-dev</li>
+<li>pg: libpq-dev (alternatively: add pg to the --without list)</li>
+<li>rmagick: libmagickcore-dev, libmagickwand-dev (alternatively: add
+    rmagick to the --without list)</li>
+<li>sqlite: libsqlite3-dev</li>
+</ul>
+<p>Once we got Bundler installed and all the required gems, we switch back
+to the <a href="http://www.redmine.org/projects/redmine/wiki/RedmineUpgrade" title="Upgrade to 2.x">Upgrade Guide</a> to update our session
+store and migrate the database. I had no plugins, so I'm skipping that
+step.</p>
+<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ruby1</span><span class="mf">.8</span> <span class="n">extconf</span><span class="p">.</span><span class="n">rb</span>
+<span class="n">extconf</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="n">in</span> <span class="err">`</span><span class="n">require</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">no</span> <span class="n">such</span> <span class="n">file</span> <span class="n">to</span> <span class="n">load</span> <span class="o">--</span> <span class="n">mkmf</span> <span class="p">(</span><span class="n">LoadError</span><span class="p">)</span>
+<span class="n">from</span> <span class="n">extconf</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>Let's start this locally before we mess with passenger or apache (be
+sure to allow port 3000 via iptables or ufw).</p>
+<div class="highlight"><pre><span class="n">rake</span> <span class="n">generate_secret_token</span>
+<span class="n">rake</span> <span class="n">db</span><span class="o">:</span><span class="n">migrate</span> <span class="n">RAILS_ENV</span><span class="o">=</span><span class="n">production</span> 
+<span class="cp"># unecessary, as this is a new directory, but why not clean up?</span>
+<span class="n">rake</span> <span class="n">tmp</span><span class="o">:</span><span class="n">cache</span><span class="o">:</span><span class="n">clear</span>
+<span class="n">rake</span> <span class="n">tmp</span><span class="o">:</span><span class="n">sessions</span><span class="o">:</span><span class="n">clear</span>
+</pre></div>
+
+
+<p>This worked without a hitch for me. Now on to my passenger setup. I
+already has this configured and installed previously, so all I have to
+do is change my VirtualHost directory.</p>
+<div class="highlight"><pre><span class="n">ServerName</span> <span class="n">projects</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
+<span class="n">DocumentRoot</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">public</span>
+<span class="n">RailsSpawnMethod</span> <span class="n">smart</span>
+<span class="cp"># Keep the application instances alive longer. Default is 300 (seconds)</span>
+<span class="n">PassengerPoolIdleTime</span> <span class="mi">1000</span>
+<span class="n">RailsAppSpawnerIdleTime</span> <span class="mi">0</span>
+<span class="n">RailsFrameworkSpawnerIdleTime</span> <span class="mi">0</span>
+<span class="n">PassengerMaxRequests</span> <span class="mi">5000</span>
+<span class="n">PassengerStatThrottleRate</span> <span class="mi">5</span>
+
+        <span class="n">AllowOverride</span> <span class="n">all</span>
+        <span class="n">Options</span> <span class="o">-</span><span class="n">MultiViews</span>
+</pre></div>
+
+
+<p>I did have to change a few permisssions (all files installed as owned by
+root)</p>
+<div class="highlight"><pre><span class="n">chgrp</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">config</span>
+<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">files</span>
+<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">log</span>
+</pre></div></div>
+  <!-- <div class="summary"><p>Currently, I have Redmine version redmine 1.3.3 installed via the
+<a href="https://launchpad.net/~ondrej/+archive/redmine" title="ppa:ondrej/redmine">ondrej/redmine PPA</a>. I have been wanting to upgrade to the 2.x series
+of redmine, but no PPA currently exists for it. Redmine is officially
+provided by Ubuntu, but the version for Precise is 1.3.2, and Ondřej's
+PPA is on 1.4.3. While I usually prefer to have my software installation
+and updates handled by packages, it looks ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
   <h2><a href="http://www.yourtech.us/2012/08/markdown-blogging.html">Markdown Blogging</a></h2>
   <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/markdown-blogging.html">On 06 Aug 2012 at 0000</a>
 by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
@@ -820,117 +944,6 @@ ones usually did not have very good terminal emulation, while the Java
 apps worked, but worked just like a local desktop app (making it's own ...</p></div> -->
   
 Tagged as: </div>
-<div class='article'>
-  <h2><a href="http://www.yourtech.us/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a></h2>
-  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/06/puppet-dashboard-and-selinux.html">On 25 Jun 2012 at 0000</a>
-by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
-in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
- | <a href="http://www.yourtech.us/2012/06/puppet-dashboard-and-selinux.text">{source}</a>
- | <a href="http://www.yourtech.us//2012/06/puppet-dashboard-and-selinux.html#disqus_thread">Comments</a></div>
-  <div><p>Once I got a rough handle on setting up Puppet, I decided to get <a href="http://projects.puppetlabs.com/projects/dashboard" title="Puppet Dashboard">Puppet
-Dashboard</a> working on my puppetmaster (a Centos 6 server) to have a
-sort of web interface to view puppet statuses. Since I already have the
-puppetlabs repositories setup from when I installed puppet, this was
-almost as simple as running "yum install puppet-dashboard".</p>
-<p>You then go to /usr/share/puppet-dashboard and follow the <a href="http://docs.puppetlabs.com/dashboard/manual/1.2/bootstrapping.html" title="Puppet Install Guide">install
-guide</a> to get the database working. Then you can run it locally using
-the "sudo -u puppet-dashboard ./script/server -e production" command or
-starting the service (service puppet-dashboard start). I recommed
-running it manually the first few times to make sure everything is
-working.</p>
-<p>At this point, I was able to browse to http://puppetmaster:3000/ and
-view a nice looking dashboard with no hosts checked in. I then made sure
-to add the following to puppetmaster's puppet.conf [master] section and
-restart puppet.</p>
-<div class="highlight"><pre><span class="n">reports</span> <span class="o">=</span> <span class="n">http</span><span class="p">,</span> <span class="n">store</span>
-<span class="n">reporturl</span> <span class="o">=</span> <span class="n">http</span><span class="o">:</span><span class="c1">//localhost:3000/reports/upload</span>
-</pre></div>
-
-
-<p>I performed a "puppet agent --test" on one of my puppets, and here is
-where I ran into trouble. Everything appeared to work, but no report or
-"pending task" showed up in the Dashboard. I ran the Dashboard locally
-so I could see the http request coming in. No request. I double checked
-my configuration, everything looked good.</p>
-<p>Finally, I ran my puppetmaster in debug/no-daemonize mode.
-(/usr/sbin/puppetmaster --debug --no-daemonize) so I could watch what
-was happening. However, in this mode, it worked fine. I ran
-/usr/sbin/puppetmaster without debugging and it still worked. The
-reports would get submitted to dashboard if I ran puppetmaster directly,
-but not if I started it with the init scripts.</p>
-<p>I couldn't find any differences between how the init script was starting
-puppetmaster vs me starting it manually. However, I did come across this
-entry in /var/log/messages:</p>
-<div class="highlight"><pre> <span class="n">Jul</span> <span class="mi">25</span> <span class="mi">10</span><span class="o">:</span><span class="mi">15</span><span class="o">:</span><span class="mi">16</span> <span class="n">puppetmasterj</span> <span class="n">puppet</span><span class="o">-</span><span class="n">master</span><span class="p">[</span><span class="mi">11988</span><span class="p">]</span><span class="o">:</span> <span class="n">Compiled</span> <span class="n">catalog</span> <span class="k">for</span> <span class="n">puppet2</span><span class="p">.</span><span class="n">lab</span> <span class="n">in</span> <span class="n">environment</span> <span class="n">production</span> <span class="n">in</span> <span class="mf">1.16</span> <span class="n">seconds</span>
- <span class="n">Jul</span> <span class="mi">25</span> <span class="mi">10</span><span class="o">:</span><span class="mi">15</span><span class="o">:</span><span class="mi">17</span> <span class="n">puppetmasterj</span> <span class="n">puppet</span><span class="o">-</span><span class="n">master</span><span class="p">[</span><span class="mi">11988</span><span class="p">]</span><span class="o">:</span> <span class="n">Report</span> <span class="n">processor</span> <span class="n">failed</span><span class="o">:</span> <span class="n">Permission</span> <span class="n">denied</span> <span class="o">-</span> <span class="n">connect</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Which led me to the following entry in audit.log</p>
-<div class="highlight"><pre> <span class="n">type</span><span class="o">=</span><span class="n">AVC</span> <span class="n">msg</span><span class="o">=</span><span class="n">audit</span><span class="p">(</span><span class="mf">1343225819.078</span><span class="o">:</span><span class="mi">1582</span><span class="p">)</span><span class="o">:</span> <span class="n">avc</span><span class="o">:</span>  <span class="n">denied</span>  <span class="p">{</span> <span class="n">name_connect</span> <span class="p">}</span> <span class="k">for</span>  <span class="n">pid</span><span class="o">=</span><span class="mi">11988</span> <span class="n">comm</span><span class="o">=</span><span class="s">&quot;puppetmasterd&quot;</span> <span class="n">dest</span><span class="o">=</span><span class="mi">3000</span> <span class="n">scontext</span><span class="o">=</span><span class="n">unconfined_u</span><span class="o">:</span><span class="n">system_r</span><span class="o">:</span><span class="kt">puppetmaster_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tcontext</span><span class="o">=</span><span class="n">system_u</span><span class="o">:</span><span class="n">object_r</span><span class="o">:</span><span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tclass</span><span class="o">=</span><span class="n">tcp_socket</span>
-</pre></div>
-
-
-<p>This was an selinux issue. I quickly ascertained that turning enforcing
-off in selinux allowed my reports to get through. I couldn't find anyone
-else online encountering this issue. However, many people disable
-selinux enforcing early on and I guess the cross-section of
-puppet-dashboard users and those using selinux enforcing is somewhat
-small.</p>
-<p>How to fix this? There is a set of python programs called "audit2why"
-and "audit2allow" as part of the policycoreutils-python package. These
-tools will parse entries from the audit.log and either explain why an
-action was denied or provide a solution. You can get these tools by
-doing a "yum install policycoreutils-python".</p>
-<p>Now we can use audit2allow to parse our audit.log error. You'll want to
-run the tool, paste in your log entry, and then hit Ctrl+D on a blank
-line.</p>
-<div class="highlight"><pre> <span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">puppetmasterj</span> <span class="n">tmp</span><span class="p">]</span><span class="err">#</span> <span class="n">audit2allow</span> <span class="o">-</span><span class="n">m</span> <span class="n">puppetmaster</span>
- <span class="n">type</span><span class="o">=</span><span class="n">AVC</span> <span class="n">msg</span><span class="o">=</span><span class="n">audit</span><span class="p">(</span><span class="mf">1343232143.497</span><span class="o">:</span><span class="mi">1617</span><span class="p">)</span><span class="o">:</span> <span class="n">avc</span><span class="o">:</span>  <span class="n">denied</span>  <span class="p">{</span> <span class="n">name_connect</span> <span class="p">}</span> <span class="k">for</span>  <span class="n">pid</span><span class="o">=</span><span class="mi">12552</span> <span class="n">comm</span><span class="o">=</span><span class="s">&quot;puppetmasterd&quot;</span> <span class="n">dest</span><span class="o">=</span><span class="mi">3000</span> <span class="n">scontext</span><span class="o">=</span><span class="n">unconfined_u</span><span class="o">:</span><span class="n">system_r</span><span class="o">:</span><span class="kt">puppetmaster_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tcontext</span><span class="o">=</span><span class="n">system_u</span><span class="o">:</span><span class="n">object_r</span><span class="o">:</span><span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tclass</span><span class="o">=</span><span class="n">tcp_socket</span>
- <span class="n">module</span> <span class="n">puppetmaster</span> <span class="mf">1.0</span><span class="p">;</span>
- <span class="n">require</span> <span class="p">{</span>
-     <span class="n">type</span> <span class="kt">puppetmaster_t</span><span class="p">;</span>
-     <span class="n">type</span> <span class="kt">ntop_port_t</span><span class="p">;</span>
-     <span class="n">class</span> <span class="n">tcp_socket</span> <span class="n">name_connect</span><span class="p">;</span>
- <span class="p">}</span>
- <span class="err">#</span><span class="o">=============</span> <span class="kt">puppetmaster_t</span> <span class="o">==============</span>
- <span class="n">allow</span> <span class="kt">puppetmaster_t</span> <span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">tcp_socket</span> <span class="n">name_connect</span><span class="p">;</span>
-</pre></div>
-
-
-<p>The above gives you a textual view of a module you can create to allow
-puppetmaster to make an outbound connection. audit2allow will even
-generate that module with the -M option.</p>
-<div class="highlight"><pre> <span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">puppetmasterj</span> <span class="n">tmp</span><span class="p">]</span><span class="err">#</span> <span class="n">audit2allow</span> <span class="o">-</span><span class="n">M</span> <span class="n">puppetmaster</span>
- <span class="n">type</span><span class="o">=</span><span class="n">AVC</span> <span class="n">msg</span><span class="o">=</span><span class="n">audit</span><span class="p">(</span><span class="mf">1343232143.497</span><span class="o">:</span><span class="mi">1617</span><span class="p">)</span><span class="o">:</span> <span class="n">avc</span><span class="o">:</span>  <span class="n">denied</span>  <span class="p">{</span> <span class="n">name_connect</span> <span class="p">}</span> <span class="k">for</span>  <span class="n">pid</span><span class="o">=</span><span class="mi">12552</span> <span class="n">comm</span><span class="o">=</span><span class="s">&quot;puppetmasterd&quot;</span> <span class="n">dest</span><span class="o">=</span><span class="mi">3000</span> <span class="n">scontext</span><span class="o">=</span><span class="n">unconfined_u</span><span class="o">:</span><span class="n">system_r</span><span class="o">:</span><span class="kt">puppetmaster_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tcontext</span><span class="o">=</span><span class="n">system_u</span><span class="o">:</span><span class="n">object_r</span><span class="o">:</span><span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tclass</span><span class="o">=</span><span class="n">tcp_socket</span>
- <span class="o">********************</span> <span class="n">IMPORTANT</span> <span class="o">***********************</span>
- <span class="n">To</span> <span class="n">make</span> <span class="n">this</span> <span class="n">policy</span> <span class="n">package</span> <span class="n">active</span><span class="p">,</span> <span class="n">execute</span><span class="o">:</span>
- <span class="n">semodule</span> <span class="o">-</span><span class="n">i</span> <span class="n">puppetmaster</span><span class="p">.</span><span class="n">pp</span>
-</pre></div>
-
-
-<p>That generated the module "puppetmaster.pp". Despite the pp extension,
-this is not a puppet manifest, but an selinux binary module. Let's
-install it.</p>
-<div class="highlight"><pre> <span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">puppetmasterj</span> <span class="n">tmp</span><span class="p">]</span><span class="err">#</span> <span class="n">semodule</span> <span class="o">-</span><span class="n">i</span> <span class="n">puppetmaster</span><span class="p">.</span><span class="n">pp</span>
-</pre></div>
-
-
-<p>With that, puppetmaster can communicate with dashboard and reports are
-flowing. The only remaining thing left to do is to file a bug report. As
-it happened, someone had posted a bug report similar to this for
-documentation on the puppetdb project. I decided to append to that
-issue, but I suggested migrating the issue to the main puppet project.
-Issue <a href="http://projects.puppetlabs.com/issues/15567" title="Issue 15567 selinux">#15567</a>.</p></div>
-  <!-- <div class="summary"><p>Once I got a rough handle on setting up Puppet, I decided to get <a href="http://projects.puppetlabs.com/projects/dashboard" title="Puppet Dashboard">Puppet
-Dashboard</a> working on my puppetmaster (a Centos 6 server) to have a
-sort of web interface to view puppet statuses. Since I already have the
-puppetlabs repositories setup from when I installed puppet, this was
-almost as simple as running "yum install puppet-dashboard".</p>
-<p>You then go to /usr/share/puppet-dashboard and follow the <a href="http://docs.puppetlabs.com/dashboard/manual/1.2/bootstrapping.html" title="Puppet Install Guide">install
-guide</a> to get the database working ...</p></div> -->
-  
-Tagged as: <a href="http://www.yourtech.us/tag/puppet-selinux.html">puppet selinux</a> </div>
 
 <div class="pagination">
 <ul>
@@ -992,6 +1005,31 @@ Tagged as: <a href="http://www.yourtech.us/tag/puppet-selinux.html">puppet selin
    <li> <h4><a href="/archives.html">Archives</a></h4>
 <!-- bootstrap collapsible archive list -->
 <div class="accordion" id="sidebararchive">
+  <!-- year 2014 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2014">
+        2014
+      </a>
+    </div>
+
+    <div id="collapse2014" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2014"
+               href="#collapse2014February">
+               February (1) 
+            </a>
+           <div id="collapse2014February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2014/02/c270-review.html">C270 Review</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
   <!-- year 2013 -->
   <div class="accordion-group">
     <div class="accordion-heading">

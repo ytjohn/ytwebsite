@@ -30,6 +30,12 @@
   var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
   var disqus_developer = 1;
   
+  var disqus_identifier = "/2014/02/c270-review.html";
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 
   (function () {
   var s = document.createElement('script'); s.async = true;
@@ -59,7 +65,7 @@
 	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
  
 	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
-	  <li ><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	  <li class="active"><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
 	</ul>
 	<p class="navbar-text pull-right">
 	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
@@ -77,11 +83,45 @@
 	<div class="span10">
 	  <div class="row-fluid">
             <div class="span9">
-	      <div class="page-header">
-<div class="alert">
-My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
-</div>	      </div>
-    <h1>Authors on ytjohn</h1>        <li><a href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> (24)</li>
+<div class='article'>
+  <div class="page-header"><h1>C270 Review</h1></div>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2014/02/c270-review.html">On 01 Feb 2014 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2014/02/c270-review.text">{source}</a>
+ | <a href="http://www.yourtech.us//2014/02/c270-review.html#disqus_thread">Comments</a></div>
+  <div><h1>Acer C270 Chromebook</h1>
+<p>Last week I picked up a Chromebook, specifically the Acer C270. One of my coworkers uses one and kind of convinced me that one would be worth checking. I compared what was out there and other than the Pixel, the C270 had the best specs, including battery life (8.5 hours). It's an Intel chipset, 16GB space, 2Gb of RAM, 1.4Ghz.</p>
+<h2>The good:</h2>
+<ul>
+<li>You get a lot of functionality for $200.</li>
+<li>7 seconds from power off to browser up and running.</li>
+<li>Both an ssh client and vim are installed by default.</li>
+<li>The keyboard is fairly responsive.</li>
+<li>Runs forever without needing a charge.</li>
+<li>You can install a real OS alongside ChromeOS (using Crouton) and switch between the two without rebooting.</li>
+<li>It can do web pages and has a built in terminal shell.</li>
+<li>With Ubuntu installed in a chroot environment, it does everything my regular computer does (and I almost never have to fire up the gui, which would be a battery drain).</li>
+<li>This does Netflix, Amazon Prime, Hulu and </li>
+<li>I haven't done this, but one could replace the drive with a 128GB SSD for $100. </li>
+</ul>
+<h2>The bad:</h2>
+<ul>
+<li>Unfortunately the SD card slot isn't very deep. Any SD Card you insert will stick out the side. I was hoping to drop a 64GB sdcard inside here and store videos/music/projects on this card. But since it sticks out so far, I might as well use a USB drive.</li>
+<li>The trackpad requires an annoying amount of pressure to right click or click and hold (dragging/highlighting). It also makes a loud click when you do this. </li>
+</ul>
+<p>After working on this for the last week, I decided that this Chromebook is exactly what I was hoping my Asus 904 netbook would be. A responsive, long lasting, carry anywhere type computer. It has made me regret purchasing my Nexus 7. I get a lot more daily use out o fthe 11" Chromebook.</p>
+<p>So what am I using this for? A lot of things. Anything really. My primary use case for this was actually amateur radio. In my ubuntu chroot environment, I installed <a href="http://chirp.danplanet.com/">CHIRP</a> to program my radios, <a href="http://www.w1hkj.com/Fldigi.html">flidgi</a> for operating digital modes, <a href="http://xlog.nongnu.org/">xlog</a> for QSO logging, and Wine+<a href="aprsisce.wikidot.com">APRSISCE</a> for APRS action. So far these programs seem to work without issue. I've been able to program radios, send PSK data to PSKDroid on my cell phone using acoustic coupling, and view APRS activity using APRSISCE. When I'm not doing ham radio activity, I leave the X-windows session shut down (and it only takes about 5 seconds to start it up again).</p>
+<p>Beyond ham radio, I'm using it to browse the web (duh), ssh into my servers, write python code, and right now... writing this post. Earlier today I fired up a Jenkins server on AWS. I've been meaning to set one up for a long time, and I have a year of AWS's free tier currently. So from this chromebook, I selected a jenkins instance from the AWS market, SSH'd into and add pelican to it. Then I was able to setup a simple jenkins job that would publish my website from github. Then I went over to github and added a commit hook that calls my new jenkins job. Now, anytime I commit into my <a href="https://github.com/ytjohn/ytwebsite/">website's github repository</a> (including editing it from github directly), jenkins will automatically publish it. Doing this on my tablet, even with the keyboard, would have been frustrating. </p>
+<p>Basically, despite even Google's marketing, their Chromebook is NOT a web browser only type device. It is a full computer. If you're used to Linux desktops and servers, you can do anything on it that you can on your existing setup. Yes, the impressive battery life is obtainable by using ChromeOS and using X-Windows or other cpu heavy applications will bring that battery life down. But even when I left X-windows up for long periods of time (for instance, letting the linux side download updates) it only had a moderate impact on my battery life.</p>
+<p>If you're looking for a "carry anywhere, do anything" computing device, the C270 is well worth the price. </p></div>
+  <div>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>	
             </div><!--/span-->
 
 	    <div class="span3">
