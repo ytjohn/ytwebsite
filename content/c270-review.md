@@ -1,5 +1,5 @@
-Title: Back into programming, monitoring notes
-Date: 2009-08-25 
+Title: C270 Review
+Date: 2014-02-01
 Author: John Hogenmiller
 
 # Acer C270 Chromebook
