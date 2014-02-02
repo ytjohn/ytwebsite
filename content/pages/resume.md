@@ -1,5 +1,5 @@
-Title: Resume
-Author: John Hogenmiller
+Title: Resume  
+Author: John Hogenmiller  
 
 View this in other formats: [PDF][pdf], [OpenOffice/odt][odt], [MS Word/docx][docx], [Github][gh].
 
