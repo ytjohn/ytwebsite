@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li ><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+	      <div class="page-header">
+<div class="alert">
+My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
+</div>	      </div>
+
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2011/01/expanding-a-raw-image-file.html">On 13 Jan 2011 at 0557</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2011/01/expanding-a-raw-image-file.text">{source}</a>
+ | <a href="http://www.yourtech.us//2011/01/expanding-a-raw-image-file.html#disqus_thread">Comments</a></div>
+  <div><p>On one of my customer's devices, the backup software requires that the
+backups go to a separate partition (or drive).  However, the customer
+only has one raid array and the bulk of the space is in /home.   To work
+around this limitation, I created a raw image file called backup.img,
+which gets mounted as /backup.   After the software performs its local
+backup, I use duplicity to backup /backup remotely to a backup server at
+my location (with encryption).  </p>
+<p>Today I got an alert that /backup was running low on space.  It was an
+80GB image and 61GB was in use, leaving only 15GB free.  Now, this
+amount of free space should last quite a while.  However, the software
+(cPanel)  has a known issue for years that the 80% limit is hardcoded
+into the program.  I can change this, but every time cPanel updates, it
+overwrites that change.  </p>
+<p>So to be proactive, I decided to go ahead and increase the image size.  </p>
+<p>In order to increase the size of an image, you simply unmount your raw
+image and use the dd command.  </p>
+<blockquote>
+<p># Increase by \~20GB<br />
+dd if=/dev/zero bs=1M count=20480 >> backup.img<br />
+# 20,480 is 20,480 MB or \~20GB  </p>
+<p># check the filesystem<br />
+/sbin/e2fsck -f backup.img<br />
+# resize the filesystem<br />
+/sbin/resize2fs backup.img<br />
+# check the filesystem again<br />
+e2fsck -f backup.img               </p>
+</blockquote>
+<p>--  </p>
+<p>Expanding a raw image file By Administrator on January 13, 2011 5:57 AM</p></div>
+  <!-- <div class="summary"><p>On one of my customer's devices, the backup software requires that the
+backups go to a separate partition (or drive).  However, the customer
+only has one raid array and the bulk of the space is in /home.   To work
+around this limitation, I created a raw image file called backup.img,
+which gets mounted as /backup.   After the software performs its local
+backup, I use duplicity to backup /backup remotely to a backup server ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2011/01/learning-python.html">Learning Python</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2011/01/learning-python.html">On 03 Jan 2011 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2011/01/learning-python.text">{source}</a>
+ | <a href="http://www.yourtech.us//2011/01/learning-python.html#disqus_thread">Comments</a></div>
+  <div><p>I am reasonably familiar with Perl and PHP languages.  Recently though,
+I have taken it upon myself to learn Python.  I've played with Python a
+few times, and it seems to be very powerful with lots of useful
+functionality under the hood.  </p>
+<p>For some basic practice, I recommend <a href="http://learnpythonthehardway.org/">Learn Python The Hard Way</a>,
+which is free book by a reputable Python author, Zed Shaw.  He makes the
+book itself available for free as a PDF download or you can purchase it
+directly.  The book walks you through a number of examples, each one
+building upon what you learned in the previous exercise.  You are
+required to enter each exercise in by hand.  This uses the principle
+that if you learn better by writing things down, you'll learn better by
+typing it in.  Copying and pasting completely bypasses that manual entry
+learning process, so if you want to learn, I suggest you follow Shaw's
+instructions.  I found the book rather insightful, but I often felt that
+certain aspects were not being properly explained to me.  To be fair,
+I'm only up to exercise 15 in a 52 exercise book.  </p>
+<p>However, I also came across another way to learn Python.  Google has had
+instructor <a href="http://www-cs-faculty.stanford.edu/%7enick/">Nick Parlante</a> teach Python in a classroom setting.  The
+class was video taped and <a href="http://code.google.com/edu/languages/google-python-class/index.html">put online</a> along with the associated
+learning aids (primarily a group of python files).  The class was taught
+in 7 segments over 2 days.  So if you go to the <a href="http://code.google.com/edu/languages/google-python-class/index.html">class website</a>, you can download the learning aids, and then follow along with
+the lecture videos.    </p>
+<p>I like this method better than following the static book.  Since it was
+taught in an interactive classroom, it goes at a pace where you can keep
+up with it from your own computer.  Also, students in the class were
+able to ask questions, which allows the information to be represented in
+a different way.  Finally, at the end of each segment, there are some
+sample files you can open up in your editor.  Each file has a skeleton
+template.  In comments, it tells you what a segment is supposed to do,
+and you have to implement it in code based on what you learned while
+watching the video.  The sample file also includes some bare bones "unit
+tests" that call your functions, passing it input data and comparing it
+to an expected output.  These unit tests will show what they received
+from your function and what they expected.  If the two matched, you have
+succeeded.    </p>
+<p>I like these practice samples mainly because it immediately forces you
+to apply the knowledge you learned.  You do have to think about it and
+do some back and forth troubleshooting on your own code.  Since they
+provided the unit tests, you can get instant feedback on if you're doing
+it correctly or not.  </p>
+<p>If you want to learn Python and can dedicate an hour on any given day to
+it, I recommend the Google course.  If you want to go in smaller 10-20
+minute blocks, try using Learn Python The Hard Way.  Of course, you can
+pause the videos and come back to them, but I think it's much better to
+go through the entire video, following along on your own system as you
+go. <br />
+--<br />
+Learning Python By Administrator on January 3, 2011 4:40 AM</p></div>
+  <!-- <div class="summary"><p>I am reasonably familiar with Perl and PHP languages.  Recently though,
+I have taken it upon myself to learn Python.  I've played with Python a
+few times, and it seems to be very powerful with lots of useful
+functionality under the hood.  </p>
+<p>For some basic practice, I recommend <a href="http://learnpythonthehardway.org/">Learn Python The Hard Way</a>,
+which is free book by a reputable Python author, Zed Shaw.  He makes the
+book itself available for free as a ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2010/09/we-have-moved.html">We have moved!</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2010/09/we-have-moved.html">On 06 Sep 2010 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2010/09/we-have-moved.text">{source}</a>
+ | <a href="http://www.yourtech.us//2010/09/we-have-moved.html#disqus_thread">Comments</a></div>
+  <div><p>Starting around Memorial Day, we have been busy working on moving our
+office to our new location in Bedford, PA.  We have now completed that
+move and wanted to let everyone know our new address.  </p>
+<p>Our new address for correspondence is:  </p>
+<p>YourTech, LLC<br />
+300 Cumberland Rd<br />
+Bedford, PA 15522 </p>
+<p>--<br />
+We have moved! By YourTech John on September 6, 2010 8:00 AM</p></div>
+  <!-- <div class="summary"><p>Starting around Memorial Day, we have been busy working on moving our
+office to our new location in Bedford, PA.  We have now completed that
+move and wanted to let everyone know our new address.  </p>
+<p>Our new address for correspondence is:  </p>
+<p>YourTech, LLC<br />
+300 Cumberland Rd<br />
+Bedford, PA 15522 </p>
+<p>--<br />
+We have moved! By YourTech John on September 6, 2010 8:00 AM</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2010/01/securing-apache2.html">Securing Apache2</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2010/01/securing-apache2.html">On 02 Jan 2010 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2010/01/securing-apache2.text">{source}</a>
+ | <a href="http://www.yourtech.us//2010/01/securing-apache2.html#disqus_thread">Comments</a></div>
+  <div><p>A client wanted to make files available available to the web browser
+from within their LAN and a handful of static IPs without requiring any
+sort of username or password.  This is the web equivalent of a shared,
+read only folder.  This is no big issue, you can create an .htaccess
+file like so:  </p>
+<blockquote>
+<p><strong>Order deny,allow<br />
+Deny from all<br />
+Allow from 10.10.0.1/16<br />
+Allow from 127.0.0.1/32<br />
+Allow from 1.1.1.1/32</strong></p>
+</blockquote>
+<p>However, they would also like to access it from a remote location with a
+username and password.  </p>
+<p>First, we need to create a password file.  In the old days, you would
+use "AuthType Basic", but a more secure method is the Digest method.  To
+use this, you must have the auth_digest module loaded into your Apache
+configuration.  If you are running a Debian or Ubuntu version, you can
+do this by executing "<strong>sudo a2enmod auth_digest</strong>".  Using digest
+authentication prevents your username and password from being sent in
+the clear (however, I always recommend that any site requiring
+authentication should utilize https).  </p>
+<p>Next,  you create your htdigest file:  </p>
+<blockquote>
+<p><strong>htdigest -c .htdigest *authname username</strong>*</p>
+</blockquote>
+<p>When prompted, you would enter a password for <em>username</em>.  </p>
+<p>Finally, you need to modify your .htaccess file to allow either method:  </p>
+<blockquote>
+<p><strong>Order deny,allow<br />
+Deny from all<br />
+AuthName "authname"<br />
+AuthType Digest<br />
+AuthUserFile /var/www/.htpasswd<br />
+require valid-userAllow from 10.10.0.1/16<br />
+Allow from 127.0.0.1/32<br />
+Allow from 1.1.1.1/32<br />
+Satisfy Any</strong>  </p>
+</blockquote>
+<p>Now, a user can come from the 10.10.x.x network, localhost, or 1.1.1.1
+without requiring authentication.  If they later come from an
+unrecognized IP, they can enter their username and password and be
+granted access.  </p>
+<p>--<br />
+Securing Apache2 by IP or Username By YourTech John on January 2, 2010
+8:40 AM</p></div>
+  <!-- <div class="summary"><p>A client wanted to make files available available to the web browser
+from within their LAN and a handful of static IPs without requiring any
+sort of username or password.  This is the web equivalent of a shared,
+read only folder.  This is no big issue, you can create an .htaccess
+file like so:  </p>
+<blockquote>
+<p><strong>Order deny,allow<br />
+Deny from all<br />
+Allow from 10.10.0.1/16<br />
+Allow from 127.0.0.1/32<br />
+Allow ...</strong></p></blockquote></div> -->
+  
+Tagged as: </div>
+
+<div class="pagination">
+<ul>
+		<li class="prev"><a href="http://www.yourtech.us/index4.html">&larr; Previous</a></li>
+		<li class=""><a href="http://www.yourtech.us/index.html">1</a></li>
+		<li class=""><a href="http://www.yourtech.us/index2.html">2</a></li>
+		<li class=""><a href="http://www.yourtech.us/index3.html">3</a></li>
+		<li class=""><a href="http://www.yourtech.us/index4.html">4</a></li>
+		<li class="active"><a href="http://www.yourtech.us/index5.html">5</a></li>
+		<li class=""><a href="http://www.yourtech.us/index6.html">6</a></li>
+		<li class="next"><a href="http://www.yourtech.us/index6.html">Next &rarr;</a></li>
+</ul>
+</div>
+
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

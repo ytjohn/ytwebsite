@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li ><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+	      <div class="page-header">
+<div class="alert">
+My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
+</div>	      </div>
+
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/markdown-blogging.html">Markdown Blogging</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/markdown-blogging.html">On 06 Aug 2012 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/markdown-blogging.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/markdown-blogging.html#disqus_thread">Comments</a></div>
+  <div><p>I recently have started a process of migrating my website over to
+<a href="http://www.blogger.com/">blogger.com</a>. One of the main reasons for this was because in my last
+server move, I had broken my Movable Type installation, and found myself
+too busy to fix it. I found I didn't want to spend my time fixing and
+updating blogging software. I wanted to work on my projects, write them
+up, and post them. It was time to move my content to an existing
+platform that handled the back end. I looked at a few, and decided
+blogger.com would be as good as any other service.<br />
+It only took a short time to setup a blog, point a CNAME at it, and then
+to import my existing posts. When I started creating some new posts, I
+immediately ran into some limitations.  </p>
+<ol>
+<li>You used to be able to edit permalinks on blogger. Now, you can only
+    do that before you publish. The only way to change a permalink after
+    publishing is to create a new post with the desired permalink and
+    delete the old one.</li>
+<li>Blogger has no built in formatting for code blocks. So if I want to
+    show a config file, source code, or terminal session log, I have to
+    fiddle with changing fonts, size, and "blockquote" to get it
+    presentable. Even then, you run the risk of strange formatting of
+    your raw text.</li>
+</ol>
+<p>I found a solution that other bloggers use called <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a>.
+This is a combination of javascript and css code that takes text within
+your   </p>
+<div class="highlight"><pre><span class="p">;</span> <span class="n">tags</span> <span class="n">and</span> <span class="n">gives</span> <span class="n">you</span> <span class="n">nice</span> <span class="n">looking</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">code</span><span class="p">,</span> <span class="n">highlighted</span> <span class="n">and</span> <span class="p">(</span><span class="n">optionally</span><span class="p">)</span> <span class="n">with</span> <span class="n">line</span> <span class="n">numbers</span><span class="p">.</span> <span class="n">The</span> <span class="n">catch</span> <span class="n">is</span> <span class="n">that</span> <span class="n">your</span> <span class="n">pre</span> <span class="n">tags</span> <span class="n">need</span> <span class="n">to</span> <span class="n">have</span> <span class="n">a</span> <span class="n">class</span> <span class="n">name</span><span class="p">,</span> <span class="n">along</span> <span class="n">with</span> <span class="n">the</span> <span class="n">language</span> <span class="p">(</span><span class="n">perl</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">bash</span><span class="o">/</span><span class="n">text</span><span class="p">)</span> <span class="s">&quot;brush&quot;</span> <span class="n">to</span> <span class="n">use</span><span class="p">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">go</span> <span class="n">with</span> <span class="n">pre</span> <span class="n">tags</span><span class="p">,</span> <span class="n">you</span> <span class="n">have</span> <span class="n">to</span> <span class="n">change</span> <span class="n">any</span> <span class="n">angle</span> <span class="n">bracks</span> <span class="n">to</span> <span class="n">their</span> <span class="n">HTML</span> <span class="n">escaped</span> <span class="n">equivalents</span> <span class="n">of</span> <span class="o">&lt;</span> <span class="n">and</span> <span class="o">&gt;</span><span class="p">.</span> <span class="n">They</span> <span class="n">have</span> <span class="n">a</span> <span class="n">work</span><span class="o">-</span><span class="n">around</span> <span class="n">using</span> <span class="n">SCRIPT</span><span class="o">/</span><span class="n">CDATA</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span> <span class="n">takes</span> <span class="n">some</span> <span class="n">getting</span> <span class="n">used</span> <span class="n">to</span><span class="p">.</span> <span class="n">Adding</span> <span class="n">this</span> <span class="n">to</span> <span class="n">your</span> <span class="n">blog</span> <span class="n">only</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">few</span> <span class="n">steps</span><span class="p">.</span>
+</pre></div>
+
+
+<p>I rather liked syntaxhighlighter, but it still seemed like I had to do a
+lot of manual work with the code. Also, I had to select the brush each
+time. Couldn't it guess? Notepad++ and some others will guess at what
+language you're using and highlight accordingly. I found something
+called <a href="http://www.geany.org/" title="Geany">prettify</a> that does just that. You only need to load one js
+file and one css file. Prettify works off of either   </p>
+<div class="highlight"><pre> <span class="n">or</span>  <span class="n">tags</span> <span class="n">and</span> <span class="n">has</span> <span class="n">similar</span> <span class="n">limitations</span> <span class="n">to</span> <span class="n">SyntaxHighlighter</span> <span class="n">regarding</span> <span class="n">html</span> <span class="n">tags</span><span class="p">.</span> <span class="n">However</span><span class="p">,</span> <span class="n">it</span> <span class="n">has</span> <span class="n">the</span> <span class="n">advantage</span> <span class="n">of</span> <span class="n">being</span> <span class="n">able</span> <span class="n">to</span> <span class="n">guess</span> <span class="n">the</span> <span class="n">language</span> <span class="n">automatically</span><span class="p">.</span>
+</pre></div>
+
+
+<p>Being able to use this code made my posts look much nicer, but the
+entire process got me thinking. The way I "document" most of projects
+typically invole using a notepad editor like <a href="http://www.geany.org/" title="Geany">Geany</a> or
+<a href="http://notepad-plus-plus.org/" title="Notepad++">Notepad++</a>. As I work, I add notes, copy in source code or shell
+comands, and do everything in a plain text editor. Later, I add
+commentary and clean up the document. I take this and paste it into the
+WYSIWYG editor on blogger. Finally, I have to keep switching between
+compose and html mode to get my text looking suitable. There are too
+many steps for me to want to do this consistently. All I really want to
+do is take my text file, add a little formatting in a few spots, a few
+hyperlinks in others, and post it.<br />
+Enter <a href="http://daringfireball.net/projects/markdown/" title="Markdown intro">markdown</a>. <em>Markdown is a text-to-HTML conversion tool for web
+writers. Markdown allows you to write using an easy-to-read,
+easy-to-write plain text format, then convert it to structurally valid
+XHTML (or HTML)</em>. I have used this before, but didn't pay it close
+enough attention. It's used on github and reddit, there are plugins for
+it in dokuwiki and redmine. The idea is you write in text, adding
+formatting using the markdown syntax. This format is both human readable
+and machine readable. When read by the appropriate library, clean html
+is generated. It also has a feature for wrapping blocks of code inside
+of   </p>
+<div class="highlight"><pre><span class="o">&amp;</span><span class="p">;</span><span class="n">lt</span><span class="p">;</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">tags</span> <span class="n">and</span> <span class="n">html</span><span class="o">-</span><span class="n">escaping</span> <span class="n">html</span> <span class="n">inside</span> <span class="n">of</span> <span class="n">those</span> <span class="n">tags</span><span class="p">.</span>
+</pre></div>
+
+
+<p>Within the MarkDown project is a paged called "<a href="http://daringfireball.net/projects/markdown/dingus">dingus</a>" which means
+"placeholder". You can paste your markdown text into one textarea and
+get the generated html plus a preview back. I tested pasting that
+generated html into Blogger's HTML box and it seems to work perfectly
+fine. What this means is that I can type up my documentation completely
+within my text editor of choice, save it locally, and then generate my
+html code to paste into blogger.<br />
+Some of you may have realized that my   </p>
+<div class="highlight"><pre> <span class="nb">tags</span> <span class="nx">are</span> <span class="nx">missing</span> <span class="nx">that</span> <span class="nb">class</span> <span class="nb">name</span> <span class="p">(</span><span class="nx">.</span> <span class="nx">Well</span><span class="p">,</span> <span class="nx">I</span> <span class="nx">copy</span> <span class="nx">the</span> <span class="nx">generated</span> <span class="nx">html</span><span class="p">,</span> <span class="k">do</span> <span class="nx">a</span> <span class="nb">search</span> <span class="ow">and</span> <span class="nb">replace</span> <span class="nx">of</span>  <span class="k">with</span>  <span class="ow">and</span> <span class="nx">then</span> <span class="nx">paste</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">but</span> <span class="nx">that</span><span class="s1">&#39;s adding more steps. Instead, I sought to make my own dingus that does this automatically. I found that there is an extension of markdown called Markdown Extra written in PHP. Extra adds a few features such as simple tables, but remains consistent with original Markdown formatting. Using that library, I was able to create my own dingus rather easily and alter the  tag with one line of code $render2 = str_replace(&quot;&lt;pre&gt;&quot;, &quot;&lt;pre class=</span><span class="se">\&quot;</span><span class="s1">prettyprint linenums</span><span class="se">\&quot;</span><span class="s1">&gt;&quot;, $render);. In my experimentation, I made a parser that reads a text file and outputs html, and three dingus parsers. Dingus1 does straightforward conversion of markdown extra to html. Dingus2 and 3 provide the class names for prettified code, with #3 going the extra step of applying stylesheets for the preview.</span>
+</pre></div>
+
+
+<p>With this setup, I can quickly paste in my text document and pull html
+code to paste into blogger.com's html edit box. With some more research,
+I can modify the dingus to interact with blogger's API and post on my
+behalf. There are also some WYSIWYM live editors that show you an
+instant render of your markdown as you type (you type in a textarea
+while your html renders in a nearby div). This would be a good way to do
+some tweaking to the markdown text before posting the html to the web.
+My next plans are to make a better dingus, possibly with a live preview
+and a "post to blogger" option.<br />
+Some other links:  </p>
+<ul>
+<li>http://balupton.github.com/jquery-syntaxhighlighter/demo/</li>
+<li>http://code.google.com/p/pagedown/wiki/PageDown</li>
+<li>http://markitup.jaysalvat.com/examples/markdown/</li>
+</ul></div>
+  <!-- <div class="summary"><p>I recently have started a process of migrating my website over to
+<a href="http://www.blogger.com/">blogger.com</a>. One of the main reasons for this was because in my last
+server move, I had broken my Movable Type installation, and found myself
+too busy to fix it. I found I didn't want to spend my time fixing and
+updating blogging software. I wanted to work on my projects, write them
+up, and post them. It was time to ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/gate-one-supervisor-script.html">On 02 Aug 2012 at 0710</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/gate-one-supervisor-script.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/gate-one-supervisor-script.html#disqus_thread">Comments</a></div>
+  <div><p>Yesterday, I <a href="http://blog.yourtech.us/2012/08/exploring-gateone-browser-ssh-terminal.html">setup gateone</a> to run as a non-root user. I also spent
+some time looking at potential init scripts for starting and stopping
+this. The gateone project does not currently provide any init scripts,
+but this is planned for the future ([Issue #47]). I tried to use one
+of the scripts in that thread, but I wasn't really pleased with them.
+The big issue is that gateone.py doesn't fork. However, I believe there
+is a better solution.</p>
+<p><a href="http://www.supervisord.org/">supervisord</a> is a python script designed to control and monitor
+non-daemonizing python scripts. As Gate One is a foreground only
+process, it seems particularly suited to this task - more so than
+writing my own script in python or daemontools.</p>
+<p>Installation can be done with python-pip or easy_install. On newer
+systems, pip is recommended.</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">supervisor</span>
+</pre></div>
+
+
+<p>On Ubuntu, pip installs supervisord to /usr/local/bin. By default,
+/usr/local/bin is not in root's path, so it makes sense (to me at least)
+to create symlinks to /usr/sbin.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span>
+<span class="n">echo_supervisord_conf</span>  <span class="n">pidproxy</span>  <span class="n">supervisorctl</span>  
+<span class="n">supervisordjohnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">supervisord</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">supervisorctl</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span>
+</pre></div>
+
+
+<p>Now, we need to create a configuration file. Supervisord has a utility
+to generate a sample one.</p>
+<div class="highlight"><pre><span class="n">echo_supervisord_conf</span>  <span class="o">&gt;</span> <span class="n">supervisord</span><span class="p">.</span><span class="n">conf</span>
+</pre></div>
+
+
+<p>To get started, we can use the sample configuration and just add a
+couple lines to the bottom for gateone.</p>
+<div class="highlight"><pre> <span class="p">[</span><span class="n">program</span><span class="o">:</span><span class="n">gateone</span><span class="p">]</span>
+ <span class="n">command</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+ <span class="n">directory</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span>
+ <span class="p">;</span><span class="n">user</span><span class="o">=</span><span class="n">johnh</span>   <span class="p">;</span> <span class="n">Default</span> <span class="n">is</span> <span class="n">root</span><span class="p">.</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">user</span><span class="o">=</span> <span class="n">to</span> <span class="n">setuid</span>
+</pre></div>
+
+
+<p>Now, copy supervisord.conf to /etc/supervisord.conf and start
+supervisord. Make sure gateone.py is not currently running. Then we'll
+run supervisorctl to test things out.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">cp</span> <span class="n">supervisord</span><span class="p">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">supervisord</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">supervisorctl</span> <span class="n">status</span>
+<span class="n">gateone</span>                          <span class="n">RUNNING</span>    <span class="n">pid</span> <span class="mi">9549</span><span class="p">,</span> <span class="n">uptime</span> <span class="mi">0</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">05</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">ps</span> <span class="n">ax</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">gateone</span>
+ <span class="mi">9549</span> <span class="o">?</span>        <span class="n">Sl</span>     <span class="mi">0</span><span class="o">:</span><span class="mo">00</span> <span class="n">python</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">supervisorctl</span> <span class="n">stop</span> <span class="n">gateone</span>
+<span class="nl">gateone:</span> <span class="n">stopped</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">ps</span> <span class="n">ax</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">gateone</span>
+ <span class="mi">9605</span> <span class="o">?</span>        <span class="n">Ss</span>     <span class="mi">0</span><span class="o">:</span><span class="mo">00</span> <span class="n">dtach</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">dtach_3</span> <span class="o">-</span><span class="n">E</span> <span class="o">-</span><span class="n">z</span> <span class="o">-</span><span class="n">r</span> <span class="n">none</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">ssh_connect</span><span class="p">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="p">...</span><span class="o">/%</span><span class="n">SHORT_SOCKET</span><span class="o">%</span> <span class="o">--</span><span class="n">sshfp</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">oUserKnownHostsFile</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">user1</span><span class="err">@</span><span class="n">puppet2</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">known_hosts</span>
+ <span class="mi">9606</span> <span class="n">pts</span><span class="o">/</span><span class="mi">3</span>    <span class="n">Ss</span><span class="o">+</span>    <span class="mi">0</span><span class="o">:</span><span class="mo">00</span> <span class="n">python</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">ssh_connect</span><span class="p">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="p">...</span><span class="o">/%</span><span class="n">SHORT_SOCKET</span><span class="o">%</span> <span class="o">--</span><span class="n">sshfp</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">oUserKnownHostsFile</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">user1</span><span class="err">@</span><span class="n">puppet2</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">known_hosts</span>
+</pre></div>
+
+
+<p>In this example, we see that gateone.py is started and stopped by
+supervisorctl, but because we have dtach enabled, our sessions are still
+in place. If we restart gateone.py, we can connect to it again and have
+our sessions resumed. While we could probably configure supervisord to
+kill these terminals, I believe we'd normally want to keep them running.
+The few times I would want to stop those terminals would be a) manually
+reconfiguring/troubleshooting opengate, b) updating software, or c)
+rebooting the server. For a&amp;b, running the command "gateone.py -kill"
+will kill those terminals. For a server shutdown or reboot, the act of
+shutting down the OS will kill these terminals.</p>
+<p>Finally, we need a way to start and stop supervisord itself.
+Fortunately, the supervisord project has provided a number of <a href="https://github.com/Supervisor/initscripts">init
+scripts</a>. I was able to use the <a href="https://raw.github.com/Supervisor/initscripts/master/debian-norrgard">Debian script</a> in Ubuntu with only
+a few minor changes.</p>
+<ol>
+<li>I had symlinked supervisord and supervisorctl to /usr/sbin. The
+    script expects them in /usr/bin (but even says that /usr/sbin is a
+    better location). I had to change /usr/bin to /usr/sbin.
+    Alternatively, you can symlink the files into /usr/bin</li>
+<li>I added a status option that runs \$SUPERVISORCTL status</li>
+<li>If you started supervisord manually, you must shut it down and start
+    it with the script. The script won't be able to stop supervisord
+    unless /var/run/supervisord.pid is current.</li>
+</ol>
+<p>Here is my complete init script for Ubuntu:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<span class="c">### BEGIN INIT INFO</span>
+<span class="c"># Provides:          supervisord</span>
+<span class="c"># Required-Start:    $local_fs $remote_fs $networking</span>
+<span class="c"># Required-Stop:     $local_fs $remote_fs $networking</span>
+<span class="c"># Default-Start:     2 3 4 5</span>
+<span class="c"># Default-Stop:      0 1 6</span>
+<span class="c"># Short-Description: Starts supervisord - see http://supervisord.org</span>
+<span class="c"># Description:       Starts and stops supervisord as needed </span>
+<span class="c">### END INIT INFO</span>
+<span class="c"># Author: Leonard Norrgard </span>
+<span class="c"># Version 1.0-alpha</span>
+<span class="c"># Based on the /etc/init.d/skeleton script in Debian.</span>
+<span class="c"># Please note: This script is not yet well tested. What little testing</span>
+<span class="c"># that actually was done was only on supervisor 2.2b1.</span>
+<span class="c"># Do NOT &quot;set -e&quot;</span>
+<span class="c"># PATH should only include /usr/* if it runs after the mountnfs.sh script</span>
+<span class="nv">PATH</span><span class="o">=</span>/sbin:/usr/sbin:/bin:/usr/bin
+<span class="nv">DESC</span><span class="o">=</span><span class="s2">&quot;Run a set of applications as daemons.&quot;</span>
+<span class="nv">NAME</span><span class="o">=</span>supervisord
+<span class="c"># Supervisord is installed in /usr/bin by default, but /usr/sbin would </span>
+<span class="c"># make more sense</span>
+<span class="nv">DAEMON</span><span class="o">=</span>/usr/sbin/<span class="nv">$NAME</span>   
+<span class="nv">SUPERVISORCTL</span><span class="o">=</span>/usr/sbin/supervisorctl
+<span class="nv">PIDFILE</span><span class="o">=</span>/var/run/<span class="nv">$NAME</span>.pid
+<span class="nv">DAEMON_ARGS</span><span class="o">=</span><span class="s2">&quot;--pidfile ${PIDFILE}&quot;</span>
+<span class="nv">SCRIPTNAME</span><span class="o">=</span>/etc/init.d/<span class="nv">$NAME</span>
+<span class="c"># Exit if the package is not installed</span>
+<span class="o">[</span> -x <span class="s2">&quot;$DAEMON&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">exit </span>0
+<span class="c"># Read configuration variable file if it is present</span>
+<span class="o">[</span> -r /etc/default/<span class="nv">$NAME</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> . /etc/default/<span class="nv">$NAME</span>
+<span class="c"># Load the VERBOSE setting and other rcS variables</span>
+. /lib/init/vars.sh
+<span class="c"># Define LSB log_* functions.</span>
+<span class="c"># Depend on lsb-base (&gt;= 3.0-6) to ensure that this file is present.</span>
+. /lib/lsb/init-functions
+<span class="c">#</span>
+<span class="c"># Function that starts the daemon/service</span>
+<span class="c">#</span>
+do_start<span class="o">()</span>
+<span class="o">{</span>
+        <span class="c"># Return</span>
+        <span class="c">#   0 if daemon has been started</span>
+        <span class="c">#   1 if daemon was already running</span>
+        <span class="c">#   2 if daemon could not be started</span>
+        <span class="o">[</span> -e <span class="nv">$PIDFILE</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">return </span>1
+        start-stop-daemon --start --quiet --pidfile <span class="nv">$PIDFILE</span> --exec <span class="nv">$DAEMON</span> -- <span class="se">\</span>
+                <span class="nv">$DAEMON_ARGS</span>  <span class="se">\</span>
+                <span class="o">||</span> <span class="k">return </span>2
+        <span class="c"># Add code here, if necessary, that waits for the process to be ready</span>
+        <span class="c"># to handle requests from services started subsequently which depend</span>
+        <span class="c"># on this one.  As a last resort, sleep for some time.</span>
+<span class="o">}</span>
+<span class="c">#</span>
+<span class="c"># Function that stops the daemon/service</span>
+<span class="c">#</span>
+do_stop<span class="o">()</span>
+<span class="o">{</span>
+        <span class="c"># Return</span>
+        <span class="c">#   0 if daemon has been stopped</span>
+        <span class="c">#   1 if daemon was already stopped</span>
+        <span class="c">#   2 if daemon could not be stopped</span>
+        <span class="c">#   other if a failure occurred</span>
+        <span class="o">[</span> -e <span class="nv">$PIDFILE</span> <span class="o">]</span> <span class="o">||</span> <span class="k">return </span>1
+        <span class="c"># Stop all processes under supervisord control.</span>
+        <span class="nv">$SUPERVISORCTL</span> stop all
+        start-stop-daemon --stop --quiet --retry<span class="o">=</span>TERM/30/KILL/5 --pidfile <span class="nv">$PIDFILE</span> <span class="se">\ </span>
+             --name <span class="nv">$NAME</span>
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="s2">&quot;$?&quot;</span>
+        <span class="o">[</span> <span class="s2">&quot;$RETVAL&quot;</span> <span class="o">=</span> 2 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">return </span>2
+        <span class="c"># Wait for children to finish too if this is a daemon that forks</span>
+        <span class="c"># and if the daemon is only ever run from this initscript.</span>
+        <span class="c"># If the above conditions are not satisfied then add some other code</span>
+        <span class="c"># that waits for the process to drop all resources that could be</span>
+        <span class="c"># needed by services started subsequently.  A last resort is to</span>
+        <span class="c"># sleep for some time.</span>
+        start-stop-daemon --stop --quiet --oknodo --retry<span class="o">=</span>0/30/KILL/5 --exec <span class="nv">$DAEMON</span>
+        <span class="o">[</span> <span class="s2">&quot;$?&quot;</span> <span class="o">=</span> 2 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">return </span>2
+        <span class="c"># Many daemons don&#39;t delete their pidfiles when they exit.</span>
+        rm -f <span class="nv">$PIDFILE</span>
+        <span class="k">return</span> <span class="s2">&quot;$RETVAL&quot;</span>
+<span class="o">}</span>
+<span class="c">#</span>
+<span class="c"># Function that sends a SIGHUP to the daemon/service</span>
+<span class="c">#</span>
+do_reload<span class="o">()</span> <span class="o">{</span>
+        <span class="c">#</span>
+        <span class="c"># If the daemon can reload its configuration without</span>
+        <span class="c"># restarting (for example, when it is sent a SIGHUP),</span>
+        <span class="c"># then implement that here.</span>
+        <span class="c">#</span>
+        start-stop-daemon --stop --signal 1 --quiet --pidfile <span class="nv">$PIDFILE</span> --name <span class="nv">$NAME</span>
+        <span class="k">return </span>0
+<span class="o">}</span>
+<span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
+  start<span class="o">)</span>
+        <span class="o">[</span> <span class="s2">&quot;$VERBOSE&quot;</span> !<span class="o">=</span> no <span class="o">]</span> <span class="o">&amp;&amp;</span> log_daemon_msg <span class="s2">&quot;Starting $DESC&quot;</span> <span class="s2">&quot;$NAME&quot;</span>
+        do_start
+        <span class="k">case</span> <span class="s2">&quot;$?&quot;</span> in
+                0|1<span class="o">)</span> <span class="o">[</span> <span class="s2">&quot;$VERBOSE&quot;</span> !<span class="o">=</span> no <span class="o">]</span> <span class="o">&amp;&amp;</span> log_end_msg 0 ;;
+                2<span class="o">)</span> <span class="o">[</span> <span class="s2">&quot;$VERBOSE&quot;</span> !<span class="o">=</span> no <span class="o">]</span> <span class="o">&amp;&amp;</span> log_end_msg 1 ;;
+        <span class="k">esac</span>
+        ;;
+  stop<span class="o">)</span>
+        <span class="o">[</span> <span class="s2">&quot;$VERBOSE&quot;</span> !<span class="o">=</span> no <span class="o">]</span> <span class="o">&amp;&amp;</span> log_daemon_msg <span class="s2">&quot;Stopping $DESC&quot;</span> <span class="s2">&quot;$NAME&quot;</span>
+        do_stop
+        <span class="k">case</span> <span class="s2">&quot;$?&quot;</span> in
+                0|1<span class="o">)</span> <span class="o">[</span> <span class="s2">&quot;$VERBOSE&quot;</span> !<span class="o">=</span> no <span class="o">]</span> <span class="o">&amp;&amp;</span> log_end_msg 0 ;;
+                2<span class="o">)</span> <span class="o">[</span> <span class="s2">&quot;$VERBOSE&quot;</span> !<span class="o">=</span> no <span class="o">]</span> <span class="o">&amp;&amp;</span> log_end_msg 1 ;;
+        <span class="k">esac</span>
+        ;;
+  <span class="c">#reload|force-reload)</span>
+        <span class="c">#</span>
+        <span class="c"># If do_reload() is not implemented then leave this commented out</span>
+        <span class="c"># and leave &#39;force-reload&#39; as an alias for &#39;restart&#39;.</span>
+        <span class="c">#</span>
+        <span class="c">#log_daemon_msg &quot;Reloading $DESC&quot; &quot;$NAME&quot;</span>
+        <span class="c">#do_reload</span>
+        <span class="c">#log_end_msg $?</span>
+        <span class="c">#;;</span>
+  restart|force-reload<span class="o">)</span>
+        <span class="c">#</span>
+        <span class="c"># If the &quot;reload&quot; option is implemented then remove the</span>
+        <span class="c"># &#39;force-reload&#39; alias</span>
+        <span class="c">#</span>
+        log_daemon_msg <span class="s2">&quot;Restarting $DESC&quot;</span> <span class="s2">&quot;$NAME&quot;</span>
+        do_stop
+        <span class="k">case</span> <span class="s2">&quot;$?&quot;</span> in
+          0|1<span class="o">)</span>
+                do_start
+                <span class="k">case</span> <span class="s2">&quot;$?&quot;</span> in
+                        0<span class="o">)</span> log_end_msg 0 ;;
+                        1<span class="o">)</span> log_end_msg 1 ;; <span class="c"># Old process is still running</span>
+                        *<span class="o">)</span> log_end_msg 1 ;; <span class="c"># Failed to start</span>
+                <span class="k">esac</span>
+                ;;
+          *<span class="o">)</span>
+                <span class="c"># Failed to stop</span>
+                log_end_msg 1
+                ;;
+        <span class="k">esac</span>
+        ;;
+  status<span class="o">)</span>
+        <span class="nv">$SUPERVISORCTL</span> status
+        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+        ;;
+  *<span class="o">)</span>
+        <span class="c">#echo &quot;Usage: $SCRIPTNAME {start|stop|restart|reload|force-reload}&quot; &gt;&amp;2</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Usage: $SCRIPTNAME {start|stop|restart|force-reload|status}&quot;</span> &gt;&amp;2
+        <span class="nb">exit </span>3
+        ;;
+<span class="k">esac</span>
+</pre></div>
+</td></tr></table>
+
+<p>And here is a complete copy of my supervisord.conf file:</p>
+<div class="highlight"><pre><span class="k">[unix_http_server]</span>
+<span class="na">file</span><span class="o">=</span><span class="s">/tmp/supervisor.sock   ; (the path to the socket file)</span>
+<span class="k">[supervisord]</span>
+<span class="na">logfile</span><span class="o">=</span><span class="s">/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)</span>
+<span class="na">logfile_maxbytes</span><span class="o">=</span><span class="s">50MB        ; (max main logfile bytes b4 rotation;default 50MB)</span>
+<span class="na">logfile_backups</span><span class="o">=</span><span class="s">10           ; (num of main logfile rotation backups;default 10)</span>
+<span class="na">loglevel</span><span class="o">=</span><span class="s">info                ; (log level;default info; others: debug,warn,trace)</span>
+<span class="na">pidfile</span><span class="o">=</span><span class="s">/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)</span>
+<span class="na">nodaemon</span><span class="o">=</span><span class="s">false               ; (start in foreground if true;default false)</span>
+<span class="na">minfds</span><span class="o">=</span><span class="s">1024                  ; (min. avail startup file descriptors;default 1024)</span>
+<span class="na">minprocs</span><span class="o">=</span><span class="s">200                 ; (min. avail process descriptors;default 200)</span>
+<span class="k">[rpcinterface:supervisor]</span>
+<span class="na">supervisor.rpcinterface_factory</span> <span class="o">=</span> <span class="s">supervisor.rpcinterface:make_main_rpcinterface</span>
+<span class="k">[supervisorctl]</span>
+<span class="na">serverurl</span><span class="o">=</span><span class="s">unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket</span>
+<span class="k">[program:gateone]</span>
+<span class="na">command</span><span class="o">=</span><span class="s">/opt/gateone/gateone.py</span>
+<span class="na">directory</span><span class="o">=</span><span class="s">/opt/gateone</span>
+<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">/opt/gateone/logs/supervisor.log</span>
+<span class="na">user</span><span class="o">=</span><span class="s">johnh</span>
+</pre></div></div>
+  <!-- <div class="summary"><p>Yesterday, I <a href="http://blog.yourtech.us/2012/08/exploring-gateone-browser-ssh-terminal.html">setup gateone</a> to run as a non-root user. I also spent
+some time looking at potential init scripts for starting and stopping
+this. The gateone project does not currently provide any init scripts,
+but this is planned for the future ([Issue #47]). I tried to use one
+of the scripts in that thread, but I wasn't really pleased with them.
+The big issue is that gateone.py doesn't fork. However, I ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/exploring-gateone-browser-ssh-terminal.html">On 01 Aug 2012 at 1209</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/exploring-gateone-browser-ssh-terminal.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/exploring-gateone-browser-ssh-terminal.html#disqus_thread">Comments</a></div>
+  <div><p>I came across a program called <a href="http://liftoffsoftware.com/Products/GateOne">Gate One</a> by LiftOff Software that
+just amazed me. This is an open-source, web-based ssh terminal. It is
+capable of multiple users, sessions, and bookmarks. I've tried a number
+of AJAX terminals or Java applet based ones in the past. The javascript
+ones usually did not have very good terminal emulation, while the Java
+apps worked, but worked just like a local desktop app (making it's own
+connection to port 22). Gate One uses WebSockets, allowing for full
+duplex communication through your web browser over the same port 80 or
+443 used to serve up the web page.</p>
+<h2>Installation</h2>
+<p>Gate One is a python application using the <a href="http://www.tornadoweb.org/">Tornado framework</a>. As
+such, at runs independently of an existing web server and handles
+connections from browsers internally. If you already have a web server
+running on your system, you will need to tell Gate One to use a
+different IP or a different port.</p>
+<p>Installation using pre-built binaries or the source is fairly
+straightforward and detailed in the <a href="http://liftoff.github.com/GateOne/About/index.html">documentation</a>.</p>
+<p>The installer creates a directory of /opt/gateone and places all
+necessary files there. You can run it by changing to that directory and
+running gateone.py as root.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">sudo</span> <span class="p">.</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">terminal</span><span class="o">:</span><span class="mi">166</span><span class="p">]</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">import</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">Imaging</span> <span class="n">Library</span> <span class="p">(</span><span class="n">PIL</span><span class="p">)</span> <span class="n">so</span> <span class="n">images</span> <span class="n">will</span> <span class="n">not</span> <span class="n">be</span> <span class="n">displayed</span> <span class="n">in</span> <span class="n">the</span> <span class="n">terminal</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2232</span><span class="p">]</span> <span class="n">dtach</span> <span class="n">command</span> <span class="n">not</span> <span class="n">found</span><span class="p">.</span>  <span class="n">dtach</span> <span class="n">support</span> <span class="n">has</span> <span class="n">been</span> <span class="n">disabled</span><span class="p">.</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1800</span><span class="p">]</span> <span class="n">No</span> <span class="n">authentication</span> <span class="n">method</span> <span class="n">configured</span><span class="p">.</span> <span class="n">All</span> <span class="n">users</span> <span class="n">will</span> <span class="n">be</span> <span class="n">ANONYMOUS</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1876</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">plugins</span><span class="o">:</span> <span class="n">bookmarks</span><span class="p">,</span> <span class="n">help</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">logging_plugin</span><span class="p">,</span> <span class="n">notice</span><span class="p">,</span> <span class="n">playback</span><span class="p">,</span> <span class="n">ssh</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2329</span><span class="p">]</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">https</span><span class="o">:</span><span class="c1">//*:443/</span>
+</pre></div>
+
+
+<p>At this point, gateone is running in the foreground and you can view as
+connections occur and any errors. Pressing Ctrl If you conect to gateone
+using your webbrowser, you are logged in as user ANONYMOUS and can
+connect to any ssh host, either localhost or something remote.</p>
+<p>If you edit /opt/gateone/server.conf, you can change authentication to
+"pam" or "google". Using pam will perform a Basic HTTP style
+authenication requiring a system-level username and password. Using
+google will log you in with your google account. Both of these "just
+work" without complicated setup.</p>
+<h3>Running as a Non-Root</h3>
+<p>Before I put something like this in production, I wanted to apply some
+additional security. First off, I want to see if I can get this to run
+as a non-root user.</p>
+<p>Since gateone ran as root user initially, it has files owned by rootOnly UID 0 can open ports below 1024.gateone may need permission to write to system directories</p>
+<p>To solve the first one, I chowned the /opt/gateone directory to my
+username. In the future, I'll want to run it under its own user, but
+I'll use mine for now for simplicity. To solve the second and third, I
+edited server.conf.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">johnh</span><span class="o">:</span><span class="n">johnh</span> <span class="p">.</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">vi</span> <span class="n">server</span><span class="p">.</span><span class="n">conf</span><span class="err">#</span> <span class="n">change</span><span class="o">/</span><span class="n">add</span> <span class="n">the</span> <span class="n">following</span> <span class="n">lines</span> <span class="n">appropriatelyport</span> <span class="o">=</span> <span class="mi">2443</span><span class="n">session_dir</span> <span class="o">=</span> <span class="s">&quot;/opt/gateone/tmp/gateone&quot;</span><span class="n">pid_file</span> <span class="o">=</span> <span class="s">&quot;/opt/gateone/tmp/gateone.pid&quot;</span><span class="n">uid</span> <span class="o">=</span> <span class="mi">1000</span><span class="n">gid</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">terminal</span><span class="o">:</span><span class="mi">166</span><span class="p">]</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">import</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">Imaging</span> <span class="n">Library</span> <span class="p">(</span><span class="n">PIL</span><span class="p">)</span> <span class="n">so</span> <span class="n">images</span> <span class="n">will</span> <span class="n">not</span> <span class="n">be</span> <span class="n">displayed</span> <span class="n">in</span> <span class="n">the</span> <span class="n">terminal</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2232</span><span class="p">]</span> <span class="n">dtach</span> <span class="n">command</span> <span class="n">not</span> <span class="n">found</span><span class="p">.</span>  <span class="n">dtach</span> <span class="n">support</span> <span class="n">has</span> <span class="n">been</span> <span class="n">disabled</span><span class="p">.</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1802</span><span class="p">]</span> <span class="n">No</span> <span class="n">authentication</span> <span class="n">method</span> <span class="n">configured</span><span class="p">.</span> <span class="n">All</span> <span class="n">users</span> <span class="n">will</span> <span class="n">be</span> <span class="n">ANONYMOUS</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1876</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">plugins</span><span class="o">:</span> <span class="n">bookmarks</span><span class="p">,</span> <span class="n">help</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">logging_plugin</span><span class="p">,</span> <span class="n">notice</span><span class="p">,</span> <span class="n">playback</span><span class="p">,</span> <span class="n">ssh</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2329</span><span class="p">]</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">https</span><span class="o">:</span><span class="c1">//*:2443/</span>
+</pre></div>
+
+
+<h2>Authentication</h2>
+<p>Running as a lower uid, you can use authentication of None or "google"
+without issue. If you use "pam", you discover you can only login with
+the username that gateone is running under. If you are the only intended
+user of the service, this may not be an issue. But if you want to allow
+other users, this becomes an issue. If you are fine with running as root
+or using Google as your authentication provider, you can ignore this
+next step.</p>
+<p>Fortunately, pam is highly configurable. You aren't required to
+authenticate against shadow passwords. You can also authenticate against
+db4 files with pam_userdb, msyql, or even htpasswd files. To start off,
+I'm going to use htpasswd files. Note that Ubuntu doesn't provide
+pam_pwdfile.so by default. You need to install libpam-pwdfile ("sudo
+apt-get install libpam-pwdfile").</p>
+<h1>Note - in testing, I discovered gateone uses Crypt encryption while htpasswd defaults to MD5. Use -d to switch to crypt encryption.</h1>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">htpasswd</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">d</span> <span class="n">users</span><span class="p">.</span><span class="n">passwd</span> <span class="n">user1</span>
+<span class="n">New</span> <span class="n">password</span><span class="o">:</span>
+<span class="n">Re</span><span class="o">-</span><span class="n">type</span> <span class="n">new</span> <span class="n">password</span><span class="o">:</span>
+<span class="n">Adding</span> <span class="n">password</span> <span class="k">for</span> <span class="n">user</span> <span class="n">user1</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">cat</span> <span class="n">users</span><span class="p">.</span><span class="n">passwd</span>
+<span class="nl">user1:</span><span class="n">KKEPyZtUf9sadf9</span>
+</pre></div>
+
+
+<p>Create a pam module called gateone under /etc/pam.d</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pam</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">gateone</span>
+<span class="cp">#%PAM-1.0</span>
+<span class="cp"># Login using a htpasswd file</span>
+<span class="err">@</span><span class="n">include</span> <span class="n">common</span><span class="o">-</span><span class="n">sessionauth</span>    
+<span class="n">required</span> <span class="n">pam_pwdfile</span><span class="p">.</span><span class="n">so</span>          <span class="n">pwdfile</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">users</span><span class="p">.</span><span class="n">passwdaccount</span> 
+<span class="n">required</span> <span class="n">pam_permit</span><span class="p">.</span><span class="n">so</span>
+</pre></div>
+
+
+<p>Modify server.conf to use pam and pam_service of gateone:</p>
+<div class="highlight"><pre><span class="n">auth</span> <span class="o">=</span> <span class="s">&quot;pam&quot;</span>
+<span class="n">pam_service</span> <span class="o">=</span> <span class="s">&quot;gateone&quot;</span>
+</pre></div>
+
+
+<p>Now start gateone and log in.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">g1</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">terminal</span><span class="o">:</span><span class="mi">168</span><span class="p">]</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">import</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">Imaging</span> <span class="n">Library</span> <span class="p">(</span><span class="n">PIL</span><span class="p">)</span> <span class="n">so</span> <span class="n">images</span> <span class="n">will</span> <span class="n">not</span> <span class="n">be</span> <span class="n">displayed</span> <span class="n">in</span> <span class="n">the</span> <span class="n">terminal</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2577</span><span class="p">]</span> <span class="n">dtach</span> <span class="n">command</span> <span class="n">not</span> <span class="n">found</span><span class="p">.</span>  <span class="n">dtach</span> <span class="n">support</span> <span class="n">has</span> <span class="n">been</span> <span class="n">disabled</span><span class="p">.</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2598</span><span class="p">]</span> <span class="n">Connections</span> <span class="n">to</span> <span class="n">this</span> <span class="n">server</span> <span class="n">will</span> <span class="n">be</span> <span class="n">allowed</span> <span class="n">from</span> <span class="n">the</span> <span class="n">following</span> <span class="n">origins</span><span class="o">:</span> <span class="err">&#39;</span><span class="n">http</span><span class="o">:</span><span class="c1">//localhost https://localhost http://127.0.0.1 https://127.0.0.1 https://puppet2 https://127.0.1.1 https://puppet2:2443&#39;</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2023</span><span class="p">]</span> <span class="n">Using</span> <span class="n">pam</span> <span class="n">authentication</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2101</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">plugins</span><span class="o">:</span> <span class="n">bookmarks</span><span class="p">,</span> <span class="n">help</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">logging_plugin</span><span class="p">,</span> <span class="n">mobile</span><span class="p">,</span> <span class="n">notice</span><span class="p">,</span> <span class="n">playback</span><span class="p">,</span> <span class="n">ssh</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2706</span><span class="p">]</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">https</span><span class="o">:</span><span class="c1">//*:2443/</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2710</span><span class="p">]</span> <span class="n">Process</span> <span class="n">running</span> <span class="n">with</span> <span class="n">pid</span> <span class="mi">32591</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">17</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">949</span><span class="p">]</span> <span class="n">WebSocket</span> <span class="n">opened</span> <span class="p">(</span><span class="n">user1</span><span class="err">@</span><span class="n">gateone</span><span class="p">).</span>
+</pre></div>
+
+
+<p>One additional nice feature with authentication enabled is the ability
+to resume sessions - even across different computers or browsers.</p>
+<h2>Reverse Proxy</h2>
+<p>(I failed on this part, but felt it was worth recording)</p>
+<p>Once I got it working in single user mode, I wanted to go ahead and set
+this up under a reverse proxy under Apache. This would allow me to
+integrate it into my existing web server under a sub-directory.</p>
+<p>First, I edited server.conf to use a URL prefix of /g1/</p>
+<p>Second, I tried setting up a ReverseProxy in Apache.</p>
+<div class="highlight"><pre><span class="cp"># GateOne </span>
+<span class="n">ProxySSLProxyEngine</span> 
+<span class="n">OnProxyPass</span> <span class="o">/</span><span class="n">g1</span><span class="o">/</span> <span class="n">https</span><span class="o">:</span><span class="c1">//localhost:2443/g1/</span>
+<span class="n">ProxyPassReverse</span> <span class="o">/</span><span class="n">g1</span><span class="o">/</span> <span class="n">https</span><span class="o">:</span><span class="c1">//localhost:2443/g1/</span>
+<span class="n">ProxyPassReverseCookieDomain</span> <span class="n">localhost</span> <span class="n">localhost</span>
+<span class="n">ProxyPassReverseCookiePath</span> <span class="o">/</span> <span class="o">/</span><span class="n">g1</span><span class="o">/</span>
+</pre></div>
+
+
+<p>This almost worked. I had no errors, but the resulting page was
+unreadable. However, at the bottom was a clue. "The WebSocket connection
+was closed. Will attempt to reconnect every 5 seconds... NOTE: Some web
+proxies do not work properly with WebSockets." The problem was Apache
+not properly proxying my websocket connection. People have managed to
+get this working under nginx, but not Apache.</p>
+<p>Searching for a solution led me to a similar question on ServerFault, an
+apache-websocket module on github, and a websocket tcp proxy based on
+that module.</p>
+<ul>
+<li>http://serverfault.com/questions/290121/configuring-apache2-to-proxy-websocket</li>
+<li>https://github.com/disconnect/apache-websocket</li>
+<li>http://blog.alex.org.uk/2012/02/16/using-apache-websocket-to-proxy-tcp-connection/</li>
+</ul>
+<p>In order to get this work, I'll need to download and compile some code.
+The apxs command requires the apache-prefork-dev package in
+Debian/Ubuntu. Install it with "sudo apt-get install
+apache-prefork-dev".</p>
+<p>Now we are ready to download the code and install the module:</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/disconnect/apache-websocket.git</span>
+<span class="n">Cloning</span> <span class="n">into</span> <span class="err">&#39;</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="err">&#39;</span><span class="p">.....</span> <span class="n">done</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//blog.alex.org.uk/wp-uploads/mod_websocket_tcp_proxy.tar.gz</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">cd</span> <span class="n">apache</span><span class="o">-</span><span class="n">websocket</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apxs2</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">c</span> <span class="n">mod_websocket</span><span class="p">.</span><span class="n">c</span><span class="o">*</span><span class="n">snip</span><span class="o">*</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apxs2</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">c</span> <span class="n">mod_websocket_draft76</span><span class="p">.</span><span class="n">c</span><span class="o">*</span><span class="n">snip</span><span class="o">*</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">cd</span> <span class="n">examples</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gzmod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">c</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">cd</span> <span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="o">/</span><span class="n">examples</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apxs2</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">I</span><span class="p">..</span> <span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">c</span>
+<span class="o">*</span><span class="n">snip</span><span class="o">*</span>
+<span class="n">chmod</span> <span class="mi">644</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">so</span>
+<span class="p">[</span><span class="n">preparing</span> <span class="n">module</span> <span class="err">`</span><span class="n">websocket_tcp_proxy</span><span class="err">&#39;</span> <span class="n">in</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">websocket_tcp_proxy</span><span class="p">.</span><span class="n">load</span><span class="p">]</span>
+<span class="n">Enabling</span> <span class="n">module</span> <span class="n">websocket_tcp_proxy</span><span class="p">.</span><span class="n">To</span> <span class="n">activate</span> <span class="n">the</span> <span class="n">new</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">run</span><span class="o">:</span><span class="n">service</span> <span class="n">apache2</span> <span class="n">restart</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span>
+</pre></div>
+
+
+<p>Before we restart, I want to remove my Proxy lines and replace them with
+the mod_websocket_tcp_proxy lines.</p>
+<div class="highlight"><pre><span class="n">SetHandler</span> <span class="n">websocket</span><span class="o">-</span><span class="n">handler</span>        
+<span class="n">WebSocketHandler</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">so</span> <span class="n">tcp_proxy_init</span>        
+<span class="n">WebSocketTcpProxyBase64</span> <span class="n">on</span>        
+<span class="n">WebSocketTcpProxyHost</span> <span class="mf">127.0.0.1</span>        
+<span class="n">WebSocketTcpProxyPort</span> <span class="mi">2443</span>        
+<span class="n">WebSocketTcpProxyProtocol</span> <span class="n">base64</span>
+</pre></div>
+
+
+<p>Despite all this, I was still unable to get this to work. I even
+attempted using the web root (/) as my location. If the Location matches
+and your HTTP request is handled by mod_websocket, you get a 404. If
+you use Proxy, then your websocket request is handled by mod_proxy.
+Mod_proxy wins out over Location matches. Perhaps you can modify
+gateone code to have one URL for the web interface and one for
+websockets (or maybe it's already in place and we just need to know),
+but I don't see a way at this time to get this working under Apache. I
+may be able to work with the gateone author and the
+mod_websocket_tcp_proxy.c author to come up with a solution. Or I
+could try installing nginx. In the meantime, I can continue to run Open
+Gate as a non-root user on a non-standard port. Alternatively, I could
+find a wrapper to bring port 443 to 2443.</p></div>
+  <!-- <div class="summary"><p>I came across a program called <a href="http://liftoffsoftware.com/Products/GateOne">Gate One</a> by LiftOff Software that
+just amazed me. This is an open-source, web-based ssh terminal. It is
+capable of multiple users, sessions, and bookmarks. I've tried a number
+of AJAX terminals or Java applet based ones in the past. The javascript
+ones usually did not have very good terminal emulation, while the Java
+apps worked, but worked just like a local desktop app (making it's own ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/06/puppet-dashboard-and-selinux.html">On 25 Jun 2012 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/06/puppet-dashboard-and-selinux.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/06/puppet-dashboard-and-selinux.html#disqus_thread">Comments</a></div>
+  <div><p>Once I got a rough handle on setting up Puppet, I decided to get <a href="http://projects.puppetlabs.com/projects/dashboard" title="Puppet Dashboard">Puppet
+Dashboard</a> working on my puppetmaster (a Centos 6 server) to have a
+sort of web interface to view puppet statuses. Since I already have the
+puppetlabs repositories setup from when I installed puppet, this was
+almost as simple as running "yum install puppet-dashboard".</p>
+<p>You then go to /usr/share/puppet-dashboard and follow the <a href="http://docs.puppetlabs.com/dashboard/manual/1.2/bootstrapping.html" title="Puppet Install Guide">install
+guide</a> to get the database working. Then you can run it locally using
+the "sudo -u puppet-dashboard ./script/server -e production" command or
+starting the service (service puppet-dashboard start). I recommed
+running it manually the first few times to make sure everything is
+working.</p>
+<p>At this point, I was able to browse to http://puppetmaster:3000/ and
+view a nice looking dashboard with no hosts checked in. I then made sure
+to add the following to puppetmaster's puppet.conf [master] section and
+restart puppet.</p>
+<div class="highlight"><pre><span class="n">reports</span> <span class="o">=</span> <span class="n">http</span><span class="p">,</span> <span class="n">store</span>
+<span class="n">reporturl</span> <span class="o">=</span> <span class="n">http</span><span class="o">:</span><span class="c1">//localhost:3000/reports/upload</span>
+</pre></div>
+
+
+<p>I performed a "puppet agent --test" on one of my puppets, and here is
+where I ran into trouble. Everything appeared to work, but no report or
+"pending task" showed up in the Dashboard. I ran the Dashboard locally
+so I could see the http request coming in. No request. I double checked
+my configuration, everything looked good.</p>
+<p>Finally, I ran my puppetmaster in debug/no-daemonize mode.
+(/usr/sbin/puppetmaster --debug --no-daemonize) so I could watch what
+was happening. However, in this mode, it worked fine. I ran
+/usr/sbin/puppetmaster without debugging and it still worked. The
+reports would get submitted to dashboard if I ran puppetmaster directly,
+but not if I started it with the init scripts.</p>
+<p>I couldn't find any differences between how the init script was starting
+puppetmaster vs me starting it manually. However, I did come across this
+entry in /var/log/messages:</p>
+<div class="highlight"><pre> <span class="n">Jul</span> <span class="mi">25</span> <span class="mi">10</span><span class="o">:</span><span class="mi">15</span><span class="o">:</span><span class="mi">16</span> <span class="n">puppetmasterj</span> <span class="n">puppet</span><span class="o">-</span><span class="n">master</span><span class="p">[</span><span class="mi">11988</span><span class="p">]</span><span class="o">:</span> <span class="n">Compiled</span> <span class="n">catalog</span> <span class="k">for</span> <span class="n">puppet2</span><span class="p">.</span><span class="n">lab</span> <span class="n">in</span> <span class="n">environment</span> <span class="n">production</span> <span class="n">in</span> <span class="mf">1.16</span> <span class="n">seconds</span>
+ <span class="n">Jul</span> <span class="mi">25</span> <span class="mi">10</span><span class="o">:</span><span class="mi">15</span><span class="o">:</span><span class="mi">17</span> <span class="n">puppetmasterj</span> <span class="n">puppet</span><span class="o">-</span><span class="n">master</span><span class="p">[</span><span class="mi">11988</span><span class="p">]</span><span class="o">:</span> <span class="n">Report</span> <span class="n">processor</span> <span class="n">failed</span><span class="o">:</span> <span class="n">Permission</span> <span class="n">denied</span> <span class="o">-</span> <span class="n">connect</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Which led me to the following entry in audit.log</p>
+<div class="highlight"><pre> <span class="n">type</span><span class="o">=</span><span class="n">AVC</span> <span class="n">msg</span><span class="o">=</span><span class="n">audit</span><span class="p">(</span><span class="mf">1343225819.078</span><span class="o">:</span><span class="mi">1582</span><span class="p">)</span><span class="o">:</span> <span class="n">avc</span><span class="o">:</span>  <span class="n">denied</span>  <span class="p">{</span> <span class="n">name_connect</span> <span class="p">}</span> <span class="k">for</span>  <span class="n">pid</span><span class="o">=</span><span class="mi">11988</span> <span class="n">comm</span><span class="o">=</span><span class="s">&quot;puppetmasterd&quot;</span> <span class="n">dest</span><span class="o">=</span><span class="mi">3000</span> <span class="n">scontext</span><span class="o">=</span><span class="n">unconfined_u</span><span class="o">:</span><span class="n">system_r</span><span class="o">:</span><span class="kt">puppetmaster_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tcontext</span><span class="o">=</span><span class="n">system_u</span><span class="o">:</span><span class="n">object_r</span><span class="o">:</span><span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tclass</span><span class="o">=</span><span class="n">tcp_socket</span>
+</pre></div>
+
+
+<p>This was an selinux issue. I quickly ascertained that turning enforcing
+off in selinux allowed my reports to get through. I couldn't find anyone
+else online encountering this issue. However, many people disable
+selinux enforcing early on and I guess the cross-section of
+puppet-dashboard users and those using selinux enforcing is somewhat
+small.</p>
+<p>How to fix this? There is a set of python programs called "audit2why"
+and "audit2allow" as part of the policycoreutils-python package. These
+tools will parse entries from the audit.log and either explain why an
+action was denied or provide a solution. You can get these tools by
+doing a "yum install policycoreutils-python".</p>
+<p>Now we can use audit2allow to parse our audit.log error. You'll want to
+run the tool, paste in your log entry, and then hit Ctrl+D on a blank
+line.</p>
+<div class="highlight"><pre> <span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">puppetmasterj</span> <span class="n">tmp</span><span class="p">]</span><span class="err">#</span> <span class="n">audit2allow</span> <span class="o">-</span><span class="n">m</span> <span class="n">puppetmaster</span>
+ <span class="n">type</span><span class="o">=</span><span class="n">AVC</span> <span class="n">msg</span><span class="o">=</span><span class="n">audit</span><span class="p">(</span><span class="mf">1343232143.497</span><span class="o">:</span><span class="mi">1617</span><span class="p">)</span><span class="o">:</span> <span class="n">avc</span><span class="o">:</span>  <span class="n">denied</span>  <span class="p">{</span> <span class="n">name_connect</span> <span class="p">}</span> <span class="k">for</span>  <span class="n">pid</span><span class="o">=</span><span class="mi">12552</span> <span class="n">comm</span><span class="o">=</span><span class="s">&quot;puppetmasterd&quot;</span> <span class="n">dest</span><span class="o">=</span><span class="mi">3000</span> <span class="n">scontext</span><span class="o">=</span><span class="n">unconfined_u</span><span class="o">:</span><span class="n">system_r</span><span class="o">:</span><span class="kt">puppetmaster_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tcontext</span><span class="o">=</span><span class="n">system_u</span><span class="o">:</span><span class="n">object_r</span><span class="o">:</span><span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tclass</span><span class="o">=</span><span class="n">tcp_socket</span>
+ <span class="n">module</span> <span class="n">puppetmaster</span> <span class="mf">1.0</span><span class="p">;</span>
+ <span class="n">require</span> <span class="p">{</span>
+     <span class="n">type</span> <span class="kt">puppetmaster_t</span><span class="p">;</span>
+     <span class="n">type</span> <span class="kt">ntop_port_t</span><span class="p">;</span>
+     <span class="n">class</span> <span class="n">tcp_socket</span> <span class="n">name_connect</span><span class="p">;</span>
+ <span class="p">}</span>
+ <span class="err">#</span><span class="o">=============</span> <span class="kt">puppetmaster_t</span> <span class="o">==============</span>
+ <span class="n">allow</span> <span class="kt">puppetmaster_t</span> <span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">tcp_socket</span> <span class="n">name_connect</span><span class="p">;</span>
+</pre></div>
+
+
+<p>The above gives you a textual view of a module you can create to allow
+puppetmaster to make an outbound connection. audit2allow will even
+generate that module with the -M option.</p>
+<div class="highlight"><pre> <span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">puppetmasterj</span> <span class="n">tmp</span><span class="p">]</span><span class="err">#</span> <span class="n">audit2allow</span> <span class="o">-</span><span class="n">M</span> <span class="n">puppetmaster</span>
+ <span class="n">type</span><span class="o">=</span><span class="n">AVC</span> <span class="n">msg</span><span class="o">=</span><span class="n">audit</span><span class="p">(</span><span class="mf">1343232143.497</span><span class="o">:</span><span class="mi">1617</span><span class="p">)</span><span class="o">:</span> <span class="n">avc</span><span class="o">:</span>  <span class="n">denied</span>  <span class="p">{</span> <span class="n">name_connect</span> <span class="p">}</span> <span class="k">for</span>  <span class="n">pid</span><span class="o">=</span><span class="mi">12552</span> <span class="n">comm</span><span class="o">=</span><span class="s">&quot;puppetmasterd&quot;</span> <span class="n">dest</span><span class="o">=</span><span class="mi">3000</span> <span class="n">scontext</span><span class="o">=</span><span class="n">unconfined_u</span><span class="o">:</span><span class="n">system_r</span><span class="o">:</span><span class="kt">puppetmaster_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tcontext</span><span class="o">=</span><span class="n">system_u</span><span class="o">:</span><span class="n">object_r</span><span class="o">:</span><span class="kt">ntop_port_t</span><span class="o">:</span><span class="n">s0</span> <span class="n">tclass</span><span class="o">=</span><span class="n">tcp_socket</span>
+ <span class="o">********************</span> <span class="n">IMPORTANT</span> <span class="o">***********************</span>
+ <span class="n">To</span> <span class="n">make</span> <span class="n">this</span> <span class="n">policy</span> <span class="n">package</span> <span class="n">active</span><span class="p">,</span> <span class="n">execute</span><span class="o">:</span>
+ <span class="n">semodule</span> <span class="o">-</span><span class="n">i</span> <span class="n">puppetmaster</span><span class="p">.</span><span class="n">pp</span>
+</pre></div>
+
+
+<p>That generated the module "puppetmaster.pp". Despite the pp extension,
+this is not a puppet manifest, but an selinux binary module. Let's
+install it.</p>
+<div class="highlight"><pre> <span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">puppetmasterj</span> <span class="n">tmp</span><span class="p">]</span><span class="err">#</span> <span class="n">semodule</span> <span class="o">-</span><span class="n">i</span> <span class="n">puppetmaster</span><span class="p">.</span><span class="n">pp</span>
+</pre></div>
+
+
+<p>With that, puppetmaster can communicate with dashboard and reports are
+flowing. The only remaining thing left to do is to file a bug report. As
+it happened, someone had posted a bug report similar to this for
+documentation on the puppetdb project. I decided to append to that
+issue, but I suggested migrating the issue to the main puppet project.
+Issue <a href="http://projects.puppetlabs.com/issues/15567" title="Issue 15567 selinux">#15567</a>.</p></div>
+  <!-- <div class="summary"><p>Once I got a rough handle on setting up Puppet, I decided to get <a href="http://projects.puppetlabs.com/projects/dashboard" title="Puppet Dashboard">Puppet
+Dashboard</a> working on my puppetmaster (a Centos 6 server) to have a
+sort of web interface to view puppet statuses. Since I already have the
+puppetlabs repositories setup from when I installed puppet, this was
+almost as simple as running "yum install puppet-dashboard".</p>
+<p>You then go to /usr/share/puppet-dashboard and follow the <a href="http://docs.puppetlabs.com/dashboard/manual/1.2/bootstrapping.html" title="Puppet Install Guide">install
+guide</a> to get the database working ...</p></div> -->
+  
+Tagged as: <a href="http://www.yourtech.us/tag/puppet-selinux.html">puppet selinux</a> </div>
+
+<div class="pagination">
+<ul>
+		<li class="prev"><a href="http://www.yourtech.us/author/john-hogenmiller2.html">&larr; Previous</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller.html">1</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller2.html">2</a></li>
+		<li class="active"><a href="http://www.yourtech.us/author/john-hogenmiller3.html">3</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller4.html">4</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller5.html">5</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller6.html">6</a></li>
+		<li class="next"><a href="http://www.yourtech.us/author/john-hogenmiller4.html">Next &rarr;</a></li>
+</ul>
+</div>
+
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

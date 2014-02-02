@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+  var disqus_identifier = "/2012/11/starting-with-ruby-and-aws.html";
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li class="active"><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+<div class='article'>
+  <div class="page-header"><h1>Starting with Ruby and AWS</h1></div>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/11/starting-with-ruby-and-aws.html">On 02 Nov 2012 at 2329</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/11/starting-with-ruby-and-aws.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/11/starting-with-ruby-and-aws.html#disqus_thread">Comments</a></div>
+  <div><p>This weekend I decided to takle both learning Ruby and working with AWS
+via the Ruby API. Having only played with both of these in the past,
+this presents two learning challenges at once. However, from past
+projects, this is how I learn best. I am somewhat familiar with AWS
+terms and once made a script in Python to fire up an instance. This was
+before Amazon came out with their management console, so I imagine
+things have come a long way since then (hopefully easier). I also played
+with Ruby for a while, but didn't have a decent project for it. Having a
+project with goals will hopefully keep me on track and give me a way to
+measure my progress.</p>
+<p>My goals for this project are as follows:</p>
+<ol>
+<li>Utilize a web based interface. Using rails seems to be the popular
+    way to do this, and I'd like to base my template interface off of
+    <a href="https://github.com/ytjohn/boilerstrap5">boilerstrap5</a>, a combination of twitter-bootstrap and
+    html5boilerplate. This will probably have the most trial and error
+    to get it right.</li>
+<li>Connect to the AWS api and pull some basic information such as my
+    account name.</li>
+<li>Fetch details about an AMI image. Maybe I'll be able to parse a list
+    of public images, or maybe I can just punch in an image ID and pull
+    up the details.</li>
+<li>Start an instance from an AMI image. This might require some steps
+    like setting up a an S3 bucket -- we'll see.</li>
+<li>List my running instances.</li>
+<li>Control a running instance - ie, power cycle it.</li>
+<li>Destroy an instance.</li>
+<li>BONUS: Do something similar with S3 buckets - create, list, destroy.</li>
+</ol>
+<p>First off, I need to setup a ruby development environment. Since I have
+used <a href="http://blog.yourtech.us/feeds/posts/www.jetbrains.com/pycharm/">PyCharm</a> in the past, I will try JetBrain's <a href="http://www.jetbrains.com/ruby/">RubyMine</a> for my
+editor environment. After installing this, the first thing I learned is
+that rails is not installed. I could install using apt-get, but
+Jetbrains recommends using <a href="">RVM</a>. It looks like a nice way to manage
+different versions of Ruby, rails, and gems. I know when I have
+installed Ruby applications requiring gems, gem versions was always a
+source of concern. It is very easy to get mismatched gem versions in the
+wild.</p>
+<p>RVM install locally to \~/.rvm on linux, which is nice - you don't mess
+up any system wide ruby installations and keep everything local to your
+development environment. After installation, I had to figure out a
+couple bits with rvm.</p>
+<ul>
+<li><code>rvm install 1.9.2</code> # installs ruby 1.9.2</li>
+<li><code>rvm list</code> # lists versions of ruby installed</li>
+<li><code>rvm use 1.8.7</code> # use ruby 1.8.7</li>
+</ul>
+<p>First, your terminal has to be setup as a login shell. This tripped me
+up for a while until I changed the settings in my terminal emulator.
+<a href="http://software.jessies.org/terminator">terminator</a> has this as checkmark option.</p>
+<div class="highlight"><pre><span class="nx">ytjohn</span><span class="err">@</span><span class="nx">freshdesk</span><span class="o">:~</span><span class="nx">$</span> <span class="nx">rvm</span> <span class="nx">list</span>
+
+<span class="nx">rvm</span> <span class="nx">rubies</span>
+
+   <span class="nx">ruby</span><span class="o">-</span><span class="mf">1.8</span><span class="p">.</span><span class="mi">7</span><span class="o">-</span><span class="nx">p371</span> <span class="cp">[</span> <span class="nx">x86_64</span> <span class="cp">]</span>
+   <span class="nx">ruby</span><span class="o">-</span><span class="mf">1.9</span><span class="p">.</span><span class="mi">2</span><span class="o">-</span><span class="nx">p320</span> <span class="cp">[</span> <span class="nx">x86_64</span> <span class="cp">]</span>
+
+<span class="err">#</span> <span class="o">=&gt;</span> <span class="o">-</span> <span class="nx">current</span>
+<span class="err">#</span> <span class="o">=*</span> <span class="o">-</span> <span class="nx">current</span> <span class="o">&amp;&amp;</span> <span class="k">default</span>
+<span class="err">#</span>  <span class="o">*</span> <span class="o">-</span> <span class="k">default</span>
+
+<span class="nx">ytjohn</span><span class="err">@</span><span class="nx">freshdesk</span><span class="o">:~</span><span class="nx">$</span> <span class="nx">rvm</span> <span class="nx">use</span> <span class="mf">1.8</span><span class="p">.</span><span class="mi">7</span>
+
+<span class="nx">RVM</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">a</span> <span class="kd">function</span><span class="p">,</span> <span class="nx">selecting</span> <span class="nx">rubies</span> <span class="kd">with</span> <span class="s1">&#39;rvm use ...&#39;</span> <span class="nx">will</span> <span class="nx">not</span> <span class="nx">work</span><span class="p">.</span>
+
+<span class="nx">You</span> <span class="nx">need</span> <span class="nx">to</span> <span class="nx">change</span> <span class="nx">your</span> <span class="nx">terminal</span> <span class="nx">emulator</span> <span class="nx">preferences</span> <span class="nx">to</span> <span class="nx">allow</span> <span class="nx">login</span> <span class="nx">shell</span><span class="p">.</span>
+<span class="nx">Sometimes</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">required</span> <span class="nx">to</span> <span class="nx">use</span> <span class="err">`</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span> <span class="o">--</span><span class="nx">login</span><span class="err">`</span> <span class="nx">as</span> <span class="nx">the</span> <span class="nx">command</span><span class="p">.</span>
+<span class="nx">Please</span> <span class="nx">visit</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//rvm.io/integration/gnome-terminal/ for a example.</span>
+</pre></div>
+
+
+<p>After switching to login</p>
+<div class="highlight"><pre><span class="n">ytjohn</span><span class="err">@</span><span class="n">freshdesk</span><span class="o">:~</span><span class="err">$</span> <span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.8.7</span>
+<span class="n">Using</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ytjohn</span><span class="o">/</span><span class="p">.</span><span class="n">rvm</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">1.8.7</span><span class="o">-</span><span class="n">p371</span>
+</pre></div>
+
+
+<p>Finally, once you get ruby and rails working, you can create your rails
+project. I'm starting with a rails project because it's "all the rage"
+and gives you a decent running start. Later, I'll work on switching the
+supplied templates with boilerplate + bootstrap based ones.</p>
+<p>This gets me started. Next up, I'll actually create the project from
+within RubyMine and just work on basic web functionality.</p></div>
+  <div>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>	
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

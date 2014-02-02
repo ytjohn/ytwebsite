@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li ><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+	      <div class="page-header">
+<div class="alert">
+My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
+</div>	      </div>
+
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/06/using-puppet-to-install-djbdns.html">On 22 Jun 2012 at 1230</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/06/using-puppet-to-install-djbdns.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/06/using-puppet-to-install-djbdns.html#disqus_thread">Comments</a></div>
+  <div><p>This is a basic walkthrough of getting a slightly complex "step by step
+to install" program like djbdns to install under puppet (in this case,
+under Ubuntu 12.04). It shows building the manifest, testing it, and
+some possible gotchas.  </p>
+<p>I am generally following the guide put together by Higher Logic[1], with
+a few changes of my own.  </p>
+<p>Step 1: Installation<br />
+I use the dbndns fork of djbdns, which has a few patches installed that
+djbdns lacks. In fact, the djbdns package in Debian/Ubuntu is a virtual
+package that really install dbndns. To install it normally, you would
+type "sudo apt-get install dbndns". This would also install daemontools
+and daemontools-run. However, we'll also need make and ucspi-tcp.  </p>
+<p>We're going to do this the puppet way. I'm assuming my puppet
+configuration in in /etc/puppet, node manifests are in
+/etc/puppet/nodes, and modules are in /etc/puppet/modules.  </p>
+<p>a. Create the dbndns module with a package definition to install   </p>
+<p>sudo mkdir -p /etc/puppet/modules/dbndns/manifests<br />
+    sudo vi /etc/puppet/modules/dbndns/manifests/init.pp<br />
+<br />
+        class dbndns {<br />
+            package {<br />
+                    dbndns:<br />
+                    ensure => present;  </p>
+<p>ucspi-tcp:<br />
+                    ensure => present;  </p>
+<p>make:<br />
+                    ensure => present;<br />
+            }  </p>
+<p>}  </p>
+<p>b. Create a file for your node (ie: puppet2.example.net)  </p>
+<p>sudo vi /etc/puppet/nodes/puppet2.example.net.pp<br />
+<br />
+        node    'puppet2.lab.example.net' {<br />
+            include dbndns<br />
+        }<br />
+</p>
+<p>c. Test<br />
+Ok, to test on your puppet client, run "sudo puppet agent --test"  </p>
+<p>johnh@puppet2:\~# sudo puppet agent --test<br />
+    info: Retrieving plugin<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb<br />
+    info: Caching catalog for puppet2.lab.example.net<br />
+    info: Applying configuration version '1340213237'<br />
+    notice: /Stage[main]/Dbndns/Package[dbndns]/ensure: created<br />
+    notice: Finished catalog run in 3.39 seconds  </p>
+<p>Here we can see our dbndns package installed. But is it running? Well,
+djbdns uses daemontools, which runs svscan, and some searching online
+shows that in Ubuntu 12.04/Precise, this is now an upstart job. svscan
+is not running. So let's make it run. Add the following to your init.pp
+(within the module definition):  </p>
+<p># define the service to restart<br />
+        service { "svscan":<br />
+                ensure  => "running",<br />
+                provider => "upstart",<br />
+                require => Package["dbndns"],<br />
+        }  </p>
+<p>Now back on puppet2, let's test it.  </p>
+<p>johnh@puppet2:\~# sudo puppet agent --test<br />
+    info: Retrieving plugin<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb<br />
+    info: Caching catalog for puppet2.lab.example.net<br />
+    info: Applying configuration version '1340213237'<br />
+    notice: /Stage[main]/Dbndns/Service[svscan]/ensure: ensure changed
+'stopped' to 'running'<br />
+    notice: Finished catalog run in 0.47 seconds  </p>
+<p>We now told puppet to ensure that svscan is running. The "provider"
+option tells it to use upstart instead of /etc/init.d/ scripts or the
+service command. Also, we make sure that it doesn't attempt to start
+svscan unless dbndns is already installed.  </p>
+<p>Now we have daemontools running, but we haven't got it start our tinydns
+service yet. To do that, we need to create some users and configure the
+service.<br />
+<br />
+Step 2: Create users  </p>
+<p>Going back to our guide, our next step is to create users. We can do
+that in puppet as well.<br />
+    # Users for the chroot jail<br />
+    adduser --no-create-home --disabled-login --shell /bin/false dnslog<br />
+    adduser --no-create-home --disabled-login --shell /bin/false
+tinydns<br />
+    adduser --no-create-home --disabled-login --shell /bin/false
+dnscache  </p>
+<p>So in our init.pp module file, we need to define our users:  </p>
+<p>user { "dnslog":<br />
+            shell => "/bin/false",<br />
+            managehome => "no",<br />
+            ensure => "present",<br />
+        }<br />
+<br />
+    user { "tinydns":<br />
+            shell => "/bin/false",<br />
+            managehome => "no",<br />
+            ensure => "present",<br />
+        }<br />
+<br />
+    user { "dnscache":<br />
+            shell => "/bin/false",<br />
+            managehome => "no",<br />
+            ensure => "present",<br />
+        }  </p>
+<p>Back on puppet2, we can give that a test.  </p>
+<p>johnh@puppet2:\~\$ sudo puppet agent --test<br />
+    info: Retrieving plugin<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb<br />
+    info: Caching catalog for puppet2.lab.example.net<br />
+    info: Applying configuration version '1340215757'<br />
+    notice: /Stage[main]/Dbndns/User[dnscache]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/User[tinydns]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/User[dnslog]/ensure: created<br />
+    notice: Finished catalog run in 0.86 seconds<br />
+    johnh@puppet2:\~\$ cat /etc/passwd | grep dns<br />
+    dnscache:x:1001:1001::/home/dnscache:/bin/false<br />
+    tinydns:x:1002:1002::/home/tinydns:/bin/false<br />
+    dnslog:x:1003:1003::/home/dnslog:/bin/false  </p>
+<p>So far, so good. Now we have to do the configuration, which will require
+executing some commands.  </p>
+<p>Step 3 - Configuration<br />
+Our next step are the following commands:  </p>
+<p># Config<br />
+    tinydns-conf tinydns dnslog /etc/tinydns/ 1.2.3.4<br />
+    dnscache-conf dnscache dnslog /etc/dnscache 127.0.0.1<br />
+    cd /etc/dnscache; touch /etc/dnscache/root/ip/127.0.0<br />
+    mkdir /etc/service ; cd /etc/service ; ln -sf /etc/tinydns/ ; ln -sf
+/etc/dnscache<br />
+<br />
+The first two commands create our service directories. Authoratative
+tinydns is set to listen on 1.2.3.4 and dnscache is set to listen on
+127.0.0.1. The 3rd command creates a file that restricts dnscache to
+only respond to requests from IPs starting with 127.0.0. This is isn't
+necessary, but the challenge is interesting.  </p>
+<p>What we want to do first is see if /etc/tinydns and /etc/dnscache exist
+and if not, run the -conf program. We also need to know the IP address.
+Fortunately, puppet provides this as a variable "\$ipaddress". Try
+running the "facter" command.  </p>
+<p>Puppet has a property call creates that is ideal. If the directory
+specified by creates does not exist, it will perform the associated
+commands. Here are our new lines:  </p>
+<p>exec { "configure-tinydns":<br />
+            command => "/usr/bin/tinydns-conf tinydns dnslog
+/etc/tinydns \$ipaddress",<br />
+            creates => "/etc/tinydns",<br />
+            require => Package['dbndns'],<br />
+    }  </p>
+<p>exec { "configure-dnscache":<br />
+            command => "/usr/bin/dnscache-conf dnscache dnslog
+/etc/dnscache 127.0.0.1",<br />
+            creates => "/etc/dnscache",<br />
+            require => Package['dbndns'],<br />
+    }  </p>
+<p>Thos will configure tinydns and dnscache, and then we can restrict
+dnscache  </p>
+<p>file { "/etc/dnscache/root/ip/127.0.0":<br />
+            ensure => "present",<br />
+            owner => "dnscache",<br />
+            require => Exec["configure-dnscache"],<br />
+    }  </p>
+<p>Then, we need to create the /etc/service directory and bring tinydns and
+dnscache under svscan's control.<br />
+<br />
+    file { "/etc/service":<br />
+            ensure => "directory",<br />
+            require => Package["dbndns"],<br />
+    }  </p>
+<p>file { "/etc/service/tinydns":<br />
+            ensure => "link",<br />
+            target => "/etc/tinydns",<br />
+            require => [ File['/etc/service'],
+Exec["configure-tinydns"], ],<br />
+    }  </p>
+<p>file { "/etc/service/dnscache":<br />
+            ensure => "link",<br />
+            target => "/etc/dnscache",<br />
+            require => [  File['/etc/service'],
+Exec["configure-dnscache"]  ],<br />
+    }  </p>
+<p>And our tests:  </p>
+<p>johnh@puppet2:\~\$ sudo puppet agent --test<br />
+    info: Retrieving plugin<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb<br />
+    info: Caching catalog for puppet2.lab.example.net<br />
+    info: Applying configuration version '1340218775'<br />
+    notice: /Stage[main]/Dbndns/Exec[configure-dnscache]/returns:
+executed successfull<br />
+    notice:
+/Stage[main]/Dbndns/File[/etc/dnscache/root/ip/127.0.0]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/dnscache]/ensure:
+created<br />
+    notice: /Stage[main]/Dbndns/Exec[configure-tinydns]/returns:
+executed successfully<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/tinydns]/ensure:
+created<br />
+    notice: Finished catalog run in 0.59 seconds<br />
+    johnh@puppet2:\~\$ ls /etc/service/tinydns/root/<br />
+    add-alias  add-alias6  add-childns  add-host  add-host6  add-mx 
+add-ns  data  Makefile<br />
+    johnh@puppet2:\~\$ ps ax | grep supervise<br />
+     7932 ?        S      0:00 supervise dnscache<br />
+     7933 ?        S      0:00 supervise log<br />
+     7934 ?        S      0:00 supervise tinydns<br />
+     7935 ?        S      0:00 supervise log  </p>
+<p>Doing a dig www.example.net @localhost returns 192.0.43.10, so dnscache
+works.  </p>
+<p>Now, let's check tinydns. No domains are configured yet, so let's put
+example.com in there. Edit /etc/tinydns/root/data and put these lines in
+it, substituting 10.100.0.178 for your own "public" IP address.  </p>
+<blockquote>
+<p>&amp;example.com::ns0.example.com.:3600 
+Zexample.com:ns0.example.com.:hostmaster.example.com.:1188079131:16384:2048:1048576:2560:2560<br />
+ +ns0.example.com:10.100.0.178:3600</p>
+</blockquote>
+<p>Then "make" the data.cdb file:  </p>
+<p>cd /etc/tinydns/root ; sudo make<br />
+<br />
+Now test:  </p>
+<p>johnh@puppet2:/etc/tinydns/root\$ dig ns0.example.com @10.100.0.178  </p>
+<p>; \&lt;\&lt;>> DiG 9.8.1-P1 \&lt;\&lt;>> ns0.example.com @10.100.0.178<br />
+    ;; global options: +cmd<br />
+    ;; Got answer:<br />
+    ;; ->>HEADER\&lt;\&lt;- opcode: QUERY, status: NOERROR, id: 25433<br />
+    ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL:
+0<br />
+    ;; WARNING: recursion requested but not available  </p>
+<p>;; QUESTION SECTION:<br />
+    ;ns0.example.com.               IN      A  </p>
+<p>;; ANSWER SECTION:<br />
+    ns0.example.com.        3600    IN      A       10.100.0.178  </p>
+<p>;; AUTHORITY SECTION:<br />
+    example.com.            3600    IN      NS      ns0.example.com.  </p>
+<p>Ok, for a final test, let's remove everything and run it again.  </p>
+<p>sudo service svscan stop<br />
+    sudo apt-get purge daemontools daemontools-run ucspi-tcp dbndns<br />
+    sudo rm -rf /etc/service /etc/tinydns /etc/dnscache<br />
+    sudo userdel tinydns <br />
+    sudo userdel dnslog <br />
+    sudo userdel dnscache<br />
+<br />
+Let's do this:  </p>
+<p>johnh@puppet2:\~\$ sudo puppet agent --test<br />
+    info: Retrieving plugin<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb<br />
+    info: Caching catalog for puppet2.lab.example.net<br />
+    info: Applying configuration version '1340220032'<br />
+    notice: /Stage[main]/Dbndns/Service[svscan]/ensure: ensure changed
+'stopped' to 'running'<br />
+    err: /Stage[main]/Dbndns/Exec[configure-dnscache]/returns: change
+from notrun to 0 failed: /usr/bin/dnscache-conf dnscache dnslog
+/etc/dnscache 127.0.0.1 returned 111 instead of one of [0] at
+/etc/puppet/modules/dbndns/manifests/init.pp:47<br />
+    notice: /Stage[main]/Dbndns/User[dnscache]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/User[tinydns]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/dnscache]: Dependency
+Exec[configure-dnscache] has failures: true<br />
+    warning: /Stage[main]/Dbndns/File[/etc/service/dnscache]: Skipping
+because of failed dependencies<br />
+    notice: /Stage[main]/Dbndns/User[dnslog]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/File[/etc/dnscache/root/ip/127.0.0]:
+Dependency Exec[configure-dnscache] has failures: true<br />
+    warning: /Stage[main]/Dbndns/File[/etc/dnscache/root/ip/127.0.0]:
+Skipping because of failed dependencies<br />
+    notice: /Stage[main]/Dbndns/Exec[configure-tinydns]/returns:
+executed successfully<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/tinydns]/ensure:
+created<br />
+    notice: Finished catalog run in 0.98 seconds  </p>
+<p>Looks like we had something fail. Oops! configure-dnscache failed. We
+see that the user dnscache and tinydns were created after. So we need to
+make sure that the users are created before we can configure the
+service. This needs to happen to tinydns as well as dnscache. Good thing
+we did this test so it doesn't bite us in the future. Let's adjust our
+init.pp  </p>
+<p>exec { "configure-tinydns":<br />
+                command => "/usr/bin/tinydns-conf tinydns dnslog
+/etc/tinydns \$ipaddress",<br />
+                creates => "/etc/tinydns",<br />
+                require => [ Package['dbndns'], User['dnscache'],
+User['dnslog'] ],<br />
+        }  </p>
+<p>exec { "configure-dnscache":<br />
+                command => "/usr/bin/dnscache-conf dnscache dnslog
+/etc/dnscache 127.0.0.1",<br />
+                creates => "/etc/dnscache",<br />
+                require => [ Package['dbndns'],  User['dnscache'],
+User['dnslog'] ],<br />
+        }  </p>
+<p>Also, let's go ahead and run our commands above to get rid of everything
+again.  </p>
+<p>johnh@puppet2:\~\$ sudo puppet agent --test<br />
+    info: Retrieving plugin<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb<br />
+    info: Caching catalog for puppet2.lab.example.net<br />
+    info: Applying configuration version '1340220641'<br />
+    notice: /Stage[main]/Dbndns/Service[svscan]/ensure: ensure changed
+'stopped' to 'running'<br />
+    notice: /Stage[main]/Dbndns/User[dnscache]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/User[tinydns]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/User[dnslog]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/Exec[configure-dnscache]/returns:
+executed successfully<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/dnscache]/ensure:
+created<br />
+    notice:
+/Stage[main]/Dbndns/File[/etc/dnscache/root/ip/127.0.0]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/Exec[configure-tinydns]/returns:
+executed successfully<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/tinydns]/ensure:
+created<br />
+    notice: Finished catalog run in 1.05 seconds  </p>
+<p>Everything looks good, but when we run "ps ax | grep svscan" we don't
+see svscan running. So we check /var/log/syslog and see this   </p>
+<p>Jun 20 19:31:35 puppet2 kernel: [ 9646.348251] init: svscan main
+process ended, respawning<br />
+    Jun 20 19:31:35 puppet2 kernel: [ 9646.359074] init: svscan
+respawning too fast, stopped<br />
+<br />
+If we start it by hand, it works, so what happened? /etc/service didn't
+exist yet.  </p>
+<p>johnh@puppet2:\~\$ sudo service svscan start<br />
+    svscan start/running, process 9726<br />
+    johnh@puppet2:\~\$ ps ax | grep supervise<br />
+     9730 ?        S      0:00 supervise dnscache<br />
+     9731 ?        S      0:00 supervise log<br />
+     9732 ?        S      0:00 supervise tinydns<br />
+     9733 ?        S      0:00 supervise log  </p>
+<p>Let's fix that.  </p>
+<p># define the service to restart<br />
+        service { "svscan":<br />
+                ensure  => "running",<br />
+                provider => "upstart",<br />
+                require => [ Package["dbndns"], File["/etc/service"] ]<br />
+        }  </p>
+<p>Now, let's give it a go:  </p>
+<p>johnh@puppet2:\~\$ sudo puppet agent --test<br />
+    info: Retrieving plugin<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/facter_dot_d.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/root_home.rb<br />
+    info: Loading facts in /var/lib/puppet/lib/facter/puppet_vardir.rb<br />
+    info: Caching catalog for puppet2.lab.example.net<br />
+    info: Applying configuration version '1340220885'<br />
+    notice: /Stage[main]/Dbndns/User[dnscache]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/User[tinydns]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/Service[svscan]/ensure: ensure changed
+'stopped' to 'running'<br />
+    notice: /Stage[main]/Dbndns/User[dnslog]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/Exec[configure-dnscache]/returns:
+executed successfully<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/dnscache]/ensure:
+created<br />
+    notice:
+/Stage[main]/Dbndns/File[/etc/dnscache/root/ip/127.0.0]/ensure: created<br />
+    notice: /Stage[main]/Dbndns/Exec[configure-tinydns]/returns:
+executed successfully<br />
+    notice: /Stage[main]/Dbndns/File[/etc/service/tinydns]/ensure:
+created<br />
+    notice: Finished catalog run in 1.24 seconds<br />
+    johnh@puppet2:\~\$ ps ax | grep svscan<br />
+    10613 ?        Ss     0:00 /bin/sh /usr/bin/svscanboot<br />
+    10615 ?        S      0:00 svscan /etc/service<br />
+    10639 pts/0    S+     0:00 grep --color=auto svscan<br />
+    johnh@puppet2:\~\$ ps ax | grep supervise<br />
+    10630 ?        S      0:00 supervise dnscache<br />
+    10631 ?        S      0:00 supervise log<br />
+    10632 ?        S      0:00 supervise tinydns<br />
+    10633 ?        S      0:00 supervise log<br />
+    10641 pts/0    S+     0:00 grep --color=auto supervise  </p>
+<p>Excellent! We now have a working puppet class that will install puppet,
+configure it, and get it up and running. At this point, we don't have
+any records being served by tinydns, but it wouldn't be hard to push a
+file to /etc/tinydns/root/data and execute a command to perform the
+make. In my case, I will be using VegaDNS's update-data.sh[2] to pull
+the data remotely.  </p>
+<p>Here is our completed modules/dbndns/init.pp:  </p>
+<hr />
+<p>class dbndns {  </p>
+<p>package {<br />
+                dbndns:<br />
+                ensure => present;  </p>
+<p>ucspi-tcp:<br />
+                ensure => present;  </p>
+<p>make:<br />
+                ensure => present;<br />
+        }  </p>
+<p># define the service to restart<br />
+        service { "svscan":<br />
+                ensure  => "running",<br />
+                provider => "upstart",<br />
+                require => [ Package["dbndns"], File["/etc/service"] ]<br />
+        }  </p>
+<p>user { "dnslog":<br />
+                        shell => "/bin/false",<br />
+                        managehome => false,<br />
+                        ensure => "present",<br />
+                }  </p>
+<p>user { "tinydns":<br />
+                        shell => "/bin/false",<br />
+                        managehome => false,<br />
+                        ensure => "present",<br />
+                }  </p>
+<p>user { "dnscache":<br />
+                        shell => "/bin/false",<br />
+                        managehome => false,<br />
+                        ensure => "present",<br />
+                }  </p>
+<p>exec { "configure-tinydns":<br />
+                command => "/usr/bin/tinydns-conf tinydns dnslog
+/etc/tinydns \$ipaddress",<br />
+                creates => "/etc/tinydns",<br />
+                require => [ Package['dbndns'], User['dnscache'],
+User['dnslog'] ],<br />
+        }  </p>
+<p>exec { "configure-dnscache":<br />
+                command => "/usr/bin/dnscache-conf dnscache dnslog
+/etc/dnscache 127.0.0.1",<br />
+                creates => "/etc/dnscache",<br />
+                require => [ Package['dbndns'],  User['dnscache'],
+User['dnslog'] ],<br />
+        }  </p>
+<p>file { "/etc/dnscache/root/ip/127.0.0":<br />
+                ensure => "present",<br />
+                owner => "dnscache",<br />
+                require => Exec["configure-dnscache"],<br />
+        }  </p>
+<p>file { "/etc/service":<br />
+                ensure => "directory",<br />
+                require => Package["dbndns"],<br />
+        }  </p>
+<p>file { "/etc/service/tinydns":<br />
+                ensure => "link",<br />
+                target => "/etc/tinydns",<br />
+                require => [ File['/etc/service'],<br />
+                                        Exec["configure-tinydns"],<br />
+                                ],<br />
+        }  </p>
+<p>file { "/etc/service/dnscache":<br />
+                ensure => "link",<br />
+                target => "/etc/dnscache",<br />
+                require => [  File['/etc/service'],<br />
+                                        Exec["configure-dnscache"]<br />
+                                ],<br />
+        }  </p>
+<p>}  </p>
+<hr />
+<p>[1]
+http://higherlogic.com.au/2011/djbdns-on-ubuntu-10-04-server-migration-from-bind-and-zone-transfers-to-secondaries-bind/<br />
+[2] https://github.com/shupp/VegaDNS/blob/master/update-data.sh</p></div>
+  <!-- <div class="summary"><p>This is a basic walkthrough of getting a slightly complex "step by step
+to install" program like djbdns to install under puppet (in this case,
+under Ubuntu 12.04). It shows building the manifest, testing it, and
+some possible gotchas.  </p>
+<p>I am generally following the guide put together by Higher Logic[1], with
+a few changes of my own.  </p>
+<p>Step 1: Installation<br />
+I use the dbndns fork of djbdns, which has a few patches installed ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2011/04/sending-messages-using-xmpppy.html">On 05 Apr 2011 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2011/04/sending-messages-using-xmpppy.text">{source}</a>
+ | <a href="http://www.yourtech.us//2011/04/sending-messages-using-xmpppy.html#disqus_thread">Comments</a></div>
+  <div><p>In continuing working with XMPP and Python, I managed to get xmpppy
+working.  </p>
+<p>This proved to be particularly tricky because xmpppy uses some outdated
+modules like md5 and sha.  It also relies on some dns functions which no
+longer seem to work.  </p>
+<blockquote>
+<p>I was able to use the sample script "<a href="http://xmpppy.sourceforge.net/examples/xsend.py">xsend.py</a>" that the project
+provides.  The big thing is that I had to specify talk.google.com and
+the port number directly in the connect command.</p>
+</blockquote>
+<p>If I did not specify the servername, I would get the error:<br />
+ An error occurred while looking up _xmpp-client._tcp.example.com  </p>
+<p>NOTE: DNS is configured correctly for the domain I was practicing with,
+but the xmpppy code was not able to resolve it.  </p>
+<p>To run the script, simply execute;  </p>
+<blockquote>
+<p>./xblast.py destination@example.com  text to send</p>
+</blockquote>
+<p>The Script:  </p>
+<blockquote>
+<p>#!/usr/bin/python<br />
+# \$Id: xsend.py,v 1.8 2006/10/06 12:30:42 normanr Exp \$<br />
+import sys,os,xmpp,time  </p>
+<p>if len(sys.argv) \&lt; 2:<br />
+    print "Syntax: xsend JID text"<br />
+    sys.exit(0)  </p>
+<p>tojid=sys.argv[1]<br />
+text=' '.join(sys.argv[2:])  </p>
+<p>jidparams={}  </p>
+<p>jidparams['jid']='system@example.com'<br />
+jidparams['password'] = '123456'  </p>
+<p>jid=xmpp.protocol.JID(jidparams['jid'])<br />
+cl=xmpp.Client(jid.getDomain(),debug=True)  </p>
+<p>con=cl.connect(('talk.google.com',5222),  use_srv=False)  </p>
+<p>if not con:<br />
+    print 'could not connect!'<br />
+    sys.exit()<br />
+print 'connected with',con<br />
+auth=cl.auth(jid.getNode(),jidparams['password'],resource=jid.getResource())<br />
+if not auth:<br />
+    print 'could not authenticate!'<br />
+    sys.exit()<br />
+print 'authenticated using',auth  </p>
+<p># cl.SendInitPresence(requestRoster=0)   # you may need to uncomment
+this for old server<br />
+id=cl.send(xmpp.protocol.Message(tojid,text))<br />
+print 'sent message with id',id  </p>
+<p>time.sleep(1)   # some older servers will not send the message if you
+disconnect immediately after sending  </p>
+<p>cl.disconnect()</p>
+</blockquote>
+<hr /></div>
+  <!-- <div class="summary"><p>In continuing working with XMPP and Python, I managed to get xmpppy
+working.  </p>
+<p>This proved to be particularly tricky because xmpppy uses some outdated
+modules like md5 and sha.  It also relies on some dns functions which no
+longer seem to work.  </p>
+<blockquote>
+<p>I was able to use the sample script "<a href="http://xmpppy.sourceforge.net/examples/xsend.py">xsend.py</a>" that the project
+provides.  The big thing is that I had to specify talk.google.com and
+the port number directly in the ...</p></blockquote></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2011/02/nagios-and-xmpp.html">On 28 Feb 2011 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2011/02/nagios-and-xmpp.text">{source}</a>
+ | <a href="http://www.yourtech.us//2011/02/nagios-and-xmpp.html#disqus_thread">Comments</a></div>
+  <div><p>I found that someone has written a perl script geared towards sending
+alerts from Nagios to XMPP usernames.  </p>
+<p>http://www.gridpp.ac.uk/wiki/Nagios_jabber_notification  </p>
+<p>I have downloaded this, but have not yet got it working as of yet, but
+it does look promising.  It took me a while to update all the
+dependencies for it, but if those were in place, the installation itself
+is rather simple.  That is, the notification script works, but I haven't
+actually configured nagios as of yet.  </p>
+<p>This script has a shortcoming in that it only accepts the username
+portion of the JID and not the domain name -- and this means that
+notifications can only be sent between users of the same domain.  </p>
+<p>To illustrate, user@example.net can not send a message to
+user@example.com, but user1 and user2 on example.net can send to each
+other.  </p>
+<blockquote>
+<p># this command will fail:<br />
+ytjohn@monitor:/usr/local/bin\$ ./notify_by_jabber.pl
+yourtech\@example.com testing  <br />
+# while this one works<br />
+ytjohn@monitor:/usr/local/bin\$ ./notify_by_jabber.pl yourtech
+testing</p>
+</blockquote>
+<p>And in the perl script, you have to specify the login credentials and
+server you're connecting to:  </p>
+<blockquote>
+<p>## Configuration<br />
+# my \$username = 'system@example.com';   # does not work<br />
+my \$username = 'system';<br />
+my \$password = "password";<br />
+my \$resource = "nagios";<br />
+## End of configuration  </p>
+<p>my \$len = scalar @ARGV;<br />
+if (\$len ne 2) {<br />
+   die "Usage...\n \$0 [jabberid] [message]\n";<br />
+}<br />
+my @field=split(/,/,\$ARGV[0]);<br />
+#------------------------------------  </p>
+<p># Google Talk &amp; Jabber parameters :  </p>
+<p>my \$hostname = 'talk.google.com';<br />
+my \$port = 5222;<br />
+# componentname is the second half of your JID:<br />
+my \$componentname = 'example.com';<br />
+my \$connectiontype = 'tcpip';<br />
+my \$tls = 1;</p>
+</blockquote>
+<p>Originally posted: February 28, 2011 6:23 PM   </p></div>
+  <!-- <div class="summary"><p>I found that someone has written a perl script geared towards sending
+alerts from Nagios to XMPP usernames.  </p>
+<p>http://www.gridpp.ac.uk/wiki/Nagios_jabber_notification  </p>
+<p>I have downloaded this, but have not yet got it working as of yet, but
+it does look promising.  It took me a while to update all the
+dependencies for it, but if those were in place, the installation itself
+is rather simple.  That is, the notification script works, but ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2011/02/jabbering-about-python.html">Jabbering about Python</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2011/02/jabbering-about-python.html">On 27 Feb 2011 at 1111</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2011/02/jabbering-about-python.text">{source}</a>
+ | <a href="http://www.yourtech.us//2011/02/jabbering-about-python.html#disqus_thread">Comments</a></div>
+  <div><p>I am getting more and more into the idea of using XMPP for sending
+messages.  XMPP (also known as jabber) is a very open protocol.  Anyone
+can throw up a server, and by publishing a few DNS records, your server
+can interact with any other XMPP server out there (that is open).  For a
+popular example, anyone can throw up their server with their domain and
+send messages to someone using Google Chat.<br />
+<br />
+I have a customer that has their domain email hosted by Google apps for
+domains, which also means that each person has Google Talk, which is
+based off of XMPP.  For a monitoring scenario, I decided I'd rather have
+alerts go to an installed Google Talk client instead of to their email. 
+This would make alerts more noticeable, but less intrusive to their
+Inbox.  Google would also tie all their messages together (chat and
+email) for searching later. So my idea was to have monitoring server
+send the email alert to a local user, and have it piped through a
+program that would send the XMPP alert.  In the future, perhaps an XMPP
+bot could also accept commands to control the monitoring system.<br />
+<br />
+I wanted to create a program called "jabblast.py" which would accept
+either standard input, or a command line argument, and send a message to
+a pre-defined list of recipients.  </p>
+<blockquote>
+<p>echo "sent from stdin" | jabblast.py<br />
+  jabblast.py -m "sent from a command line argument"</p>
+</blockquote>
+<p>Looking at the python and XMPP options out there, I came across three
+that looked promising.    </p>
+<blockquote>
+<p># xmpppy<br />
+  # sleekxmpp<br />
+  # twisted (the "words" extension)</p>
+</blockquote>
+<p>I was really expecting to find exactly what I wanted to do already
+written.  However, it seems anyone writing an XMPP script is creating a
+bot that runs continuously and would need modified for a one-time
+event.<br />
+<br />
+Sleekxmpp was actually the easiest to understand and work with, however
+the project could be in danger of abandonment.   Twisted looks the most
+advanced, and I am drawn to it because it seems to offer the most
+versatility.  In my mind, I suspect that if I learn twisted for this, I
+can just keep using it for all the other stuff I want to do.  However,
+it might be "too much" for this simple of an operation.  xmpppy is the
+middle ground.  The project seems relatively active and popular.    </p>
+<p>The problem with all three projects is a severe lack of documentation --
+for twisted, this lack is primarily on the xmpp side.  One thing very
+well hidden is how to specify the server name you want to connect to. 
+Ideally, this is provided through a DNS record lookup, but that method
+eliminates experimentation with local network ip addresses.   Sleek
+never even approaches the concept that you might want your XMPP program
+to end.   It has a call for disconnecting, but when I call that, sleek
+immediately tries to reconnect.  </p>
+<p>I'm going to go ahead and create my program using all three methods and
+decide later which I like best.  </p>
+<p>For these examples, I have hardcoded the login credentials, as well as
+the "to" into the source code itself.  In the real world, I should be
+pulling that from a configuration file, either XML or YAML (and
+potentially from a remote web page).  Secondly, I only list one "to".  I
+believe that going from sending a single message to sending multiple
+messages should be a matter of a for loop.  Some libraries might even
+offer a feature to send to multiple recipients at once.  </p>
+<p>For my first example, I have created a script in sleekxmpp.  I wrote
+this by looking at the EchoBot example found <a href="https://github.com/remko/xmpp-tdg/tree/master/code/EchoBot">here</a>.  The script will
+send a message and then hang for a while after disconnecting before it
+finally exits.  I don't know why.  If you enable logging, an error is
+thrown after you pass in the disconnect command.  But otherwise, a
+relatively simple bit of code, easy to expand upon.  </p>
+<blockquote>
+<p>#!/usr/bin/env python  </p>
+<p>import sys<br />
+import logging<br />
+import sleekxmpp  </p>
+<p># Uncomment the following line to turn on debugging<br />
+#logging.basicConfig(level=logging.DEBUG, format="%(levelname)-8s
+%(message)s")  </p>
+<p>def main() : <br />
+  # configure jabber id credentials and to<br />
+  to = 'recipient@example.net'<br />
+  myjid = 'sender@example.net/blastbot'<br />
+  mysecret = 'password'  </p>
+<p>args = sys.argv[1:]<br />
+  if not args:<br />
+    message = sys.stdin.read()<br />
+  else:<br />
+    message = sys.argv[1]  </p>
+<p># print to, message<br />
+  # sys.exit()  </p>
+<p>bot = BlastBot(myjid, mysecret, to, message)<br />
+  bot.run()   </p>
+<p>class BlastBot :   </p>
+<p>def __init__(self, jid, password, to, message) : <br />
+    self.message = message<br />
+    self.to = to<br />
+    self.xmpp = sleekxmpp.ClientXMPP(jid, password) <br />
+    self.xmpp.add_event_handler("session_start",
+self.handleXMPPConnected)<br />
+    self.xmpp.add_event_handler("disconnected",
+self.handleXMPPDisconnected)  </p>
+<p>def run(self) :<br />
+    self.xmpp.connect() <br />
+    self.xmpp.process(threaded=False)   </p>
+<p>def handleXMPPDisconnected(self, event) :<br />
+    sys.exit()  </p>
+<p>def handleXMPPConnected(self, event) :<br />
+    self.xmpp.sendMessage(self.to, self.message)<br />
+    self.xmpp.disconnect(self)  </p>
+<p>if __name__ == "__main__" :<br />
+  main()</p>
+</blockquote>
+<p>--<br />
+Jabbering about Python By YourTech John on February 27, 2011 11:11 PM</p></div>
+  <!-- <div class="summary"><p>I am getting more and more into the idea of using XMPP for sending
+messages.  XMPP (also known as jabber) is a very open protocol.  Anyone
+can throw up a server, and by publishing a few DNS records, your server
+can interact with any other XMPP server out there (that is open).  For a
+popular example, anyone can throw up their server with their domain and
+send messages to someone using Google Chat.<br />
+<br />
+I have ...</p></div> -->
+  
+Tagged as: </div>
+
+<div class="pagination">
+<ul>
+		<li class="prev"><a href="http://www.yourtech.us/author/john-hogenmiller3.html">&larr; Previous</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller.html">1</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller2.html">2</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller3.html">3</a></li>
+		<li class="active"><a href="http://www.yourtech.us/author/john-hogenmiller4.html">4</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller5.html">5</a></li>
+		<li class=""><a href="http://www.yourtech.us/author/john-hogenmiller6.html">6</a></li>
+		<li class="next"><a href="http://www.yourtech.us/author/john-hogenmiller5.html">Next &rarr;</a></li>
+</ul>
+</div>
+
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

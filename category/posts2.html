@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li class="active"><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+	      <div class="page-header">
+<div class="alert">
+My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
+</div>	      </div>
+
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/09/bootstrap-and-cdns.html">On 18 Sep 2012 at 1826</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/09/bootstrap-and-cdns.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/09/bootstrap-and-cdns.html#disqus_thread">Comments</a></div>
+  <div><p>Often when creating a "modern" web page, it's very common to find yourself reinventing the wheel over and over again. I know any time I wanted to create a two-column layout, I would have to look at previous works of mine or search the Internet for a decent example. However, I recently came across Twitter's <a href="http://twitter.github.com/bootstrap/index.html" title="Twitter Bootstrap">Bootstrap</a> framework. At it's core, it's just a css file that divide your web page into a 12-column "<a href="http://twitter.github.com/bootstrap/scaffolding.html#grid">grid</a>". You create a "row" div, and inside that row you place your "span*" columns. Each span element spans from 1 to 12 columns, and should always add up to 12 for each row. You can also offset columns. There are css classes for large displays (1200px or higher), normal/default displays (980px), and smaller displays such as tablets (768px) or phones (480px). Elements can be made visible or hidden based on the device acessing the site (phone, tablet, or desktop). There is also a <a href="http://twitter.github.com/bootstrap/javascript.html" title="Bootstrap Javascript">javascript</a> component you can use for making the page more interactive.</p>
+<p>If you download bootstrap, you get a collection of files to choose from. There's js/bootstrap.js, img/glyphicons-halflings.png, img/glyphicons-halflings-white.png, css/bootstrap.css, css/bootstrap-responsive.css. There is also a compress .min. version of the javascript and css files. You can read further about the <a href="http://twitter.github.com/bootstrap/scaffolding.html#responsive">responsive</a> version of the css, or how to use the <a href="http://twitter.github.com/bootstrap/base-css.html#icons">icons</a>.</p>
+<p>Normally, one would take these downloaded files and put them into their own web application directory tree. However, there is a better way. Unless you are planning to use this on an Intranet with limited Internet access, you can use a copy of these files hosted on a "content delivery network (CDN)". A good example of this is the <a href="http://jquery.org/">jQuery</a> library hosted on Google's CDN. Google has a number of <a href="https://developers.google.com/speed/libraries/devguide">hosted libraries</a> on their network. This has several advantages, one of which being caching. If everyone is pointing at a common hosted library, that library gets cached on the end-user's machine instead of being reloaded on every site that uses that library. </p>
+<p>While bootstrap is not hosted on google, there is another CDN running on <a href="http://www.cloudflare.com">CloudFlare</a> called <a href="http://cdnjs.com/">cdnjs</a> that provides a lot of the "less popular" frameworks, including bootstrap. Here are the URLs to the most current version of bootstrap files (they have version 2.0.0 through 2.1.1 currently).</p>
+<ul>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.css</li>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css</li>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap-responsive.css</li>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap-responsive.min.css</li>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.js</li>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.css</li>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/img/glyphicons-halflings-white.png</li>
+<li>http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/img/glyphicons-halflings.png</li>
+</ul>
+<p>All one has to do in order to use these is to add the css and the javascript (optional) to their page. Since most CDNs support both http and https, you can leave the protocol identifier out.</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>Here's an example you can use on your own.</p>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container-fluid&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row-fluid&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span12 label label-info&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;h1&gt;</span>Header<span class="nt">&lt;/h1&gt;</span>
+         <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row-fluid&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span2&quot;</span><span class="nt">&gt;</span>
+                left column
+                <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-arrow-left&quot;</span><span class="nt">&gt;&lt;/i&gt;</span>
+         <span class="nt">&lt;/div&gt;</span>
+         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span6&quot;</span><span class="nt">&gt;</span>
+
+                <span class="nt">&lt;p&gt;</span>center column
+
+                <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-tasks&quot;</span><span class="nt">&gt;&lt;/i&gt;&lt;/p&gt;</span>
+
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;hero-unit&quot;</span><span class="nt">&gt;</span>
+                 <span class="nt">&lt;h1&gt;</span>This is hero unit<span class="nt">&lt;/h1&gt;</span>
+                 <span class="nt">&lt;p&gt;</span>It is pretty emphasized<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+
+                <span class="nt">&lt;p&gt;</span>still in the center, but not so heroic<span class="nt">&lt;/p&gt;</span>
+
+         <span class="nt">&lt;/div&gt;</span>
+         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span4&quot;</span><span class="nt">&gt;</span>
+                right column
+                <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-arrow-right&quot;</span><span class="nt">&gt;&lt;/i&gt;</span>
+         <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span><span class="c">&lt;!-- end container --&gt;</span>
+
+<span class="c">&lt;!-- load everything at end for fast content loading --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>Finally, I found that <a href="http://www.netdna.com/">NetDNA</a> also hosts bootstrap on their CDN at [www.bootstrapcdn.com]. I would say that either CDN would be fairly reliable, as they are both sponsored by their CDN they are running on. One advantage of this site is that they provide a lot more than just the basic bootstrap hosting such as custom themes and fonts.</p>
+<p>To use them, you can simply swap out your css and js scripts.</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<p><strong>UPDATE:</strong> I added jquery into the above examples because several parts of bootstrap rely on it (such as the Modal dialogs).</p>
+<p>20120918</p></div>
+  <!-- <div class="summary"><p>Often when creating a "modern" web page, it's very common to find yourself reinventing the wheel over and over again. I know any time I wanted to create a two-column layout, I would have to look at previous works of mine or search the Internet for a decent example. However, I recently came across Twitter's <a href="http://twitter.github.com/bootstrap/index.html" title="Twitter Bootstrap">Bootstrap</a> framework. At it's core, it's just a css file that divide your web page into ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/python-console-import-tip.html">python console import tip</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/python-console-import-tip.html">On 29 Aug 2012 at 1830</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/python-console-import-tip.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/python-console-import-tip.html#disqus_thread">Comments</a></div>
+  <div><p>This is a quick little python tip. When experimenting with python commands and modules, it's usually easiest to use the python console interactively, then create your programs later. The downside of this is that sometimes you have to do a bit of typing before you get to the specific command you want to try.</p>
+<p>Imagine the following example:</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="k">default</span><span class="p">,</span> <span class="n">Aug</span>  <span class="mi">1</span> <span class="mi">2012</span><span class="p">,</span> <span class="mo">05</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">39</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.6.3</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
+<span class="n">Type</span> <span class="s">&quot;help&quot;</span><span class="p">,</span> <span class="s">&quot;copyright&quot;</span><span class="p">,</span> <span class="s">&quot;credits&quot;</span> <span class="n">or</span> <span class="s">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">pysphere</span> <span class="n">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">server</span> <span class="o">=</span> <span class="n">VIServer</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">server</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;vc1.example.com&quot;</span><span class="p">,</span> <span class="s">&quot;username&quot;</span><span class="p">,</span> <span class="s">&quot;password&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print</span> <span class="n">server</span><span class="p">.</span><span class="n">get_server_type</span><span class="p">(),</span> <span class="n">server</span><span class="p">.</span><span class="n">get_api_version</span><span class="p">()</span>
+<span class="n">VMware</span> <span class="n">vCenter</span> <span class="n">Server</span> <span class="mf">5.0</span>
+</pre></div>
+
+
+<p>Here, I had to type in 3 lines, including my password in plaintext, to test out querying the server. I can't demonstrate this live, because then I reveal my password. Well last week, I made a [test1.py] file that reads a yaml configuration file and does the commands I just did. Here's the smart bit. I can import that file directly into the python console. Once it imports, it runs each python command and leaves me in the console, ready to query the system again. The only caveat is that my "server" variable is now part of the test1 module as "test1.server".</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="k">default</span><span class="p">,</span> <span class="n">Aug</span>  <span class="mi">1</span> <span class="mi">2012</span><span class="p">,</span> <span class="mo">05</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">39</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.6.3</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
+<span class="n">Type</span> <span class="s">&quot;help&quot;</span><span class="p">,</span> <span class="s">&quot;copyright&quot;</span><span class="p">,</span> <span class="s">&quot;credits&quot;</span> <span class="n">or</span> <span class="s">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">import</span> <span class="n">test1</span>
+<span class="n">VMware</span> <span class="n">vCenter</span> <span class="n">Server</span> <span class="mf">5.0</span>
+<span class="n">puppet1</span><span class="o">-</span><span class="n">centos6</span> <span class="mf">10.100.0.206</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">test1</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">is_connected</span><span class="p">()</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vmlist</span> <span class="o">=</span> <span class="n">test1</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">get_registered_vms</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">v</span> <span class="n">in</span> <span class="n">vmlist</span><span class="o">:</span>
+<span class="p">...</span>     <span class="n">print</span> <span class="n">v</span>
+<span class="p">...</span>
+<span class="p">[</span><span class="n">iscsi</span><span class="o">-</span><span class="mi">244</span><span class="n">gb</span><span class="o">-</span><span class="n">raid10</span><span class="p">]</span> <span class="n">rhel</span><span class="o">-</span><span class="n">puppet1</span><span class="o">/</span><span class="n">rhel</span><span class="o">-</span><span class="n">puppet1</span><span class="p">.</span><span class="n">vmx</span>  
+<span class="p">[</span><span class="n">iscsi</span><span class="o">-</span><span class="mi">244</span><span class="n">gb</span><span class="o">-</span><span class="n">raid10</span><span class="p">]</span> <span class="n">puppet2</span><span class="o">-</span><span class="n">ubuntu</span> <span class="mf">12.04</span><span class="n">LTS</span> <span class="n">server</span><span class="o">/</span><span class="n">puppet2</span><span class="o">-</span><span class="n">ubuntu</span> <span class="mf">12.04</span><span class="n">LTS</span> <span class="n">server</span><span class="p">.</span><span class="n">vmx</span>
+<span class="p">[</span><span class="n">iscsi</span><span class="o">-</span><span class="mi">488</span><span class="n">gb</span><span class="o">-</span><span class="n">raid10</span><span class="p">]</span> <span class="n">puppet3</span><span class="o">-</span><span class="n">solaris11</span><span class="o">/</span><span class="n">puppet3</span><span class="o">-</span><span class="n">solaris11</span><span class="p">.</span><span class="n">vmx</span>
+</pre></div></div>
+  <!-- <div class="summary"><p>This is a quick little python tip. When experimenting with python commands and modules, it's usually easiest to use the python console interactively, then create your programs later. The downside of this is that sometimes you have to do a bit of typing before you get to the specific command you want to try.</p>
+<p>Imagine the following example:</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="k">default</span><span class="p">,</span> <span class="n">Aug</span>  <span class="mi">1</span> <span class="mi">2012</span><span class="p">,</span> <span class="mo">05</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">39</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4 ...</span></pre></div></div> -->
+  
+Tagged as: <a href="http://www.yourtech.us/tag/python-console.html">python console</a> <a href="http://www.yourtech.us/tag/python.html">python</a> <a href="http://www.yourtech.us/tag/import.html">import</a> <a href="http://www.yourtech.us/tag/pysphere.html">pysphere</a> </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/pysphere-vmware-in-python.html">On 23 Aug 2012 at 2230</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/pysphere-vmware-in-python.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/pysphere-vmware-in-python.html#disqus_thread">Comments</a></div>
+  <div><p>I do a good bit of work with VMWare vSphere and I've been wanting to
+work more with their API. Everything (except console) that you can do in
+the vSphere client, you should be able to do through a web-based API.<br />
+Unfortunately, it seems that VMWare does not provide an SDK for Python,
+my current language of choice. I could work in Perl or Java, but I want
+to develop a web application, which I don't want to do in Perl.
+Fortunately, I found <a href="http://code.google.com/p/pysphere/wiki/GettingStarted">pysphere</a>, which is a fairly active project of
+implementing the VI API in python. It might not fully implement the API,
+but it looks relatively stable and easy to implement. Plus, if I find
+any functionality missing, I can extend the class directly.<br />
+I followed their <a href="http://code.google.com/p/pysphere/wiki/GettingStarted">Getting Started</a> page to get it installed
+and get connected, but I didn't like having my password right there in
+my working code. This was easily resolved by installing <a href="http://pyyaml.org/wiki/PyYAML">PyYaml</a> and
+creating a config.yaml file. Then, it was just a matter of following
+along with the examples to make a good test script.<br />
+My config.yaml:  </p>
+<div class="highlight"><pre><span class="n">server</span><span class="o">:</span> <span class="n">esxi1</span><span class="o">.</span><span class="na">example</span><span class="o">.</span><span class="na">com</span>
+<span class="n">user</span><span class="o">:</span> <span class="n">john</span>
+<span class="n">pass</span><span class="o">:</span> <span class="n">password</span>
+</pre></div>
+
+
+<p>My test.py:  </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">pysphere</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;config.yaml&#39;</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">VIServer</span><span class="p">()</span>
+<span class="n">server</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s">&quot;server&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s">&quot;user&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s">&quot;pass&quot;</span><span class="p">])</span>
+
+<span class="k">print</span> <span class="n">server</span><span class="o">.</span><span class="n">get_server_type</span><span class="p">(),</span> <span class="n">server</span><span class="o">.</span><span class="n">get_api_version</span><span class="p">()</span>
+<span class="n">vm1</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_vm_by_name</span><span class="p">(</span><span class="s">&quot;puppet1-centos6&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">vm1</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span> <span class="n">vm1</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s">&#39;ip_address&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>And does it work?  </p>
+<div class="highlight"><pre><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">test</span><span class="p">.</span><span class="n">py</span>
+<span class="n">VMware</span> <span class="n">vCenter</span> <span class="n">Server</span> <span class="mf">5.0</span>
+<span class="n">puppet1</span><span class="o">-</span><span class="n">centos6</span> <span class="mf">10.100.0.206</span>
+</pre></div>
+
+
+<p>I was even able to go so far as cloning a vm (vm2 = vm1.clone('new vm'))
+and can already see massive possibilities with this library in its
+current state. The API can be queried much like a simple database, and
+objects acted upon with simple statements. Operations like my vm clone
+can be setup as a task and run asynchrously. I could easily see
+integrating this with something like <a href="http://www.tornadoweb.org/">tornado</a>, <a href="http://twistedmatrix.com/">twisted</a>, or even
+<a href="http://cyclone.io/">cyclone</a> to make a non-blocking web framework.</p></div>
+  <!-- <div class="summary"><p>I do a good bit of work with VMWare vSphere and I've been wanting to
+work more with their API. Everything (except console) that you can do in
+the vSphere client, you should be able to do through a web-based API.<br />
+Unfortunately, it seems that VMWare does not provide an SDK for Python,
+my current language of choice. I could work in Perl or Java, but I want
+to develop a web application, which ...</p></div> -->
+  
+Tagged as: <a href="http://www.yourtech.us/tag/api.html">api</a> <a href="http://www.yourtech.us/tag/python.html">python</a> <a href="http://www.yourtech.us/tag/programming.html">programming</a> <a href="http://www.yourtech.us/tag/vmware.html">vmware</a> <a href="http://www.yourtech.us/tag/pysphere.html">pysphere</a> </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/upgrade-redmine.html">Upgrade Redmine</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/upgrade-redmine.html">On 09 Aug 2012 at 0300</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/upgrade-redmine.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/upgrade-redmine.html#disqus_thread">Comments</a></div>
+  <div><p>Currently, I have Redmine version redmine 1.3.3 installed via the
+<a href="https://launchpad.net/~ondrej/+archive/redmine" title="ppa:ondrej/redmine">ondrej/redmine PPA</a>. I have been wanting to upgrade to the 2.x series
+of redmine, but no PPA currently exists for it. Redmine is officially
+provided by Ubuntu, but the version for Precise is 1.3.2, and Ondřej's
+PPA is on 1.4.3. While I usually prefer to have my software installation
+and updates handled by packages, it looks like to get to the 2.x series,
+I'll have to go back to source.</p>
+<p>I will be following the <a href="http://www.redmine.org/projects/redmine/wiki/RedmineUpgrade" title="Upgrade to 2.x">official upgrade guide</a> closely, but with a
+few variations.</p>
+<ol>
+<li>The apt-get/ppa version uses multiple file locations for source code
+    and configuration. I'll have to consolidate to one place.</li>
+<li>My ruby and passenger modules were installed and modified to work
+    with the ppa version of redmine. Adjustments will be needed.</li>
+</ol>
+<p>My ruby version is 1.8.7 (1.8.7 min), rails 2.3.14 (2.3.6 min) and gem
+1.8.15 (1.8 min. Already having the minimum requirements makes this a
+bit easier.</p>
+<p>After performing a mysql backup (hint: database.yml is in
+/etc/redmine/default), I downloaded redmine to /usr/local/redmine-2.0. I
+also decided to stop Apache so that Passenger wouldn't be running the
+existing redmine instance. If I had other sites running on this server,
+I would have disabled this virtual host or put up a maintenance page.</p>
+<div class="highlight"><pre><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">database</span><span class="p">.</span><span class="n">yml</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">config</span>
+<span class="n">cp</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">redmine</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">files</span><span class="o">/*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">files</span>
+</pre></div>
+
+
+<p>I didn't have any plugins, but if I did they would either be in
+/usr/share/redmine/vendor/plugins or /usr/share/redmine/lib/plugins. I
+do intend to install a couple plugins when I get into 2.x though.</p>
+<p>I found in step 3 that the rake commands didn't work. This is probably
+because I wasn't working from an existing rails directory. I went to the
+<a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall" title="Install Guide">Redmine Installer</a> page, which gave me the answer. "Since 1.4.0,
+Redmine uses Bundler to manage gems dependencies. You need to install
+<a href="http://gembundler.com/">Bundler</a> first.".</p>
+<div class="highlight"><pre><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">database</span><span class="p">.</span><span class="n">yml</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">config</span>
+<span class="n">cp</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">redmine</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">files</span><span class="o">/*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">files</span>
+</pre></div>
+
+
+<p>I ran into an error when bundle was installing json 1.7.4.</p>
+<div class="highlight"><pre><span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
+<span class="cp"># run the next command from /usr/local/redmine-2.0</span>
+<span class="cp"># it reads the file &quot;Gemfile&quot;</span>
+<span class="n">bundle</span> <span class="n">install</span> <span class="o">--</span><span class="n">without</span> <span class="n">development</span> <span class="n">test</span>
+</pre></div>
+
+
+<p>According to an <a href="http://ruby.about.com/od/faqs/qt/Extconf-Rb-1-In-Require-No-Such-File-To-Load-Mkmf-Loaderror.htm">about.com page</a>, I need build-essentials,
+libopenssl-ruby, and ruby1.8-dev installed. The one I was missing was
+ruby1.8-dev. This is easily fixed with an <code>apt-get install ruby1.8-dev</code>.</p>
+<p>I had to install the following other packages for certain gems. The
+Gemfile includes items for postgresql and sqlite, even if you don't use
+it. The <a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall" title="Install Guide">install guide</a> lets you know that you can
+skip these with the --without option. You would just add "pg sqlite
+rmagick" to the end of your bundle install line (above).</p>
+<ul>
+<li>json: build-essentials, libopenssl-ruby, and ruby1.8-dev</li>
+<li>mysql: libmysqlclient-dev</li>
+<li>pg: libpq-dev (alternatively: add pg to the --without list)</li>
+<li>rmagick: libmagickcore-dev, libmagickwand-dev (alternatively: add
+    rmagick to the --without list)</li>
+<li>sqlite: libsqlite3-dev</li>
+</ul>
+<p>Once we got Bundler installed and all the required gems, we switch back
+to the <a href="http://www.redmine.org/projects/redmine/wiki/RedmineUpgrade" title="Upgrade to 2.x">Upgrade Guide</a> to update our session
+store and migrate the database. I had no plugins, so I'm skipping that
+step.</p>
+<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ruby1</span><span class="mf">.8</span> <span class="n">extconf</span><span class="p">.</span><span class="n">rb</span>
+<span class="n">extconf</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="n">in</span> <span class="err">`</span><span class="n">require</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">no</span> <span class="n">such</span> <span class="n">file</span> <span class="n">to</span> <span class="n">load</span> <span class="o">--</span> <span class="n">mkmf</span> <span class="p">(</span><span class="n">LoadError</span><span class="p">)</span>
+<span class="n">from</span> <span class="n">extconf</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>Let's start this locally before we mess with passenger or apache (be
+sure to allow port 3000 via iptables or ufw).</p>
+<div class="highlight"><pre><span class="n">rake</span> <span class="n">generate_secret_token</span>
+<span class="n">rake</span> <span class="n">db</span><span class="o">:</span><span class="n">migrate</span> <span class="n">RAILS_ENV</span><span class="o">=</span><span class="n">production</span> 
+<span class="cp"># unecessary, as this is a new directory, but why not clean up?</span>
+<span class="n">rake</span> <span class="n">tmp</span><span class="o">:</span><span class="n">cache</span><span class="o">:</span><span class="n">clear</span>
+<span class="n">rake</span> <span class="n">tmp</span><span class="o">:</span><span class="n">sessions</span><span class="o">:</span><span class="n">clear</span>
+</pre></div>
+
+
+<p>This worked without a hitch for me. Now on to my passenger setup. I
+already has this configured and installed previously, so all I have to
+do is change my VirtualHost directory.</p>
+<div class="highlight"><pre><span class="n">ServerName</span> <span class="n">projects</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
+<span class="n">DocumentRoot</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">redmine</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="n">public</span>
+<span class="n">RailsSpawnMethod</span> <span class="n">smart</span>
+<span class="cp"># Keep the application instances alive longer. Default is 300 (seconds)</span>
+<span class="n">PassengerPoolIdleTime</span> <span class="mi">1000</span>
+<span class="n">RailsAppSpawnerIdleTime</span> <span class="mi">0</span>
+<span class="n">RailsFrameworkSpawnerIdleTime</span> <span class="mi">0</span>
+<span class="n">PassengerMaxRequests</span> <span class="mi">5000</span>
+<span class="n">PassengerStatThrottleRate</span> <span class="mi">5</span>
+
+        <span class="n">AllowOverride</span> <span class="n">all</span>
+        <span class="n">Options</span> <span class="o">-</span><span class="n">MultiViews</span>
+</pre></div>
+
+
+<p>I did have to change a few permisssions (all files installed as owned by
+root)</p>
+<div class="highlight"><pre><span class="n">chgrp</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">config</span>
+<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">files</span>
+<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">log</span>
+</pre></div></div>
+  <!-- <div class="summary"><p>Currently, I have Redmine version redmine 1.3.3 installed via the
+<a href="https://launchpad.net/~ondrej/+archive/redmine" title="ppa:ondrej/redmine">ondrej/redmine PPA</a>. I have been wanting to upgrade to the 2.x series
+of redmine, but no PPA currently exists for it. Redmine is officially
+provided by Ubuntu, but the version for Precise is 1.3.2, and Ondřej's
+PPA is on 1.4.3. While I usually prefer to have my software installation
+and updates handled by packages, it looks ...</p></div> -->
+  
+Tagged as: </div>
+
+<div class="pagination">
+<ul>
+		<li class="prev"><a href="http://www.yourtech.us/category/posts.html">&larr; Previous</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts.html">1</a></li>
+		<li class="active"><a href="http://www.yourtech.us/category/posts2.html">2</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts3.html">3</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts4.html">4</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts5.html">5</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts6.html">6</a></li>
+		<li class="next"><a href="http://www.yourtech.us/category/posts3.html">Next &rarr;</a></li>
+</ul>
+</div>
+
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

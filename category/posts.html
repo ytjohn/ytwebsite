@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li class="active"><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+	      <div class="page-header">
+<div class="alert">
+My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
+</div>	      </div>
+
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2013/07/foreman-managed-virtual-datacenter.html">On 28 Jul 2013 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2013/07/foreman-managed-virtual-datacenter.text">{source}</a>
+ | <a href="http://www.yourtech.us//2013/07/foreman-managed-virtual-datacenter.html#disqus_thread">Comments</a></div>
+  <div><p>I ordered the KS2 from <www.ovh.com> - $50/month, 3.4ghz, 16gb ram, and a 1TB software raid setup. My plan is to set this
+up as a single server virtual datacenter. They also have the SP2 with twice the ram and storage for $90, but I figured I'd test out
+the cheaper option first. I can always upgrade and migrate to a larger server later if I get into heavier usage. The prices are rather cheap and they have scripts that will automatically provision physical servers. </p>
+<p>I had this installed with Centos 6. I tried first using the "ovh secure" kernel, but I could not get KVM working with that kernel, so I had it reinstalled with the "vendor" kernel. I allocated 20GB to "/" and the remainder (898GB) to "/data". </p>
+<p>Installing kvm and libvirt is a simple yum command.</p>
+<div class="highlight"><pre><span class="n">yum</span> <span class="n">install</span> <span class="n">kvm</span> <span class="n">libvirt</span> <span class="n">python</span><span class="o">-</span><span class="n">virtinst</span> <span class="n">qemu</span><span class="o">-</span><span class="n">kvm</span>
+</pre></div>
+
+
+<p>Then, on my workstation, I installed <a href="http://virt-manager.org/">virt-manager</a>, which allowed me to graphically create and install virtual machines (I can do this by hand on the server, but virt-manager is a nice way to get started). The connection is done over ssh, so it will either ask for your username/password, or it can use ssh-key authentication (preferred).</p>
+<p>I created <code>/data/isos</code> and <code>/data/vms</code> to hold my installation isos and virual machines respectively. The trick I had to work out is that I couldn't just add "/data" as a directory-based storage volume, I had to make one for isos and one for vms. I also found that the default directory (/var/lib/libvirt/images) is rather difficult to remove. I disabled it and removed it, but it showed back up later. When creating through the dialog, virt-manager wants to put your vm image in "default". </p>
+<p>Creating a new virtual machine using virt-manager and a downloaded ubuntu 12.04 iso image (in /data/isos) was rather slick. I created a new volume in /data/vms, set the memory and cpu and started it. The default networking is a NAT'd network in the 192.168.122.x/24 network. As ovh only provides 3 IP addresses for free, I'm content to start with this network for testing, but I plan to move to a different subnet mask.</p>
+<p>If I need to nat ports, the libvirt site has a useful page on <a href="http://wiki.libvirt.org/page/Networking#Forwarding_Incoming_Connections">forwarding incoming connections</a>.</p>
+<div class="highlight"><pre><span class="n">iptables</span> <span class="o">-</span><span class="n">t</span> <span class="n">nat</span> <span class="o">-</span><span class="n">A</span> <span class="n">PREROUTING</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="n">HOST_PORT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DNAT</span> <span class="o">--</span><span class="n">to</span> <span class="err">$</span><span class="n">GUESTIP</span><span class="o">:</span><span class="err">$</span><span class="n">GUESTPORT</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">d</span> <span class="err">$</span><span class="n">GUESTHOST</span><span class="o">/</span><span class="mi">32</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="err">$</span><span class="n">GUESTPORT</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+</pre></div>
+
+
+<p>I have been reading some good things about <a href="http://theforeman.org/">The Formean</a>, and how you can <a href="http://engineering.yakaz.com/managing-an-infrastructure-datacenter-with-foreman-and-puppet.html">manage an infrastructure with it</a>, so my next real VM will be an install of foreman. This will hopefully let me setup an enviroment where I can build virtual machines and provision them automatically. I don't know (yet) if The Foreman will handle iptable rules on the host, but it seems to have the ability to call external scripts and be customized, so I should be able to provision NAT on the host when provisioning a new VM.</p>
+<p>Foreman utilizes DHCP and PXE to install "bare metal" VMs, so we need a network without DHCP. Now, to create my non-dhcp managed nat, I copy the default network xml file and modify it with my new range and remove the dhcp address</p>
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">libvirt</span><span class="o">/</span><span class="n">networks</span>
+<span class="n">cp</span> <span class="k">default</span><span class="p">.</span><span class="n">xml</span> <span class="n">netmanaged</span><span class="p">.</span><span class="n">xml</span>
+</pre></div>
+
+
+<p>Modified netmanaged.xml:</p>
+<div class="highlight"><pre><span class="nt">&lt;network&gt;</span>
+  <span class="nt">&lt;name&gt;</span>managednat<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;bridge</span> <span class="na">name=</span><span class="s">&quot;virbr1&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;forward/&gt;</span>
+  <span class="nt">&lt;ip</span> <span class="na">address=</span><span class="s">&quot;172.16.25.1&quot;</span> <span class="na">netmask=</span><span class="s">&quot;255.255.255.0&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/ip&gt;</span>
+<span class="nt">&lt;/network&gt;</span>
+</pre></div>
+
+
+<p>It should show up with <code>virsh net-list --all</code> and I can activate it.</p>
+<div class="highlight"><pre><span class="cp"># virsh net-list --all</span>
+<span class="n">Name</span>                 <span class="n">State</span>      <span class="n">Autostart</span>     <span class="n">Persistent</span>
+<span class="o">--------------------------------------------------</span>
+<span class="k">default</span>              <span class="n">active</span>     <span class="n">yes</span>           <span class="n">yes</span>
+<span class="n">managednat</span>           <span class="n">inactive</span>   <span class="n">yes</span>           <span class="n">yes</span>
+<span class="cp"># virsh net-autostart managednat</span>
+<span class="n">Network</span> <span class="n">managednat</span> <span class="n">marked</span> <span class="n">as</span> <span class="n">autostarted</span>
+
+<span class="cp"># virsh net-list --all</span>
+<span class="n">Name</span>                 <span class="n">State</span>      <span class="n">Autostart</span>     <span class="n">Persistent</span>
+<span class="o">--------------------------------------------------</span>
+<span class="k">default</span>              <span class="n">active</span>     <span class="n">yes</span>           <span class="n">yes</span>
+<span class="n">managednat</span>           <span class="n">inactive</span>   <span class="n">yes</span>           <span class="n">yes</span>
+
+<span class="cp"># virsh net-start managednat</span>
+<span class="n">Network</span> <span class="n">managednat</span> <span class="n">started</span>
+
+<span class="cp"># virsh net-list --all</span>
+<span class="n">Name</span>                 <span class="n">State</span>      <span class="n">Autostart</span>     <span class="n">Persistent</span>
+<span class="o">--------------------------------------------------</span>
+<span class="k">default</span>              <span class="n">active</span>     <span class="n">yes</span>           <span class="n">yes</span>
+<span class="n">managednat</span>           <span class="n">active</span>     <span class="n">yes</span>           <span class="n">yes</span>
+</pre></div>
+
+
+<p>The gateway will be 172.16.25.1, and I will assign the IP 172.16.25.5 to my Foreman virtual machine, aptly called "builder".  Once the basic ubuntu machine is installed by hand (hopefully the last one we do in this environment), I'll want access to it. Ideally, this would be behind a firewall with vpn access, but I haven't got that far yet. So for now, I'll just setup some NAT for port 22 and 443.</p>
+<div class="highlight"><pre><span class="n">iptables</span> <span class="o">-</span><span class="n">t</span> <span class="n">nat</span> <span class="o">-</span><span class="n">A</span> <span class="n">PREROUTING</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">8122</span> <span class="o">-</span><span class="n">j</span> <span class="n">DNAT</span> <span class="o">--</span><span class="n">to</span> <span class="mf">172.16.25.5</span><span class="o">:</span><span class="mi">22</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">d</span> <span class="mf">172.16.25.5</span><span class="o">/</span><span class="mi">32</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">22</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">t</span> <span class="n">nat</span> <span class="o">-</span><span class="n">A</span> <span class="n">PREROUTING</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">8143</span> <span class="o">-</span><span class="n">j</span> <span class="n">DNAT</span> <span class="o">--</span><span class="n">to</span> <span class="mf">172.16.25.5</span><span class="o">:</span><span class="mi">443</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">d</span> <span class="mf">172.16.25.5</span><span class="o">/</span><span class="mi">32</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">443</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+</pre></div>
+
+
+<p>Using "foreman-installer" is the most recommended method, ensuring that we have current packages directly from theforeman.org. I've installed 12.04 LTS (precise), so it's fairly straightforward, though I modified slightly from <a href="http://theforeman.org/manuals/1.2/index.html#3.2ForemanInstaller">the installation documentation</a>. The original instruction rely on running as root.</p>
+<div class="highlight"><pre><span class="cp"># get some apt support programs </span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">software</span><span class="o">-</span><span class="n">properties</span>
+
+<span class="cp"># add the deb.theforeman.org repository</span>
+<span class="n">sudo</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;echo deb http://deb.theforeman.org/ precise stable &gt; /etc/apt/sources.list.db/foreman.list&quot;</span>  
+<span class="cp"># add the key</span>
+<span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">http</span><span class="o">:</span><span class="c1">//deb.theforeman.org/foreman.asc -O- | sudo apt-key add -</span>
+<span class="cp"># install the installer</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">foreman</span><span class="o">-</span><span class="n">installer</span>
+
+<span class="cp"># run the installer</span>
+<span class="n">sudo</span> <span class="n">ruby</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">foreman</span><span class="o">-</span><span class="n">installer</span><span class="o">/</span><span class="n">generate_answers</span><span class="p">.</span><span class="n">rb</span>
+</pre></div>
+
+
+<p>At this point, Foreman is running on port 443, or in my case "https://externalip:8143/". I can login with the username "admin" and the password "changeme".</p>
+<p>I've been reading the manual more at this point, but I think my next step is to watch the video <a href="http://www.youtube.com/watch?v=eHjpZr3GB6s">Foreman Quickstart: unattendend installation</a>. If I can grok that (and it looks nicely step by step) I'll try and setup an unattended install. </p></div>
+  <!-- <div class="summary"><p>Setting up a virtual datacenter using virsh, foreman, and puppet.</p></div> -->
+  
+Tagged as: <a href="http://www.yourtech.us/tag/foreman.html">foreman</a> <a href="http://www.yourtech.us/tag/puppet.html">puppet</a> <a href="http://www.yourtech.us/tag/libvirt.html">libvirt</a> <a href="http://www.yourtech.us/tag/virsh.html">virsh</a> </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2013/03/new-static-site.html">New Static Site</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2013/03/new-static-site.html">On 24 Mar 2013 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2013/03/new-static-site.text">{source}</a>
+ | <a href="http://www.yourtech.us//2013/03/new-static-site.html#disqus_thread">Comments</a></div>
+  <div><p>I had mentioned previously that I had taken up <a href="http://www.yourtech.us//2012/08/markdown-blogging.html">markdown blogging</a>. At that time, I was writing my post in markdown, converting it to HTML, and then injecting it into <a href="http://www.blogger.com">blogger</a>. This last week, I have done a good bit of work to convert my site to a "static site" using <a href="http://www.getpelican.com/">Pelican</a>. A static site is made up entirely of static files - no database, no php includes, just your basic collection of html, javascript, css, and images. I write content in Markdown on my laptop. I develop my theme locally as well. Then I run "make html" and pelican will process my configuration file, my content, and my theme to generate all of the pages, posts, archive pages, and various rss feeds. The end result is a directory full of files that can be dropped onto pretty much any webserver.</p>
+<p>There were a few hic-cups. Many of my older pages were not originally written in markdown, but rather using whatever CMS editor I had at the time. Pelican has an import feature, but some things got lost in translation. Any preformated code blocks had to be re-created manually (amusingly enough, copying and pasting from the old web page into vim, then indenting them properly).</p>
+<p>The biggest loss is a search engine. A CMS like Wordpress or a hosted solution like Blogger stores your content in a database and provides a search interface to that content. With static pages, not so much. Most of the web gets around this using Google's <a href="http://www.google.com/cse">CSE</a>, which I am trying as well. As of yet, almost nothing appears to be indexing on this page. If this continues, I will setup a stanadlone search engine that simply indexes the pages on this site. <strong>(<strong>UPDATE</strong>: Google has a nice fresh index of the website, covering everything except this page I wrote yesterday.)</strong> I'm still researching possibilities on that. Ten years ago, <a href="http://www.htdig.org/">ht://dig</a> was the premier application to use, but development on that seems to have stopped in 2004. <a href="http://www.sphider.eu/">Sphider</a> looks like a good product, but again, development stopped in 2007. Small search engine development seems to have dropped off significantly with the rise of Google's popularity. </p>
+<p>A copy of the website content and theme can be tracked on <a href="http://www.github.com/ytjohn/ytwebsite">github</a>. </p></div>
+  <!-- <div class="summary"><p>I had mentioned previously that I had taken up <a href="http://www.yourtech.us//2012/08/markdown-blogging.html">markdown blogging</a>. At that time, I was writing my post in markdown, converting it to HTML, and then injecting it into <a href="http://www.blogger.com">blogger</a>. This last week, I have done a good bit of work to convert my site to a "static site" using <a href="http://www.getpelican.com/">Pelican</a>. A static site is made up entirely of static files - no database, no php includes, just your basic collection of html, javascript, css ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/11/starting-with-ruby-and-aws.html">On 02 Nov 2012 at 2329</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/11/starting-with-ruby-and-aws.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/11/starting-with-ruby-and-aws.html#disqus_thread">Comments</a></div>
+  <div><p>This weekend I decided to takle both learning Ruby and working with AWS
+via the Ruby API. Having only played with both of these in the past,
+this presents two learning challenges at once. However, from past
+projects, this is how I learn best. I am somewhat familiar with AWS
+terms and once made a script in Python to fire up an instance. This was
+before Amazon came out with their management console, so I imagine
+things have come a long way since then (hopefully easier). I also played
+with Ruby for a while, but didn't have a decent project for it. Having a
+project with goals will hopefully keep me on track and give me a way to
+measure my progress.</p>
+<p>My goals for this project are as follows:</p>
+<ol>
+<li>Utilize a web based interface. Using rails seems to be the popular
+    way to do this, and I'd like to base my template interface off of
+    <a href="https://github.com/ytjohn/boilerstrap5">boilerstrap5</a>, a combination of twitter-bootstrap and
+    html5boilerplate. This will probably have the most trial and error
+    to get it right.</li>
+<li>Connect to the AWS api and pull some basic information such as my
+    account name.</li>
+<li>Fetch details about an AMI image. Maybe I'll be able to parse a list
+    of public images, or maybe I can just punch in an image ID and pull
+    up the details.</li>
+<li>Start an instance from an AMI image. This might require some steps
+    like setting up a an S3 bucket -- we'll see.</li>
+<li>List my running instances.</li>
+<li>Control a running instance - ie, power cycle it.</li>
+<li>Destroy an instance.</li>
+<li>BONUS: Do something similar with S3 buckets - create, list, destroy.</li>
+</ol>
+<p>First off, I need to setup a ruby development environment. Since I have
+used <a href="http://blog.yourtech.us/feeds/posts/www.jetbrains.com/pycharm/">PyCharm</a> in the past, I will try JetBrain's <a href="http://www.jetbrains.com/ruby/">RubyMine</a> for my
+editor environment. After installing this, the first thing I learned is
+that rails is not installed. I could install using apt-get, but
+Jetbrains recommends using <a href="">RVM</a>. It looks like a nice way to manage
+different versions of Ruby, rails, and gems. I know when I have
+installed Ruby applications requiring gems, gem versions was always a
+source of concern. It is very easy to get mismatched gem versions in the
+wild.</p>
+<p>RVM install locally to \~/.rvm on linux, which is nice - you don't mess
+up any system wide ruby installations and keep everything local to your
+development environment. After installation, I had to figure out a
+couple bits with rvm.</p>
+<ul>
+<li><code>rvm install 1.9.2</code> # installs ruby 1.9.2</li>
+<li><code>rvm list</code> # lists versions of ruby installed</li>
+<li><code>rvm use 1.8.7</code> # use ruby 1.8.7</li>
+</ul>
+<p>First, your terminal has to be setup as a login shell. This tripped me
+up for a while until I changed the settings in my terminal emulator.
+<a href="http://software.jessies.org/terminator">terminator</a> has this as checkmark option.</p>
+<div class="highlight"><pre><span class="nx">ytjohn</span><span class="err">@</span><span class="nx">freshdesk</span><span class="o">:~</span><span class="nx">$</span> <span class="nx">rvm</span> <span class="nx">list</span>
+
+<span class="nx">rvm</span> <span class="nx">rubies</span>
+
+   <span class="nx">ruby</span><span class="o">-</span><span class="mf">1.8</span><span class="p">.</span><span class="mi">7</span><span class="o">-</span><span class="nx">p371</span> <span class="cp">[</span> <span class="nx">x86_64</span> <span class="cp">]</span>
+   <span class="nx">ruby</span><span class="o">-</span><span class="mf">1.9</span><span class="p">.</span><span class="mi">2</span><span class="o">-</span><span class="nx">p320</span> <span class="cp">[</span> <span class="nx">x86_64</span> <span class="cp">]</span>
+
+<span class="err">#</span> <span class="o">=&gt;</span> <span class="o">-</span> <span class="nx">current</span>
+<span class="err">#</span> <span class="o">=*</span> <span class="o">-</span> <span class="nx">current</span> <span class="o">&amp;&amp;</span> <span class="k">default</span>
+<span class="err">#</span>  <span class="o">*</span> <span class="o">-</span> <span class="k">default</span>
+
+<span class="nx">ytjohn</span><span class="err">@</span><span class="nx">freshdesk</span><span class="o">:~</span><span class="nx">$</span> <span class="nx">rvm</span> <span class="nx">use</span> <span class="mf">1.8</span><span class="p">.</span><span class="mi">7</span>
+
+<span class="nx">RVM</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">a</span> <span class="kd">function</span><span class="p">,</span> <span class="nx">selecting</span> <span class="nx">rubies</span> <span class="kd">with</span> <span class="s1">&#39;rvm use ...&#39;</span> <span class="nx">will</span> <span class="nx">not</span> <span class="nx">work</span><span class="p">.</span>
+
+<span class="nx">You</span> <span class="nx">need</span> <span class="nx">to</span> <span class="nx">change</span> <span class="nx">your</span> <span class="nx">terminal</span> <span class="nx">emulator</span> <span class="nx">preferences</span> <span class="nx">to</span> <span class="nx">allow</span> <span class="nx">login</span> <span class="nx">shell</span><span class="p">.</span>
+<span class="nx">Sometimes</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">required</span> <span class="nx">to</span> <span class="nx">use</span> <span class="err">`</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span> <span class="o">--</span><span class="nx">login</span><span class="err">`</span> <span class="nx">as</span> <span class="nx">the</span> <span class="nx">command</span><span class="p">.</span>
+<span class="nx">Please</span> <span class="nx">visit</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//rvm.io/integration/gnome-terminal/ for a example.</span>
+</pre></div>
+
+
+<p>After switching to login</p>
+<div class="highlight"><pre><span class="n">ytjohn</span><span class="err">@</span><span class="n">freshdesk</span><span class="o">:~</span><span class="err">$</span> <span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.8.7</span>
+<span class="n">Using</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ytjohn</span><span class="o">/</span><span class="p">.</span><span class="n">rvm</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">1.8.7</span><span class="o">-</span><span class="n">p371</span>
+</pre></div>
+
+
+<p>Finally, once you get ruby and rails working, you can create your rails
+project. I'm starting with a rails project because it's "all the rage"
+and gives you a decent running start. Later, I'll work on switching the
+supplied templates with boilerplate + bootstrap based ones.</p>
+<p>This gets me started. Next up, I'll actually create the project from
+within RubyMine and just work on basic web functionality.</p></div>
+  <!-- <div class="summary"><p>This weekend I decided to takle both learning Ruby and working with AWS
+via the Ruby API. Having only played with both of these in the past,
+this presents two learning challenges at once. However, from past
+projects, this is how I learn best. I am somewhat familiar with AWS
+terms and once made a script in Python to fire up an instance. This was
+before Amazon came out with their management console, so I ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/09/dingus-problems.html">dingus problems</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/09/dingus-problems.html">On 20 Sep 2012 at 1250</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/09/dingus-problems.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/09/dingus-problems.html#disqus_thread">Comments</a></div>
+  <div><p>Yesterday, I ran into a small, but confusing issue converting from markdown to html for a post. A markdown process will convert html in a code block to html escaped entities. That way, when you use the resulting html, your html example code doesn't get interpreted as html.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span class="nt">&lt;p&gt;</span>This is a <span class="nt">&lt;strong&gt;</span>strong<span class="nt">&lt;/strong&gt;</span> example.<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>Gets converted to:</p>
+<div class="highlight"><pre><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>This is a <span class="ni">&amp;lt;</span>strong<span class="ni">&amp;gt;</span>strong<span class="ni">&amp;lt;</span>/strong<span class="ni">&amp;gt;</span> example.<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
+<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</pre></div>
+
+
+<p>In the "dingus" I made, this didn't appear to be happening. The above example rendered as:</p>
+<div class="highlight"><pre><span class="nt">&lt;pre&gt;&lt;code&gt;</span>This is a <span class="nt">&lt;strong&gt;</span>strong<span class="nt">&lt;/strong&gt;</span> example.<span class="nt">&lt;/p&gt;&lt;/code&gt;&lt;/pre&gt;</span>
+</pre></div>
+
+
+<p>Furthermore, it worked perfectly fine using the "official" php-markdown <a href="http://michelf.ca/projects/php-markdown/dingus/">dingus</a>. I was using their library, and it's incredibly simple to implement. After some digging, I discovered that in my dingus, the code was being converted properly in my preview section, but not in my HTML Source textarea. I was printing the same <code>$render</code> variable in both sections, but getting different results in my browser. </p>
+<p>As it turns out, most html elements are "CDATA" and a textarea is "PCDATA". When all is said and done, this means that instead of needing to send &lt;, I need to send &amp;lt to the browser. Fortunately, php has a function called htmlspecialchars() that does this for me. For my HTML Output, I just needed to change <code>print $render</code> to <code>print htmlspecialchars($render)</code>.</p>
+<p>20120920</p></div>
+  <!-- <div class="summary"><p>Yesterday, I ran into a small, but confusing issue converting from markdown to html for a post. A markdown process will convert html in a code block to html escaped entities. That way, when you use the resulting html, your html example code doesn't get interpreted as html.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span class="nt">&lt;p&gt;</span>This is a <span class="nt">&lt;strong&gt;</span>strong<span class="nt">&lt;/strong&gt;</span> example.<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>Gets converted to:</p>
+<div class="highlight"><pre><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>This is a <span class="ni">&amp;lt;</span>strong<span class="ni">&amp;gt;</span>strong ...</pre></div></div> -->
+  
+Tagged as: </div>
+
+<div class="pagination">
+<ul>
+		<li class="prev disabled"><a href="#">&larr; Previous</a></li>
+		<li class="active"><a href="http://www.yourtech.us/category/posts.html">1</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts2.html">2</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts3.html">3</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts4.html">4</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts5.html">5</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts6.html">6</a></li>
+		<li class="next"><a href="http://www.yourtech.us/category/posts2.html">Next &rarr;</a></li>
+</ul>
+</div>
+
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

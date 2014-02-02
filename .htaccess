@@ -1,0 +1,22 @@
+RewriteEngine On
+    RewriteCond %{HTTP_HOST} !^www.yourtech.us$ [NC]
+    RewriteRule ^(.*)$ http://www.yourtech.us/$1 [L,R=301]
+
+# /p/the-story.html
+# /p/services.html -> /p/contact.html
+# /p/resume.html
+# /p/contracting.html -> /p/contact.html
+# /p/providing-access.html -> /p.contact.html
+# /p/contact.html 
+
+RedirectPermanent 301 /p/contracting.html /p/contact.html
+RedirectPermanent 301 /p/providing-access.html /p/contact.html
+RedirectPermanent 301 /p/services.html /p/contact.html
+
+# Redirect 301 /oldpage.html http://www.yoursite.com/newpage.html
+Redirect 301 /plus https://plus.google.com/+JohnHogenmiller
+Redirect 301 /gh   https://github.com/ytjohn/
+Redirect 301 /fb   https://www.facebook.com/johnhogenmiller
+Redirect 301 /stack http://stackoverflow.com/users/895866/ytjohn
+
+

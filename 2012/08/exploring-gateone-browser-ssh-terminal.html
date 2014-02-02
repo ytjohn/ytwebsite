@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+  var disqus_identifier = "/2012/08/exploring-gateone-browser-ssh-terminal.html";
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li class="active"><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+<div class='article'>
+  <div class="page-header"><h1>Exploring GateOne Browser SSH terminal</h1></div>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/exploring-gateone-browser-ssh-terminal.html">On 01 Aug 2012 at 1209</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/exploring-gateone-browser-ssh-terminal.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/exploring-gateone-browser-ssh-terminal.html#disqus_thread">Comments</a></div>
+  <div><p>I came across a program called <a href="http://liftoffsoftware.com/Products/GateOne">Gate One</a> by LiftOff Software that
+just amazed me. This is an open-source, web-based ssh terminal. It is
+capable of multiple users, sessions, and bookmarks. I've tried a number
+of AJAX terminals or Java applet based ones in the past. The javascript
+ones usually did not have very good terminal emulation, while the Java
+apps worked, but worked just like a local desktop app (making it's own
+connection to port 22). Gate One uses WebSockets, allowing for full
+duplex communication through your web browser over the same port 80 or
+443 used to serve up the web page.</p>
+<h2>Installation</h2>
+<p>Gate One is a python application using the <a href="http://www.tornadoweb.org/">Tornado framework</a>. As
+such, at runs independently of an existing web server and handles
+connections from browsers internally. If you already have a web server
+running on your system, you will need to tell Gate One to use a
+different IP or a different port.</p>
+<p>Installation using pre-built binaries or the source is fairly
+straightforward and detailed in the <a href="http://liftoff.github.com/GateOne/About/index.html">documentation</a>.</p>
+<p>The installer creates a directory of /opt/gateone and places all
+necessary files there. You can run it by changing to that directory and
+running gateone.py as root.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">sudo</span> <span class="p">.</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">terminal</span><span class="o">:</span><span class="mi">166</span><span class="p">]</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">import</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">Imaging</span> <span class="n">Library</span> <span class="p">(</span><span class="n">PIL</span><span class="p">)</span> <span class="n">so</span> <span class="n">images</span> <span class="n">will</span> <span class="n">not</span> <span class="n">be</span> <span class="n">displayed</span> <span class="n">in</span> <span class="n">the</span> <span class="n">terminal</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2232</span><span class="p">]</span> <span class="n">dtach</span> <span class="n">command</span> <span class="n">not</span> <span class="n">found</span><span class="p">.</span>  <span class="n">dtach</span> <span class="n">support</span> <span class="n">has</span> <span class="n">been</span> <span class="n">disabled</span><span class="p">.</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1800</span><span class="p">]</span> <span class="n">No</span> <span class="n">authentication</span> <span class="n">method</span> <span class="n">configured</span><span class="p">.</span> <span class="n">All</span> <span class="n">users</span> <span class="n">will</span> <span class="n">be</span> <span class="n">ANONYMOUS</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1876</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">plugins</span><span class="o">:</span> <span class="n">bookmarks</span><span class="p">,</span> <span class="n">help</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">logging_plugin</span><span class="p">,</span> <span class="n">notice</span><span class="p">,</span> <span class="n">playback</span><span class="p">,</span> <span class="n">ssh</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">13</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">06</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2329</span><span class="p">]</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">https</span><span class="o">:</span><span class="c1">//*:443/</span>
+</pre></div>
+
+
+<p>At this point, gateone is running in the foreground and you can view as
+connections occur and any errors. Pressing Ctrl If you conect to gateone
+using your webbrowser, you are logged in as user ANONYMOUS and can
+connect to any ssh host, either localhost or something remote.</p>
+<p>If you edit /opt/gateone/server.conf, you can change authentication to
+"pam" or "google". Using pam will perform a Basic HTTP style
+authenication requiring a system-level username and password. Using
+google will log you in with your google account. Both of these "just
+work" without complicated setup.</p>
+<h3>Running as a Non-Root</h3>
+<p>Before I put something like this in production, I wanted to apply some
+additional security. First off, I want to see if I can get this to run
+as a non-root user.</p>
+<p>Since gateone ran as root user initially, it has files owned by rootOnly UID 0 can open ports below 1024.gateone may need permission to write to system directories</p>
+<p>To solve the first one, I chowned the /opt/gateone directory to my
+username. In the future, I'll want to run it under its own user, but
+I'll use mine for now for simplicity. To solve the second and third, I
+edited server.conf.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">johnh</span><span class="o">:</span><span class="n">johnh</span> <span class="p">.</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">vi</span> <span class="n">server</span><span class="p">.</span><span class="n">conf</span><span class="err">#</span> <span class="n">change</span><span class="o">/</span><span class="n">add</span> <span class="n">the</span> <span class="n">following</span> <span class="n">lines</span> <span class="n">appropriatelyport</span> <span class="o">=</span> <span class="mi">2443</span><span class="n">session_dir</span> <span class="o">=</span> <span class="s">&quot;/opt/gateone/tmp/gateone&quot;</span><span class="n">pid_file</span> <span class="o">=</span> <span class="s">&quot;/opt/gateone/tmp/gateone.pid&quot;</span><span class="n">uid</span> <span class="o">=</span> <span class="mi">1000</span><span class="n">gid</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">terminal</span><span class="o">:</span><span class="mi">166</span><span class="p">]</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">import</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">Imaging</span> <span class="n">Library</span> <span class="p">(</span><span class="n">PIL</span><span class="p">)</span> <span class="n">so</span> <span class="n">images</span> <span class="n">will</span> <span class="n">not</span> <span class="n">be</span> <span class="n">displayed</span> <span class="n">in</span> <span class="n">the</span> <span class="n">terminal</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2232</span><span class="p">]</span> <span class="n">dtach</span> <span class="n">command</span> <span class="n">not</span> <span class="n">found</span><span class="p">.</span>  <span class="n">dtach</span> <span class="n">support</span> <span class="n">has</span> <span class="n">been</span> <span class="n">disabled</span><span class="p">.</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1802</span><span class="p">]</span> <span class="n">No</span> <span class="n">authentication</span> <span class="n">method</span> <span class="n">configured</span><span class="p">.</span> <span class="n">All</span> <span class="n">users</span> <span class="n">will</span> <span class="n">be</span> <span class="n">ANONYMOUS</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">1876</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">plugins</span><span class="o">:</span> <span class="n">bookmarks</span><span class="p">,</span> <span class="n">help</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">logging_plugin</span><span class="p">,</span> <span class="n">notice</span><span class="p">,</span> <span class="n">playback</span><span class="p">,</span> <span class="n">ssh</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mo">06</span><span class="o">:</span><span class="mo">01</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2329</span><span class="p">]</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">https</span><span class="o">:</span><span class="c1">//*:2443/</span>
+</pre></div>
+
+
+<h2>Authentication</h2>
+<p>Running as a lower uid, you can use authentication of None or "google"
+without issue. If you use "pam", you discover you can only login with
+the username that gateone is running under. If you are the only intended
+user of the service, this may not be an issue. But if you want to allow
+other users, this becomes an issue. If you are fine with running as root
+or using Google as your authentication provider, you can ignore this
+next step.</p>
+<p>Fortunately, pam is highly configurable. You aren't required to
+authenticate against shadow passwords. You can also authenticate against
+db4 files with pam_userdb, msyql, or even htpasswd files. To start off,
+I'm going to use htpasswd files. Note that Ubuntu doesn't provide
+pam_pwdfile.so by default. You need to install libpam-pwdfile ("sudo
+apt-get install libpam-pwdfile").</p>
+<h1>Note - in testing, I discovered gateone uses Crypt encryption while htpasswd defaults to MD5. Use -d to switch to crypt encryption.</h1>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">htpasswd</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">d</span> <span class="n">users</span><span class="p">.</span><span class="n">passwd</span> <span class="n">user1</span>
+<span class="n">New</span> <span class="n">password</span><span class="o">:</span>
+<span class="n">Re</span><span class="o">-</span><span class="n">type</span> <span class="n">new</span> <span class="n">password</span><span class="o">:</span>
+<span class="n">Adding</span> <span class="n">password</span> <span class="k">for</span> <span class="n">user</span> <span class="n">user1</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">cat</span> <span class="n">users</span><span class="p">.</span><span class="n">passwd</span>
+<span class="nl">user1:</span><span class="n">KKEPyZtUf9sadf9</span>
+</pre></div>
+
+
+<p>Create a pam module called gateone under /etc/pam.d</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pam</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">gateone</span>
+<span class="cp">#%PAM-1.0</span>
+<span class="cp"># Login using a htpasswd file</span>
+<span class="err">@</span><span class="n">include</span> <span class="n">common</span><span class="o">-</span><span class="n">sessionauth</span>    
+<span class="n">required</span> <span class="n">pam_pwdfile</span><span class="p">.</span><span class="n">so</span>          <span class="n">pwdfile</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gateone</span><span class="o">/</span><span class="n">users</span><span class="p">.</span><span class="n">passwdaccount</span> 
+<span class="n">required</span> <span class="n">pam_permit</span><span class="p">.</span><span class="n">so</span>
+</pre></div>
+
+
+<p>Modify server.conf to use pam and pam_service of gateone:</p>
+<div class="highlight"><pre><span class="n">auth</span> <span class="o">=</span> <span class="s">&quot;pam&quot;</span>
+<span class="n">pam_service</span> <span class="o">=</span> <span class="s">&quot;gateone&quot;</span>
+</pre></div>
+
+
+<p>Now start gateone and log in.</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">g1</span><span class="o">/</span><span class="n">gateone</span><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">gateone</span><span class="p">.</span><span class="n">py</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">terminal</span><span class="o">:</span><span class="mi">168</span><span class="p">]</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">import</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">Imaging</span> <span class="n">Library</span> <span class="p">(</span><span class="n">PIL</span><span class="p">)</span> <span class="n">so</span> <span class="n">images</span> <span class="n">will</span> <span class="n">not</span> <span class="n">be</span> <span class="n">displayed</span> <span class="n">in</span> <span class="n">the</span> <span class="n">terminal</span>
+<span class="p">[</span><span class="n">W</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2577</span><span class="p">]</span> <span class="n">dtach</span> <span class="n">command</span> <span class="n">not</span> <span class="n">found</span><span class="p">.</span>  <span class="n">dtach</span> <span class="n">support</span> <span class="n">has</span> <span class="n">been</span> <span class="n">disabled</span><span class="p">.</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2598</span><span class="p">]</span> <span class="n">Connections</span> <span class="n">to</span> <span class="n">this</span> <span class="n">server</span> <span class="n">will</span> <span class="n">be</span> <span class="n">allowed</span> <span class="n">from</span> <span class="n">the</span> <span class="n">following</span> <span class="n">origins</span><span class="o">:</span> <span class="err">&#39;</span><span class="n">http</span><span class="o">:</span><span class="c1">//localhost https://localhost http://127.0.0.1 https://127.0.0.1 https://puppet2 https://127.0.1.1 https://puppet2:2443&#39;</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2023</span><span class="p">]</span> <span class="n">Using</span> <span class="n">pam</span> <span class="n">authentication</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2101</span><span class="p">]</span> <span class="n">Loaded</span> <span class="n">plugins</span><span class="o">:</span> <span class="n">bookmarks</span><span class="p">,</span> <span class="n">help</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">logging_plugin</span><span class="p">,</span> <span class="n">mobile</span><span class="p">,</span> <span class="n">notice</span><span class="p">,</span> <span class="n">playback</span><span class="p">,</span> <span class="n">ssh</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2706</span><span class="p">]</span> <span class="n">Listening</span> <span class="n">on</span> <span class="n">https</span><span class="o">:</span><span class="c1">//*:2443/</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">16</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">2710</span><span class="p">]</span> <span class="n">Process</span> <span class="n">running</span> <span class="n">with</span> <span class="n">pid</span> <span class="mi">32591</span>
+<span class="p">[</span><span class="n">I</span> <span class="mi">120801</span> <span class="mi">14</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">17</span> <span class="n">gateone</span><span class="o">:</span><span class="mi">949</span><span class="p">]</span> <span class="n">WebSocket</span> <span class="n">opened</span> <span class="p">(</span><span class="n">user1</span><span class="err">@</span><span class="n">gateone</span><span class="p">).</span>
+</pre></div>
+
+
+<p>One additional nice feature with authentication enabled is the ability
+to resume sessions - even across different computers or browsers.</p>
+<h2>Reverse Proxy</h2>
+<p>(I failed on this part, but felt it was worth recording)</p>
+<p>Once I got it working in single user mode, I wanted to go ahead and set
+this up under a reverse proxy under Apache. This would allow me to
+integrate it into my existing web server under a sub-directory.</p>
+<p>First, I edited server.conf to use a URL prefix of /g1/</p>
+<p>Second, I tried setting up a ReverseProxy in Apache.</p>
+<div class="highlight"><pre><span class="cp"># GateOne </span>
+<span class="n">ProxySSLProxyEngine</span> 
+<span class="n">OnProxyPass</span> <span class="o">/</span><span class="n">g1</span><span class="o">/</span> <span class="n">https</span><span class="o">:</span><span class="c1">//localhost:2443/g1/</span>
+<span class="n">ProxyPassReverse</span> <span class="o">/</span><span class="n">g1</span><span class="o">/</span> <span class="n">https</span><span class="o">:</span><span class="c1">//localhost:2443/g1/</span>
+<span class="n">ProxyPassReverseCookieDomain</span> <span class="n">localhost</span> <span class="n">localhost</span>
+<span class="n">ProxyPassReverseCookiePath</span> <span class="o">/</span> <span class="o">/</span><span class="n">g1</span><span class="o">/</span>
+</pre></div>
+
+
+<p>This almost worked. I had no errors, but the resulting page was
+unreadable. However, at the bottom was a clue. "The WebSocket connection
+was closed. Will attempt to reconnect every 5 seconds... NOTE: Some web
+proxies do not work properly with WebSockets." The problem was Apache
+not properly proxying my websocket connection. People have managed to
+get this working under nginx, but not Apache.</p>
+<p>Searching for a solution led me to a similar question on ServerFault, an
+apache-websocket module on github, and a websocket tcp proxy based on
+that module.</p>
+<ul>
+<li>http://serverfault.com/questions/290121/configuring-apache2-to-proxy-websocket</li>
+<li>https://github.com/disconnect/apache-websocket</li>
+<li>http://blog.alex.org.uk/2012/02/16/using-apache-websocket-to-proxy-tcp-connection/</li>
+</ul>
+<p>In order to get this work, I'll need to download and compile some code.
+The apxs command requires the apache-prefork-dev package in
+Debian/Ubuntu. Install it with "sudo apt-get install
+apache-prefork-dev".</p>
+<p>Now we are ready to download the code and install the module:</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/disconnect/apache-websocket.git</span>
+<span class="n">Cloning</span> <span class="n">into</span> <span class="err">&#39;</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="err">&#39;</span><span class="p">.....</span> <span class="n">done</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//blog.alex.org.uk/wp-uploads/mod_websocket_tcp_proxy.tar.gz</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">cd</span> <span class="n">apache</span><span class="o">-</span><span class="n">websocket</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apxs2</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">c</span> <span class="n">mod_websocket</span><span class="p">.</span><span class="n">c</span><span class="o">*</span><span class="n">snip</span><span class="o">*</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apxs2</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">c</span> <span class="n">mod_websocket_draft76</span><span class="p">.</span><span class="n">c</span><span class="o">*</span><span class="n">snip</span><span class="o">*</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">cd</span> <span class="n">examples</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gzmod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">c</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">cd</span> <span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~/</span><span class="n">apache</span><span class="o">-</span><span class="n">websocket</span><span class="o">/</span><span class="n">examples</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">apxs2</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">I</span><span class="p">..</span> <span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">c</span>
+<span class="o">*</span><span class="n">snip</span><span class="o">*</span>
+<span class="n">chmod</span> <span class="mi">644</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">so</span>
+<span class="p">[</span><span class="n">preparing</span> <span class="n">module</span> <span class="err">`</span><span class="n">websocket_tcp_proxy</span><span class="err">&#39;</span> <span class="n">in</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">websocket_tcp_proxy</span><span class="p">.</span><span class="n">load</span><span class="p">]</span>
+<span class="n">Enabling</span> <span class="n">module</span> <span class="n">websocket_tcp_proxy</span><span class="p">.</span><span class="n">To</span> <span class="n">activate</span> <span class="n">the</span> <span class="n">new</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">run</span><span class="o">:</span><span class="n">service</span> <span class="n">apache2</span> <span class="n">restart</span>
+<span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span>
+</pre></div>
+
+
+<p>Before we restart, I want to remove my Proxy lines and replace them with
+the mod_websocket_tcp_proxy lines.</p>
+<div class="highlight"><pre><span class="n">SetHandler</span> <span class="n">websocket</span><span class="o">-</span><span class="n">handler</span>        
+<span class="n">WebSocketHandler</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">mod_websocket_tcp_proxy</span><span class="p">.</span><span class="n">so</span> <span class="n">tcp_proxy_init</span>        
+<span class="n">WebSocketTcpProxyBase64</span> <span class="n">on</span>        
+<span class="n">WebSocketTcpProxyHost</span> <span class="mf">127.0.0.1</span>        
+<span class="n">WebSocketTcpProxyPort</span> <span class="mi">2443</span>        
+<span class="n">WebSocketTcpProxyProtocol</span> <span class="n">base64</span>
+</pre></div>
+
+
+<p>Despite all this, I was still unable to get this to work. I even
+attempted using the web root (/) as my location. If the Location matches
+and your HTTP request is handled by mod_websocket, you get a 404. If
+you use Proxy, then your websocket request is handled by mod_proxy.
+Mod_proxy wins out over Location matches. Perhaps you can modify
+gateone code to have one URL for the web interface and one for
+websockets (or maybe it's already in place and we just need to know),
+but I don't see a way at this time to get this working under Apache. I
+may be able to work with the gateone author and the
+mod_websocket_tcp_proxy.c author to come up with a solution. Or I
+could try installing nginx. In the meantime, I can continue to run Open
+Gate as a non-root user on a non-standard port. Alternatively, I could
+find a wrapper to bring port 443 to 2443.</p></div>
+  <div>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>	
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

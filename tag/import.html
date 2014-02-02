@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li ><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+	      <div class="page-header">
+<div class="alert">
+My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
+</div>	      </div>
+
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2012/08/python-console-import-tip.html">python console import tip</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/python-console-import-tip.html">On 29 Aug 2012 at 1830</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/python-console-import-tip.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/python-console-import-tip.html#disqus_thread">Comments</a></div>
+  <div><p>This is a quick little python tip. When experimenting with python commands and modules, it's usually easiest to use the python console interactively, then create your programs later. The downside of this is that sometimes you have to do a bit of typing before you get to the specific command you want to try.</p>
+<p>Imagine the following example:</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="k">default</span><span class="p">,</span> <span class="n">Aug</span>  <span class="mi">1</span> <span class="mi">2012</span><span class="p">,</span> <span class="mo">05</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">39</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.6.3</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
+<span class="n">Type</span> <span class="s">&quot;help&quot;</span><span class="p">,</span> <span class="s">&quot;copyright&quot;</span><span class="p">,</span> <span class="s">&quot;credits&quot;</span> <span class="n">or</span> <span class="s">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">pysphere</span> <span class="n">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">server</span> <span class="o">=</span> <span class="n">VIServer</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">server</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;vc1.example.com&quot;</span><span class="p">,</span> <span class="s">&quot;username&quot;</span><span class="p">,</span> <span class="s">&quot;password&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print</span> <span class="n">server</span><span class="p">.</span><span class="n">get_server_type</span><span class="p">(),</span> <span class="n">server</span><span class="p">.</span><span class="n">get_api_version</span><span class="p">()</span>
+<span class="n">VMware</span> <span class="n">vCenter</span> <span class="n">Server</span> <span class="mf">5.0</span>
+</pre></div>
+
+
+<p>Here, I had to type in 3 lines, including my password in plaintext, to test out querying the server. I can't demonstrate this live, because then I reveal my password. Well last week, I made a [test1.py] file that reads a yaml configuration file and does the commands I just did. Here's the smart bit. I can import that file directly into the python console. Once it imports, it runs each python command and leaves me in the console, ready to query the system again. The only caveat is that my "server" variable is now part of the test1 module as "test1.server".</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="k">default</span><span class="p">,</span> <span class="n">Aug</span>  <span class="mi">1</span> <span class="mi">2012</span><span class="p">,</span> <span class="mo">05</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">39</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.6.3</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
+<span class="n">Type</span> <span class="s">&quot;help&quot;</span><span class="p">,</span> <span class="s">&quot;copyright&quot;</span><span class="p">,</span> <span class="s">&quot;credits&quot;</span> <span class="n">or</span> <span class="s">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">import</span> <span class="n">test1</span>
+<span class="n">VMware</span> <span class="n">vCenter</span> <span class="n">Server</span> <span class="mf">5.0</span>
+<span class="n">puppet1</span><span class="o">-</span><span class="n">centos6</span> <span class="mf">10.100.0.206</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">test1</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">is_connected</span><span class="p">()</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vmlist</span> <span class="o">=</span> <span class="n">test1</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">get_registered_vms</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">v</span> <span class="n">in</span> <span class="n">vmlist</span><span class="o">:</span>
+<span class="p">...</span>     <span class="n">print</span> <span class="n">v</span>
+<span class="p">...</span>
+<span class="p">[</span><span class="n">iscsi</span><span class="o">-</span><span class="mi">244</span><span class="n">gb</span><span class="o">-</span><span class="n">raid10</span><span class="p">]</span> <span class="n">rhel</span><span class="o">-</span><span class="n">puppet1</span><span class="o">/</span><span class="n">rhel</span><span class="o">-</span><span class="n">puppet1</span><span class="p">.</span><span class="n">vmx</span>  
+<span class="p">[</span><span class="n">iscsi</span><span class="o">-</span><span class="mi">244</span><span class="n">gb</span><span class="o">-</span><span class="n">raid10</span><span class="p">]</span> <span class="n">puppet2</span><span class="o">-</span><span class="n">ubuntu</span> <span class="mf">12.04</span><span class="n">LTS</span> <span class="n">server</span><span class="o">/</span><span class="n">puppet2</span><span class="o">-</span><span class="n">ubuntu</span> <span class="mf">12.04</span><span class="n">LTS</span> <span class="n">server</span><span class="p">.</span><span class="n">vmx</span>
+<span class="p">[</span><span class="n">iscsi</span><span class="o">-</span><span class="mi">488</span><span class="n">gb</span><span class="o">-</span><span class="n">raid10</span><span class="p">]</span> <span class="n">puppet3</span><span class="o">-</span><span class="n">solaris11</span><span class="o">/</span><span class="n">puppet3</span><span class="o">-</span><span class="n">solaris11</span><span class="p">.</span><span class="n">vmx</span>
+</pre></div></div>
+  <!-- <div class="summary"><p>This is a quick little python tip. When experimenting with python commands and modules, it's usually easiest to use the python console interactively, then create your programs later. The downside of this is that sometimes you have to do a bit of typing before you get to the specific command you want to try.</p>
+<p>Imagine the following example:</p>
+<div class="highlight"><pre><span class="n">johnh</span><span class="err">@</span><span class="n">puppet2</span><span class="o">:~</span><span class="err">$</span> <span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.7.3</span> <span class="p">(</span><span class="k">default</span><span class="p">,</span> <span class="n">Aug</span>  <span class="mi">1</span> <span class="mi">2012</span><span class="p">,</span> <span class="mo">05</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mi">39</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4 ...</span></pre></div></div> -->
+  
+Tagged as: <a href="http://www.yourtech.us/tag/python-console.html">python console</a> <a href="http://www.yourtech.us/tag/python.html">python</a> <a href="http://www.yourtech.us/tag/import.html">import</a> <a href="http://www.yourtech.us/tag/pysphere.html">pysphere</a> </div>
+
+
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (1) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

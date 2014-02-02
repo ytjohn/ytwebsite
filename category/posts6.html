@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li class="active"><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+	      <div class="page-header">
+<div class="alert">
+My name is John Hogenmiller, I am a father, husband, Linux system engineer, amateur radio operator (KB3DFZ), bicyclist, and dog owner.  If you are on this page, you may want to read my <a href="/pages/the-story.html">story</a>, or you could simply be looking for a way to <a href="/pages/contact.html">contact me</a>. On this site, you will find a collection of technical musings, howto guides, and reference information.
+</div>	      </div>
+
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2009/10/backing-up-with-duplicity-and-amazon-s3.html">On 26 Oct 2009 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2009/10/backing-up-with-duplicity-and-amazon-s3.text">{source}</a>
+ | <a href="http://www.yourtech.us//2009/10/backing-up-with-duplicity-and-amazon-s3.html#disqus_thread">Comments</a></div>
+  <div><p><a href="http://duplicity.nongnu.org/" title="http://duplicity.nongnu.org/">Duplicity</a> is a great little backup tool that can do incremental
+backups to a variety of different servers (ftp, scp, and Amazon S3).   </p>
+<h2><a href="http://www.yourtech.us/2009/10/editor-content.html?cs=utf-8">The Install</a></h2>
+<p>I am installing on a Centos 5 system which uses the yum tool. I also
+have the <a href="http://rpmforge.net/">http://rpmforge.net/</a>repository enabled. I need that for
+librsync and librsync-devel which provides rsync capabilities when the
+remote file details are not available (like in FTP). <br />
+All of these requirements are found on the <a href="http://duplicity.nongnu.org/" title="http://duplicity.nongnu.org/">duplicity</a> main
+page.   </p>
+<div class="highlight"><pre><span class="n">yum</span> <span class="n">install</span> <span class="n">librsync</span> <span class="n">librsync</span><span class="o">-</span><span class="n">devel</span><span class="err">#</span> <span class="n">GnuPG</span> <span class="k">for</span> <span class="n">python</span> <span class="p">(</span><span class="n">stable</span><span class="p">,</span> <span class="n">hasn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">changed</span> <span class="n">in</span> <span class="n">years</span><span class="p">)</span>
+<span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//internap.dl.sourceforge.net/sourceforge/py-gnupg/GnuPGInterface-0.3.2.tar.gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzf</span> <span class="n">GnuPGInterface</span><span class="o">-</span><span class="mf">0.3.2</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">GnuPGInterface</span><span class="o">-</span><span class="mf">0.3.2</span>
+<span class="n">python</span> <span class="n">setup</span><span class="p">.</span><span class="n">py</span> <span class="n">installcd</span> <span class="p">..</span>
+<span class="cp"># boto for python (Python S3 interface -- active development, check version #)</span>
+<span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//boto.googlecode.com/files/boto-1.1c.tar.gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">boto</span><span class="o">-</span><span class="mf">1.1</span><span class="n">c</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">boto</span><span class="o">-</span><span class="mf">1.1</span><span class="n">c</span>
+<span class="n">python</span> <span class="n">setup</span><span class="p">.</span><span class="n">py</span> <span class="n">installcd</span> <span class="p">..</span>
+<span class="cp"># duplicity (active development, check version #)</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzf</span> <span class="n">duplicity</span><span class="o">-</span><span class="mf">0.4.10</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span> 
+<span class="n">cd</span> <span class="n">duplicity</span><span class="o">-</span><span class="mf">0.4.10</span>
+<span class="n">python</span> <span class="n">setup</span><span class="p">.</span><span class="n">py</span> <span class="n">install</span>
+<span class="n">cd</span> <span class="p">..</span>
+</pre></div>
+
+
+<p>Make sure duplicity works by running the command "duplicity" <br />
+You should see something like this (and not errors about GnuPG
+instances).   </p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">serv02</span> <span class="o">~</span><span class="p">]</span><span class="err">#</span> <span class="n">duplicity</span> 
+<span class="n">Command</span> <span class="n">line</span> <span class="n">error</span><span class="o">:</span> <span class="n">Expected</span> <span class="mi">2</span> <span class="n">args</span><span class="p">,</span> <span class="n">got</span> <span class="mi">0</span>
+<span class="n">Enter</span> <span class="err">&#39;</span><span class="n">duplicity</span> <span class="o">--</span><span class="n">help</span><span class="err">&#39;</span> <span class="k">for</span> <span class="n">help</span> <span class="n">screen</span><span class="p">.</span>
+</pre></div>
+
+
+<h2><a href="http://www.yourtech.us/2009/10/editor-content.html?cs=utf-8">Make your gpg keys</a></h2>
+<p>Do this as the user that you'll be running the backup as - it makes
+things easier. If you have your own existing keys and know how to import
+them, you can skip this step. Otherwise, we'll create a key just for
+encrypting the backups before sending them to our backup server (in case
+of rogue system admins at Amazon).   </p>
+<div class="highlight"><pre><span class="cp">[</span><span class="nb">root</span><span class="p">@</span><span class="nx">serv02</span> <span class="err">~</span><span class="cp">]</span># gpg --gen-keygpg 
+(GnuPG) 1.2.6; Copyright (C) 2004 Free Software Foundation, Inc.This program comes with ABSOLUTELY NO WARRANTY.This is free software, and you are welcome to redistribute itunder certain conditions. See the file COPYING for details.
+gpg: failed to create temporary file `/home/ytjohn/.gnupg/.#lk0x9d199d8.serv02.example.com.12823&#39;: No such file or directory
+gpg: /home/ytjohn/.gnupg: directory created
+gpg: new configuration file `/home/ytjohn/.gnupg/gpg.conf&#39; created
+gpg: WARNING: options in `/home/ytjohn/.gnupg/gpg.conf&#39; are not yet active during this run
+gpg: keyring `/home/ytjohn/.gnupg/secring.gpg&#39; created
+gpg: keyring `/home/ytjohn/.gnupg/pubring.gpg&#39; created
+Please select what kind of key you want: 
+  (1) DSA and ElGamal (default) 
+  (2) DSA (sign only) 
+  (4) RSA (sign only)
+Your selection? 1
+DSA keypair will have 1024 bits.
+About to generate a new ELG-E keypair.
+              minimum keysize is  768 bits
+              default keysize is 1024 bits
+    highest suggested keysize is 2048 bits
+What keysize do you want? (1024) 2048
+Requested keysize is 2048 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <span class="nt">&lt;n&gt;</span>  = key expires in n days
+      <span class="nt">&lt;n&gt;</span>w = key expires in n weeks
+      <span class="nt">&lt;n&gt;</span>m = key expires in n months
+      <span class="nt">&lt;n&gt;</span>y = key expires in n years
+Key is valid for? (0) 0
+Key does not expire at all
+Is this correct (y/n)? y                        
+You need a User-ID to identify your key; the software constructs the user id
+from Real Name, Comment and Email Address in this form:    &quot;Heinrich Heine (Der Dichter) <span class="nt">&lt;heinrichh</span><span class="err">@</span><span class="na">duesseldorf</span><span class="err">.</span><span class="na">de</span><span class="nt">&gt;</span>&quot;
+Real name: Backup Key
+Email address: anything@example.com
+Comment: Backup key for duplicity  
+You selected this USER-ID:           &quot;Backup Key (Backup key for duplicity) <span class="nt">&lt;anything</span><span class="err">@</span><span class="na">example</span><span class="err">.</span><span class="na">com</span><span class="nt">&gt;</span>&quot;
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+You need a Passphrase to protect your secret key.
+</pre></div>
+
+
+<p>At this point, let me interrupt and talk about the Passphrase. You can
+make this anything, but I would recommend avoiding special characters
+(especially dealing with \&lt;> ' " \ ` ) that might be interpreted by
+your system shell. I generated a 15 character password <a href="http://www.freepasswordgenerator.com/" title="http://www.freepasswordgenerator.com/">online</a> using
+only numbers, letters, and LETTERS. You will need to keep track of the
+password - you will need it later when you write the backup script.   </p>
+<div class="highlight"><pre><span class="n">We</span> <span class="n">need</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">lot</span> <span class="n">of</span> <span class="n">random</span> <span class="n">bytes</span><span class="p">.</span> <span class="n">It</span> <span class="n">is</span> <span class="n">a</span> <span class="n">good</span> <span class="n">idea</span> <span class="n">to</span> <span class="n">perform</span>
+<span class="n">some</span> <span class="n">other</span> <span class="n">action</span> <span class="p">(</span><span class="n">type</span> <span class="n">on</span> <span class="n">the</span> <span class="n">keyboard</span><span class="p">,</span> <span class="n">move</span> <span class="n">the</span> <span class="n">mouse</span><span class="p">,</span> <span class="n">utilize</span> <span class="n">the</span>
+<span class="n">disks</span><span class="p">)</span> <span class="n">during</span> <span class="n">the</span> <span class="n">prime</span> <span class="n">generation</span><span class="p">;</span> <span class="n">this</span> <span class="n">gives</span> <span class="n">the</span> <span class="n">random</span> <span class="n">number</span>
+<span class="n">generator</span> <span class="n">a</span> <span class="n">better</span> <span class="n">chance</span> <span class="n">to</span> <span class="n">gain</span> <span class="n">enough</span> <span class="n">entropy</span><span class="p">.</span>
+<span class="o">+++++++++++++++++++++++++</span><span class="p">.</span><span class="o">+++++++++++++++++++++++++++++++++++</span><span class="p">..</span><span class="o">+++++</span><span class="p">.</span><span class="o">++</span>
+<span class="o">+++++++++++++</span><span class="p">..</span><span class="o">++++++++++</span><span class="p">.</span><span class="o">+++++++++++++++</span><span class="p">..</span><span class="o">++++++++++++++++++++++++++++</span>
+<span class="o">++</span><span class="p">.</span><span class="o">&gt;+++++</span><span class="p">..............................................................</span>
+<span class="p">.......................................................................</span>
+<span class="p">......</span><span class="o">+++++</span>
+<span class="nl">gpg:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ytjohn</span><span class="o">/</span><span class="p">.</span><span class="n">gnupg</span><span class="o">/</span><span class="n">trustdb</span><span class="p">.</span><span class="n">gpg</span><span class="o">:</span> <span class="n">trustdb</span> <span class="n">created</span>
+<span class="n">public</span> <span class="n">and</span> <span class="n">secret</span> <span class="n">key</span> <span class="n">created</span> <span class="n">and</span> <span class="kt">signed</span><span class="p">.</span><span class="n">key</span> <span class="n">marked</span> <span class="n">as</span> <span class="n">ultimately</span>
+
+     <span class="n">trusted</span><span class="p">.</span><span class="n">pub</span>  <span class="mi">1024</span><span class="n">D</span><span class="o">/</span><span class="mf">53F</span><span class="mi">0891</span><span class="n">A</span> <span class="mi">2008</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">08</span> 
+     <span class="n">Backup</span> <span class="n">Key</span> <span class="p">(</span><span class="n">Backup</span> <span class="n">key</span> <span class="k">for</span> <span class="n">duplicity</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">anything</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="o">&gt;</span>
+     <span class="n">Key</span> <span class="n">fingerprint</span> <span class="o">=</span> <span class="mi">135</span><span class="n">A</span> <span class="mi">1533</span> <span class="mi">5</span><span class="n">C94</span> <span class="mi">3</span><span class="n">A58</span> <span class="mi">5398</span>  <span class="mi">7467</span> <span class="mi">98</span><span class="n">A0</span> <span class="n">C424</span> <span class="mi">5</span><span class="n">BF0</span> <span class="mi">8</span><span class="n">C2E</span>
+     <span class="n">sub</span>  <span class="mi">2048</span><span class="n">g</span><span class="o">/</span><span class="mf">630F</span><span class="n">AA4F</span> <span class="mi">2008</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">08</span>
+</pre></div>
+
+
+<p>We see our key ID is 53F0891A - make a note of this for the backup
+script.   </p>
+<h2><a href="http://www.yourtech.us/2009/10/editor-content.html?cs=utf-8">The backup script</a></h2>
+<p>Essentially, what we want is a script that you just run and it will
+perform the backup for you. For my purposes, I want to backup to
+Amazon's Simple Storage Service (<a href="http://s3.amazonaws.com/" title="http://s3.amazonaws.com/">s3</a>). To do this, you will need to
+sign up for the service (no cost to signup, just pay for space/bandwidth
+used) and get the AWS/AWS secret keys (think of them like
+username/passwords). <br />
+The following script will backup a directory called /mnt/backups to an
+Amazon bucket called j123backup (the bucket name must be unique between
+all Amazon S3 users). Please note that while you can use the same script
+and gpg keys on multiple servers (or have multiple backup scripts on the
+same server backing up different directories), you will want to make a
+separate bucket for each different source backup.   </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="c"># Export some ENV variables so you don&#39;t have to type anything</span>
+<span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>accesskeyexport <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>secretkey
+<span class="c"># GPG passphrase we used earlier</span>
+<span class="nb">export </span><span class="nv">PASSPHRASE</span><span class="o">=</span>123456789012345
+<span class="nv">GPG_KEY</span><span class="o">=</span>53F0891A
+<span class="c"># The source of your backup</span>
+<span class="nv">SOURCE</span><span class="o">=</span>/mnt/backup
+<span class="c"># The destination</span>
+<span class="c"># Note that the bucket need not exist</span>
+<span class="c"># but does need to be unique amongst all</span>
+<span class="c"># Amazon S3 users. So, choose wisely. </span>
+<span class="nv">DEST</span><span class="o">=</span>s3+http://j123backup
+<span class="c"># You can of course change your destination to an ftp or# scp (ssh copy) server:</span>
+<span class="c">#DEST=scp://backupuser@backup.example.com/backups</span>
+duplicity <span class="se">\</span>
+    --encrypt-key<span class="o">=</span><span class="k">${</span><span class="nv">GPG_KEY</span><span class="k">}</span> <span class="se">\</span>
+    --sign-key<span class="o">=</span><span class="k">${</span><span class="nv">GPG_KEY</span><span class="k">}</span> <span class="se">\</span>
+    <span class="k">${</span><span class="nv">SOURCE</span><span class="k">}</span> <span class="k">${</span><span class="nv">DEST</span><span class="k">}</span> 
+<span class="c"># this is an example of backing up multiple </span>
+<span class="c"># directories at once and excluding others:</span>
+<span class="c">## duplicity \</span>
+<span class="c">#     --encrypt-key=${GPG_KEY} \</span>
+<span class="c">#     --sign-key=${GPG_KEY} \</span>
+<span class="c">#     --include=/home \</span>
+<span class="c">#     --include=/var/www/html \</span>
+<span class="c">#     --exclude=/var/www/html/cache/* \</span>
+<span class="c">#     ${SOURCE} ${DEST} # Reset the ENV variables. Don&#39;t need them sitting around</span>
+<span class="nb">export </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>
+<span class="nb">export </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>
+<span class="nb">export </span><span class="nv">PASSPHRASE</span><span class="o">=</span>
+</pre></div>
+</td></tr></table>
+
+<p>As a final note, you can definitely point your backup at another
+destination such as ftp or scp. I later ended up choosing an scp server
+over Amazon S3.--<br />
+Backing up with duplicity and Amazon S3 By YourTech John on October 26,
+2009 7:00 AM</p></div>
+  <!-- <div class="summary"><p><a href="http://duplicity.nongnu.org/" title="http://duplicity.nongnu.org/">Duplicity</a> is a great little backup tool that can do incremental
+backups to a variety of different servers (ftp, scp, and Amazon S3).   </p>
+<h2><a href="http://www.yourtech.us/2009/10/editor-content.html?cs=utf-8">The Install</a></h2>
+<p>I am installing on a Centos 5 system which uses the yum tool. I also
+have the <a href="http://rpmforge.net/">http://rpmforge.net/</a>repository enabled. I need that for
+librsync and librsync-devel which provides rsync capabilities when the
+remote file details are not available (like in FTP). <br />
+All of these requirements are found ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2009/09/forgotten-realms.html">Forgotten Realms</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2009/09/forgotten-realms.html">On 30 Sep 2009 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2009/09/forgotten-realms.text">{source}</a>
+ | <a href="http://www.yourtech.us//2009/09/forgotten-realms.html#disqus_thread">Comments</a></div>
+  <div><p>Yesterday I was working on a very old server -- a <a href="http://en.wikipedia.org/wiki/Cobalt_RaQ">Cobalt RAQ 4</a>.  I
+actually leased a RAQ 3 for web hosting back in 2001 and thought it was
+the neatest thing, but found it too limiting in many ways.  These
+servers were popular because they could be administered using a series
+of push buttons and an LCD screen up front.  It also has a web interface
+that controlled everything.  These servers were highly popular back in
+there day.  </p>
+<p>The Cobalt product line went away back in 2004 or so, but obviously a
+good number of these servers are still in use 5 years later.  As this
+server booted up, I saw an email address ending in @cobaltnet.com and
+wondered if that was still around.  </p>
+<blockquote>
+<p>Registrant:<br />
+Sun Microsystems, Inc.<br />
+   4150 Network Circle<br />
+   Santa Clara, CA 95054<br />
+   US  </p>
+<p>Domain Name: COBALTNET.COM  </p>
+<p>Administrative Contact, Technical Contact:<br />
+      Sun Microsystems, Inc.            hostmaster@sun.com<br />
+      4150 Network Circle<br />
+      Santa Clara, CA 95054<br />
+      US<br />
+      1-650-960-1300 fax: 650 336 6623  </p>
+<p>Record expires on 15-Jun-2010.<br />
+   Record created on 30-Jul-2004.<br />
+   Database last updated on 30-Sep-2009 00:06:34 EDT.  </p>
+<p>Domain servers in listed order:  </p>
+<p>NS1.COBALT.COM<br />
+   NS2.COBALT.COM  </p>
+</blockquote>
+<p>So the cobaltnet.com domain is still in existance, at least until 2004. 
+However, it doesn't resolve to anything.  The reason for that is that
+the Cobalt.com domain name (notice ns1 and ns2.cobalt.com) itself has
+been purchased by another company, completely unrelated to the Cobalt
+server product.  So this is interesting in that Sun not only let
+cobalt.com go, but they never bothered to update the cobaltnet.com
+domain to point to an active name server. Sun paid about \$2 billion for
+the Cobalt name and now it sits in a neglected corner of the Internet,
+just a few months away from finally expiring.  </p>
+<p>This is one of many such example found on the net of things that vanish
+without a trace. Cobalt was one of the first companies to really produce
+a polished interface for managing a web server.  Part of me wonders what
+would have happened if Cobalt/Sun had released that code as open source
+before the end came.  Would the community have picked it up and
+developed something amazing with it, or would it have vanished like the
+parent company.  Based on recent happenings with <a href="http://en.wikipedia.org/wiki/BeOS">BeOS</a>and <a href="http://www.haiku-os.org/">Haiku</a>,
+I suspect the former would have occurred.--<br />
+Forgotten realms By YourTech John on September 30, 2009 8:00 AM</p></div>
+  <!-- <div class="summary"><p>Yesterday I was working on a very old server -- a <a href="http://en.wikipedia.org/wiki/Cobalt_RaQ">Cobalt RAQ 4</a>.  I
+actually leased a RAQ 3 for web hosting back in 2001 and thought it was
+the neatest thing, but found it too limiting in many ways.  These
+servers were popular because they could be administered using a series
+of push buttons and an LCD screen up front.  It also has a web interface
+that controlled everything.  These servers were highly popular ...</p></div> -->
+  
+Tagged as: </div>
+<div class='article'>
+  <h2><a href="http://www.yourtech.us/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a></h2>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2009/08/back-into-programming-monitoring-notes.html">On 25 Aug 2009 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2009/08/back-into-programming-monitoring-notes.text">{source}</a>
+ | <a href="http://www.yourtech.us//2009/08/back-into-programming-monitoring-notes.html#disqus_thread">Comments</a></div>
+  <div><p>I have been out of the programming circuit for a few years and have been
+looking at getting back into it.  My traditional programming style is an
+ssh window into my server and all my editing takes place on a
+development server, in vi.  </p>
+<p>Recently, I've been trying to decent work out a way to determine how the
+world sees your connectivity from within your network.  Essentially, I
+wanted to simulate accessing one of my locally connected machines from
+the Internet.  Typically, you have to subscribe to a third party service
+to perform this service for you.  Coincidentally, I have been reading up
+on <a href="https://appengine.google.com/">Google App Engine</a> and saw the potential in using GAE for my
+purpose.  I could envision writing a monitoring system that runs
+entirely on the GAE.  Unfortunately, I had no programming experience in
+Python or Java.  I did see that <a href="http://www.caucho.com/resin-3.0/quercus/">PHP has been ported to Java</a> and
+someone got <a href="http://www.webdigi.co.uk/blog/2009/run-php-on-the-google-app-engine/">PHP running on GAE</a>.  The possibility of either creating
+a new monitoring system in PHP (or modifying an existing PHP-based
+monitoring system) entered my mind.  </p>
+<p>I decided that rather than stay with PHP, I would use this project as a
+method to learn Python.  I started digging into Python resources and
+contemplating how I would want my monitoring system to work.  Ultimately
+though, I decided I didn't want to create a brand-new monitoring system
+(even a basic one) when existing ones such as Nagios and Zabbix do
+perfectly well. In my research, I found a project called
+<a href="http://code.google.com/p/mirrorrr/">mirrorrr</a>that used GAE as a web-proxy.    </p>
+<p>This solution was immediately obvious.  My existing monitoring system
+(Zabbix) has support for fetching web pages.  I could place a file with
+the word "OK" on my local web server and then fetch it through GAE.   I
+could even determine through the returned page whether my server was
+down or if GAE was down.  </p>
+<p>I set to work testing out the mirrorrr code under my own account.  The
+major issue I observed is that mirrorrr is configured to cache pages,
+meaning that when I changed my OK to FAIL, mirrorrr never updated the
+page.  In the closed-source world, that is the end of the story. 
+However, since this is an open-source project, this was an opportunity.  </p>
+<p>I've been wanting to get back into programming, and I when I start back,
+I want to be familiar with using an IDE (namely Eclipse).  In
+preparation for creating a monitoring system, I had setup a development
+station in (*gasp*) Windows Server 2003.  I connect to this via remote
+desktop and generally leave Eclipse running 24x7. I had also gone
+through the steps of installing the PyDev plugin, the GAE plugins, and
+SVN plugins.  </p>
+<p><strong>The Process</strong>  </p>
+<p>I downloaded a copy of the code using SVN checkout and set to work
+editing the mirror.py file to disable CACHE.  I call this the "dive in
+and learn to swim later" process.  Here, I could make changes to
+existing code and test them out immediately.  In fact, the SDK for GAE
+works as a sort of mini-server.  Once I run the code within the SDK, any
+change I make to the source affects the running instance.    </p>
+<p>I was able to read through and alter the code to allow me to switch
+between caching and non-caching.  I ran into an issue with their "recent
+urls" feature.  This shows the last 5 urls you have visited.  When you
+are not caching your data, this never gets sets and starts throwing
+errors.  I realized I would have to improve that section of the code
+before I could truly implement a configurable "enable cache" option.  </p>
+<p>At this point, I backed out of my file and considered my options.  I
+wanted to make two distinct changes to the source, one of which requires
+the other.  The author of the project hasn't maid a change to his(her?)
+code since December of 2008.  However, I did see recent entries in the
+Wiki, indicating this wasn't an abandoned project.  I realized that to
+truly make my changes worthwhile, I should try and get them included
+back in the upstream.  To do so, I should submit each change separately.
+That required more tracking than I had been doing.  </p>
+<p>So, I took care of another todo list item.  I went ahead and setup an
+"official" repository server for YourTech, checked out a fresh copy of
+mirrorrr, and then imported it into mine.  Now I could work.  I imported
+the project from my repo server into Eclipse and started recreating my
+work.  First I added added a feature to disable the recent urls.  At the
+same time, I made an improvement by moving a chunk of code into a
+self-contained method (which is apparently what python calls functions,
+as near I can tell at this juncture).  Once this was committed, I went
+ahead and proceeded with recreating my work on disabling the cache.   </p>
+<p>Once I was done, you could enable or disable each feature separately. 
+However, if you disabled the cache but left recent urls enabled, your
+recent urls would never update.  On the flip side, if recent urls were
+recorded before disabling the cache, then you could see the most recent
+urls before caching was disabled.  Some person may want that feature --
+they could start up the mirrorrr, visit several links, then disable the
+cache, preserving those links on the main page forever.  </p>
+<p>At this point, the only remaining task was to submit my changes to the
+project maintainer.  I opened issues <a href="http://code.google.com/p/mirrorrr/issues/detail?id=6">6</a> &amp; <a href="http://code.google.com/p/mirrorrr/issues/detail?id=7">7</a> and now I await
+response.  </p>
+<p><strong>Conclusion</strong>  </p>
+<p>The more I use Eclipse, the more I like it.  The ability to perform
+every step of the process in one program is extremely useful.  Steps
+like comparing history or checking out a specific version is much easier
+to grasp than when you are tooling around the command line.  In the
+shell, I would typically have most of my files open as a background
+task.  Reverting a file from subversion required switching back to the
+file, closing it, then reverting.  In Eclipse, it's a right-click
+operation, regardless of whether the file is open or not.  </p>
+<p>Python's syntax is a bit weird coming from a Perl and PHP background,
+but it's learn-able.   As I plan to make several more improvements to
+mirrorrr, I hope to become proficient in this language as well. 
+However, I may be picking up a Perl project in the near future using the
+<a href="http://mojolicious.org/">Mojo toolkit</a>, so everything is up in the air.</p></div>
+  <!-- <div class="summary"><p>I have been out of the programming circuit for a few years and have been
+looking at getting back into it.  My traditional programming style is an
+ssh window into my server and all my editing takes place on a
+development server, in vi.  </p>
+<p>Recently, I've been trying to decent work out a way to determine how the
+world sees your connectivity from within your network.  Essentially, I
+wanted to simulate accessing one of ...</p></div> -->
+  
+Tagged as: </div>
+
+<div class="pagination">
+<ul>
+		<li class="prev"><a href="http://www.yourtech.us/category/posts5.html">&larr; Previous</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts.html">1</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts2.html">2</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts3.html">3</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts4.html">4</a></li>
+		<li class=""><a href="http://www.yourtech.us/category/posts5.html">5</a></li>
+		<li class="active"><a href="http://www.yourtech.us/category/posts6.html">6</a></li>
+		<li class="next disabled"><a href="#">&rarr; Next</a></li>
+</ul>
+</div>
+
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>

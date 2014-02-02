@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>ytjohn</title>
+    <meta name="description" content="">
+    <meta name="author" content="John Hogenmiller">
+
+    <!-- Le styles -->
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    </style>
+    <link href="http://www.yourtech.us/theme/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/local.css" rel="stylesheet">
+    <link href="http://www.yourtech.us/theme/pygments.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+  var disqus_shortname = "yourtechjohn"; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+  
+  var disqus_identifier = "/2012/08/markdown-blogging.html";
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+
+  (function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+  </head>
+  <body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.yourtech.us/index.html">ytjohn</a> 
+      <div class="nav-collapse collapse">
+	<ul class="nav">
+ 
+	  <li ><a href="http://www.yourtech.us/p/contact.html">Contact</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/resume.html">Resume</a></li>
+ 
+	  <li ><a href="http://www.yourtech.us/p/the-story.html">The Story</a></li>
+	  <li class="active"><a href="http://www.yourtech.us/category/posts.html">posts</a></li>
+	</ul>
+	<p class="navbar-text pull-right">
+	  <a class="navbar-link" href="http://www.yourtech.us/archives.html">[archives]</a>
+    <a class="navbar-link" href="http://www.yourtech.us/tags.html">[tags]</a>
+     :: <a style="color: red;" href="https://hub.yourtech.us/billing/">Billing</a> 
+     :: <a style="color: red;" href="https://hub.yourtech.us/dnsadmin/">DNS Admin</a> 
+	</p>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span1">&nbsp;</div>
+	<div class="span10">
+	  <div class="row-fluid">
+            <div class="span9">
+<div class='article'>
+  <div class="page-header"><h1>Markdown Blogging</h1></div>
+  <div class="well small"><a class="more" href="http://www.yourtech.us//2012/08/markdown-blogging.html">On 06 Aug 2012 at 0000</a>
+by <a class="url fn" href="http://www.yourtech.us/author/john-hogenmiller.html">John Hogenmiller</a> 
+in <a href="http://www.yourtech.us/category/posts.html">posts</a> 
+ | <a href="http://www.yourtech.us/2012/08/markdown-blogging.text">{source}</a>
+ | <a href="http://www.yourtech.us//2012/08/markdown-blogging.html#disqus_thread">Comments</a></div>
+  <div><p>I recently have started a process of migrating my website over to
+<a href="http://www.blogger.com/">blogger.com</a>. One of the main reasons for this was because in my last
+server move, I had broken my Movable Type installation, and found myself
+too busy to fix it. I found I didn't want to spend my time fixing and
+updating blogging software. I wanted to work on my projects, write them
+up, and post them. It was time to move my content to an existing
+platform that handled the back end. I looked at a few, and decided
+blogger.com would be as good as any other service.<br />
+It only took a short time to setup a blog, point a CNAME at it, and then
+to import my existing posts. When I started creating some new posts, I
+immediately ran into some limitations.  </p>
+<ol>
+<li>You used to be able to edit permalinks on blogger. Now, you can only
+    do that before you publish. The only way to change a permalink after
+    publishing is to create a new post with the desired permalink and
+    delete the old one.</li>
+<li>Blogger has no built in formatting for code blocks. So if I want to
+    show a config file, source code, or terminal session log, I have to
+    fiddle with changing fonts, size, and "blockquote" to get it
+    presentable. Even then, you run the risk of strange formatting of
+    your raw text.</li>
+</ol>
+<p>I found a solution that other bloggers use called <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a>.
+This is a combination of javascript and css code that takes text within
+your   </p>
+<div class="highlight"><pre><span class="p">;</span> <span class="n">tags</span> <span class="n">and</span> <span class="n">gives</span> <span class="n">you</span> <span class="n">nice</span> <span class="n">looking</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">code</span><span class="p">,</span> <span class="n">highlighted</span> <span class="n">and</span> <span class="p">(</span><span class="n">optionally</span><span class="p">)</span> <span class="n">with</span> <span class="n">line</span> <span class="n">numbers</span><span class="p">.</span> <span class="n">The</span> <span class="n">catch</span> <span class="n">is</span> <span class="n">that</span> <span class="n">your</span> <span class="n">pre</span> <span class="n">tags</span> <span class="n">need</span> <span class="n">to</span> <span class="n">have</span> <span class="n">a</span> <span class="n">class</span> <span class="n">name</span><span class="p">,</span> <span class="n">along</span> <span class="n">with</span> <span class="n">the</span> <span class="n">language</span> <span class="p">(</span><span class="n">perl</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">bash</span><span class="o">/</span><span class="n">text</span><span class="p">)</span> <span class="s">&quot;brush&quot;</span> <span class="n">to</span> <span class="n">use</span><span class="p">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">go</span> <span class="n">with</span> <span class="n">pre</span> <span class="n">tags</span><span class="p">,</span> <span class="n">you</span> <span class="n">have</span> <span class="n">to</span> <span class="n">change</span> <span class="n">any</span> <span class="n">angle</span> <span class="n">bracks</span> <span class="n">to</span> <span class="n">their</span> <span class="n">HTML</span> <span class="n">escaped</span> <span class="n">equivalents</span> <span class="n">of</span> <span class="o">&lt;</span> <span class="n">and</span> <span class="o">&gt;</span><span class="p">.</span> <span class="n">They</span> <span class="n">have</span> <span class="n">a</span> <span class="n">work</span><span class="o">-</span><span class="n">around</span> <span class="n">using</span> <span class="n">SCRIPT</span><span class="o">/</span><span class="n">CDATA</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span> <span class="n">takes</span> <span class="n">some</span> <span class="n">getting</span> <span class="n">used</span> <span class="n">to</span><span class="p">.</span> <span class="n">Adding</span> <span class="n">this</span> <span class="n">to</span> <span class="n">your</span> <span class="n">blog</span> <span class="n">only</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">few</span> <span class="n">steps</span><span class="p">.</span>
+</pre></div>
+
+
+<p>I rather liked syntaxhighlighter, but it still seemed like I had to do a
+lot of manual work with the code. Also, I had to select the brush each
+time. Couldn't it guess? Notepad++ and some others will guess at what
+language you're using and highlight accordingly. I found something
+called <a href="http://www.geany.org/" title="Geany">prettify</a> that does just that. You only need to load one js
+file and one css file. Prettify works off of either   </p>
+<div class="highlight"><pre> <span class="n">or</span>  <span class="n">tags</span> <span class="n">and</span> <span class="n">has</span> <span class="n">similar</span> <span class="n">limitations</span> <span class="n">to</span> <span class="n">SyntaxHighlighter</span> <span class="n">regarding</span> <span class="n">html</span> <span class="n">tags</span><span class="p">.</span> <span class="n">However</span><span class="p">,</span> <span class="n">it</span> <span class="n">has</span> <span class="n">the</span> <span class="n">advantage</span> <span class="n">of</span> <span class="n">being</span> <span class="n">able</span> <span class="n">to</span> <span class="n">guess</span> <span class="n">the</span> <span class="n">language</span> <span class="n">automatically</span><span class="p">.</span>
+</pre></div>
+
+
+<p>Being able to use this code made my posts look much nicer, but the
+entire process got me thinking. The way I "document" most of projects
+typically invole using a notepad editor like <a href="http://www.geany.org/" title="Geany">Geany</a> or
+<a href="http://notepad-plus-plus.org/" title="Notepad++">Notepad++</a>. As I work, I add notes, copy in source code or shell
+comands, and do everything in a plain text editor. Later, I add
+commentary and clean up the document. I take this and paste it into the
+WYSIWYG editor on blogger. Finally, I have to keep switching between
+compose and html mode to get my text looking suitable. There are too
+many steps for me to want to do this consistently. All I really want to
+do is take my text file, add a little formatting in a few spots, a few
+hyperlinks in others, and post it.<br />
+Enter <a href="http://daringfireball.net/projects/markdown/" title="Markdown intro">markdown</a>. <em>Markdown is a text-to-HTML conversion tool for web
+writers. Markdown allows you to write using an easy-to-read,
+easy-to-write plain text format, then convert it to structurally valid
+XHTML (or HTML)</em>. I have used this before, but didn't pay it close
+enough attention. It's used on github and reddit, there are plugins for
+it in dokuwiki and redmine. The idea is you write in text, adding
+formatting using the markdown syntax. This format is both human readable
+and machine readable. When read by the appropriate library, clean html
+is generated. It also has a feature for wrapping blocks of code inside
+of   </p>
+<div class="highlight"><pre><span class="o">&amp;</span><span class="p">;</span><span class="n">lt</span><span class="p">;</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">tags</span> <span class="n">and</span> <span class="n">html</span><span class="o">-</span><span class="n">escaping</span> <span class="n">html</span> <span class="n">inside</span> <span class="n">of</span> <span class="n">those</span> <span class="n">tags</span><span class="p">.</span>
+</pre></div>
+
+
+<p>Within the MarkDown project is a paged called "<a href="http://daringfireball.net/projects/markdown/dingus">dingus</a>" which means
+"placeholder". You can paste your markdown text into one textarea and
+get the generated html plus a preview back. I tested pasting that
+generated html into Blogger's HTML box and it seems to work perfectly
+fine. What this means is that I can type up my documentation completely
+within my text editor of choice, save it locally, and then generate my
+html code to paste into blogger.<br />
+Some of you may have realized that my   </p>
+<div class="highlight"><pre> <span class="nb">tags</span> <span class="nx">are</span> <span class="nx">missing</span> <span class="nx">that</span> <span class="nb">class</span> <span class="nb">name</span> <span class="p">(</span><span class="nx">.</span> <span class="nx">Well</span><span class="p">,</span> <span class="nx">I</span> <span class="nx">copy</span> <span class="nx">the</span> <span class="nx">generated</span> <span class="nx">html</span><span class="p">,</span> <span class="k">do</span> <span class="nx">a</span> <span class="nb">search</span> <span class="ow">and</span> <span class="nb">replace</span> <span class="nx">of</span>  <span class="k">with</span>  <span class="ow">and</span> <span class="nx">then</span> <span class="nx">paste</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">but</span> <span class="nx">that</span><span class="s1">&#39;s adding more steps. Instead, I sought to make my own dingus that does this automatically. I found that there is an extension of markdown called Markdown Extra written in PHP. Extra adds a few features such as simple tables, but remains consistent with original Markdown formatting. Using that library, I was able to create my own dingus rather easily and alter the  tag with one line of code $render2 = str_replace(&quot;&lt;pre&gt;&quot;, &quot;&lt;pre class=</span><span class="se">\&quot;</span><span class="s1">prettyprint linenums</span><span class="se">\&quot;</span><span class="s1">&gt;&quot;, $render);. In my experimentation, I made a parser that reads a text file and outputs html, and three dingus parsers. Dingus1 does straightforward conversion of markdown extra to html. Dingus2 and 3 provide the class names for prettified code, with #3 going the extra step of applying stylesheets for the preview.</span>
+</pre></div>
+
+
+<p>With this setup, I can quickly paste in my text document and pull html
+code to paste into blogger.com's html edit box. With some more research,
+I can modify the dingus to interact with blogger's API and post on my
+behalf. There are also some WYSIWYM live editors that show you an
+instant render of your markdown as you type (you type in a textarea
+while your html renders in a nearby div). This would be a good way to do
+some tweaking to the markdown text before posting the html to the web.
+My next plans are to make a better dingus, possibly with a live preview
+and a "post to blogger" option.<br />
+Some other links:  </p>
+<ul>
+<li>http://balupton.github.com/jquery-syntaxhighlighter/demo/</li>
+<li>http://code.google.com/p/pagedown/wiki/PageDown</li>
+<li>http://markitup.jaysalvat.com/examples/markdown/</li>
+</ul></div>
+  <div>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</div>	
+            </div><!--/span-->
+
+	    <div class="span3">
+
+
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li> <div id="search">
+<script>
+  (function() {
+    var cx = '008176316909509740226:1osf0ptylds';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div> </li>
+  </ul>
+
+  <ul class="nav nav-list social">
+    <li class="nav-header">Elsewhere</li>
+    <li><a href="//www.yourtech.us/gh">GitHub/ytjohn</a></li>
+    <li><a href="//www.yourtech.us/plus">My Google+</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><a href="https://hub.yourtech.us/billing">YourTech::Billing</a></li>
+    <li><a href="https://hub.yourtech.us/dnsadmin">YourTech::DNS</a></li>
+    <li><a href="#">----------------</a></li>
+    <li><a href="http://www.idgraphics.net">id Graphics</a></li>
+    <li><a href="http://bcars.org">Bedford County Amateur Radio Society</a></li>
+    <li><a href="http://www.everettpa.net">Everett, PA</a></li>
+    <li><a href="http://www.raystownwireless.net">Raystown Wireless</a></li>
+  </ul>
+
+  <ul class="nav nav-list">
+   <li> <h4><a href="/archives.html">Archives</a></h4>
+<!-- bootstrap collapsible archive list -->
+<div class="accordion" id="sidebararchive">
+  <!-- year 2013 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2013">
+        2013
+      </a>
+    </div>
+
+    <div id="collapse2013" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013July">
+               July (1) 
+            </a>
+           <div id="collapse2013July" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/07/foreman-managed-virtual-datacenter.html">Foreman managed virtual datacenter</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2013"
+               href="#collapse2013March">
+               March (1) 
+            </a>
+           <div id="collapse2013March" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2013/03/new-static-site.html">New Static Site</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2012 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2012">
+        2012
+      </a>
+    </div>
+
+    <div id="collapse2012" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012November">
+               November (1) 
+            </a>
+           <div id="collapse2012November" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/11/starting-with-ruby-and-aws.html">Starting with Ruby and AWS</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012September">
+               September (2) 
+            </a>
+           <div id="collapse2012September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/09/dingus-problems.html">dingus problems</a><br />
+                        <a href="/2012/09/bootstrap-and-cdns.html">Bootstrap and CDNs</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012August">
+               August (6) 
+            </a>
+           <div id="collapse2012August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/08/python-console-import-tip.html">python console import tip</a><br />
+                        <a href="/2012/08/pysphere-vmware-in-python.html">pysphere - VMWare in Python</a><br />
+                        <a href="/2012/08/upgrade-redmine.html">Upgrade Redmine</a><br />
+                        <a href="/2012/08/markdown-blogging.html">Markdown Blogging</a><br />
+                        <a href="/2012/08/gate-one-supervisor-script.html">Gate One supervisor script</a><br />
+                        <a href="/2012/08/exploring-gateone-browser-ssh-terminal.html">Exploring GateOne Browser SSH terminal</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2012"
+               href="#collapse2012June">
+               June (2) 
+            </a>
+           <div id="collapse2012June" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2012/06/puppet-dashboard-and-selinux.html">Puppet Dashboard and selinux</a><br />
+                        <a href="/2012/06/using-puppet-to-install-djbdns.html">Using puppet to install djbdns</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2011 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2011">
+        2011
+      </a>
+    </div>
+
+    <div id="collapse2011" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011April">
+               April (1) 
+            </a>
+           <div id="collapse2011April" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/04/sending-messages-using-xmpppy.html">Sending messages using xmpppy</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011February">
+               February (2) 
+            </a>
+           <div id="collapse2011February" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/02/nagios-and-xmpp.html">Nagios and XMPP</a><br />
+                        <a href="/2011/02/jabbering-about-python.html">Jabbering about Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2011"
+               href="#collapse2011January">
+               January (2) 
+            </a>
+           <div id="collapse2011January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2011/01/expanding-a-raw-image-file.html">Expanding a raw image file</a><br />
+                        <a href="/2011/01/learning-python.html">Learning Python</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2010 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2010">
+        2010
+      </a>
+    </div>
+
+    <div id="collapse2010" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010September">
+               September (1) 
+            </a>
+           <div id="collapse2010September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/09/we-have-moved.html">We have moved!</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2010"
+               href="#collapse2010January">
+               January (1) 
+            </a>
+           <div id="collapse2010January" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2010/01/securing-apache2.html">Securing Apache2</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+  <!-- year 2009 -->
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebarchive" href="#collapse2009">
+        2009
+      </a>
+    </div>
+
+    <div id="collapse2009" class="accordion-body collapse">
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009October">
+               October (1) 
+            </a>
+           <div id="collapse2009October" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/10/backing-up-with-duplicity-and-amazon-s3.html">Backing up with duplicity and Amazon S3</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009September">
+               September (1) 
+            </a>
+           <div id="collapse2009September" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/09/forgotten-realms.html">Forgotten Realms</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+         <div class="accordion-inner">
+
+           <!-- now to collapse by month -->
+            <a class="accorion-toggle" data-toggle="collapse" data-parent="collapse2009"
+               href="#collapse2009August">
+               August (1) 
+            </a>
+           <div id="collapse2009August" class="accordion-body collapse">
+           <div class="accordion-inner">
+                        <a href="/2009/08/back-into-programming-monitoring-notes.html">Back into programming, monitoring notes</a><br />
+           </div>
+           </div>
+           <!-- end collapse by month -->
+         </div>
+    </div>
+ </div>
+</div>
+ </li>
+  </ul>
+
+</div><!--/.well -->
+            </div><!--/span-->
+
+	  </div>
+	</div>
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a></p>
+	<p>&copy; John Hogenmiller 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://www.yourtech.us/theme/js/jquery-1.7.2.min.js"><\/script>')</script>
+      <script src="http://www.yourtech.us/theme/bootstrap/js/bootstrap.min.js"></script>
+      <script src="http://www.yourtech.us/theme/js/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+  </body>
+</html>
