@@ -1,6 +1,6 @@
-Title: C270 Review
-Date: 2014-02-01
-Author: John Hogenmiller
+Title: C270 Review  
+Date: 2014-02-01  
+Author: John Hogenmiller  
 
 # Acer C270 Chromebook
 
