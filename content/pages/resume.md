@@ -1,5 +1,4 @@
 Title: Resume
-
 John Hogenmiller
 ================
 
