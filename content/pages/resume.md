@@ -1,6 +1,3 @@
-title: Resume
-date: 2013-04-10
-
 John Hogenmiller
 ================
 
@@ -8,7 +5,7 @@ John Hogenmiller
 - john@hogenmiller.net - email, xmpp, gtalk
 - Updated: April 10th, 2013
 
-## Background
+## Objective
 
 To obtain a position that utilizes my technical skills and abilities, while allowing me to acquire and use new skills within my field.
 
@@ -28,25 +25,40 @@ To obtain a position that utilizes my technical skills and abilities, while allo
 ## Employment History
 
 ### Penn State University Outreach, State College, PA
-**DevOps Engineer  - 2013 to present
+**DevOps Engineer  - 2013 to present**
 
+- Developed and documented workflows for standing up new services.
+- Documented existing environmental layouts for all teams.
+- Developed puppet modules to facilitate customer requirements.
+- Developed Jenkins jobs to automatically manage, test, and deploy code and applications
+- Provision and automatically deploy multi-server, multi-datacenter solutions for clients.
 
 ### NTT America, Sterling, VA
-**Senior Linux Administrator - 2007 to 2013
+**Senior Linux Engineer - 2011 to 2013**
 
 Performed solution delivery and Linux/Solaris system administration for a co-location/dedicated Fortune 500 company. Responsible for maintaining and coordinating maintenance in multiple data-centers.
 
 - Designed and implemented Puppet environments for both internal and customer application stacks.
 - Install and configures software requested by customers.
-- Acts in a supervisory capacity for shift, overseeing workload distribution, quality, and timely escalations.
+- Migration of large, international clients from physical to virtual (VMWare) cloud environment.
+- Maintenance and provisioning of customer's virtual environment.
+- Documentation and training of junior administrators on new platforms.
 - Works with management to develop and refine division wide processes, procedures, and technical documentation.
 - Coordinate technical tasks to be completed by/with other groups.
+
+
+**Team Lead/L3 Linux Adminstrator - 2007 to 2011**
+
+- Acts in a supervisory capacity for shift, overseeing workload distribution, quality, and timely escalations.
 - Monitors customer and internal systems and responds to generated alerts.
 - Installed, configured, and troubleshooted Veritas Netbackup clients.
 - Utilized a wide array of knowledge to troubleshoot customer's websites: (coding, dns, apache, network configuration)
 - Administered systems with RHEL versions 3-6; Solaris 8,9, and 10; VMware ESX and VI4
 - Performed hardware troubleshooting tasks, delegating repair tasks to data center technicians.
 - Assisted data center technicians with provisioning and configuration tasks.
+
+
+
 
 ### YourTech, LLC, Everett, PA
 **Owner/Operator - 2001 to 2012**
