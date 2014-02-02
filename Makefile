@@ -11,10 +11,9 @@ FTP_HOST=localhost
 FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
-SSH_HOST=pelican.ytnoc.net
+SSH_HOST=www.yourtech.us
 SSH_PORT=22
 SSH_USER=ytjohn
-SSH_TARGET_DIR=/home/ytjohn/pelican.ytnoc.net
 SSH_TARGET_DIR=/home/ytjohn/yourtech.us
 
 DROPBOX_DIR=~/Dropbox/Public/
