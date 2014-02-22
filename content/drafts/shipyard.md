@@ -1,13 +1,12 @@
-
 Docker, CoreOS, and ShipYard
 
 Just wanted to write up my first impressions using [CoreOS] and [Shipyard].
 
 Why am I so interested in [Docker]? Docker is based off of Linux containers and is a super lightweight "virtualization" method. Calling it virtualization isn't entirely correct, it's more of a glorified chroot, or a true evolution of the FreeBSD jails. You start with an OS image (Ubuntu, Centos, etc) as your base. Multiple docker instances can share the same image. A reference container is layered over top of that image, containing your application. 
 
-[Docker](https://www.docker.io/)
-[CoreOS](https://coreos.com/)
-[Shipyard](http://shipyard-project.com/)
+[Docker]: https://www.docker.io/ 
+[CoreOS]: https://coreos.com/
+[Shipyard]: http://shipyard-project.com/
 
 For example, if I wanted to install a complicated applicaton like [gitlab] with a ton of ruby gem dependencies, I could start with a Ubuntu 12.04 LTS image, start an interactive container, walk through the gitlab install process, and then commit my container (version control). Now this container only has the file system differences between the Ubuntu base image and what I installed. I can now upload this container somewhere and others can use it.
 If I use this container, it becomes a read-only reference point and any configuration changes I make (such as my own user accounts) become part of a running instance and these changes are not made to the container. I could even commit my configuration changes to a new container and distribute that. Basically, a docker instance is comprised of layers - the base image, 1 or more containers, then finally the current instance.
@@ -27,8 +26,8 @@ The most expedient way to get this up and running is to use Vagrant. Make sure y
     vagrant up
     vagrant ssh
 
-[Vagrant](http://www.vagrantup.com/downloads.html)
-[VirtualBox](https://www.virtualbox.org/)
+[Vagrant]: http://www.vagrantup.com/downloads.html
+[VirtualBox]: https://www.virtualbox.org/ 
 
 Once connected, I saw that /dev/sda9 was mounted as /var with 15GB of space. Hopefully that's enough to run my shipyard setup. The programs git and docker are installed, so let's see what it will take to get shipyard going.
 
