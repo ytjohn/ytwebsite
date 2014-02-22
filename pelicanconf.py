@@ -53,13 +53,15 @@ OUTPUT_SOURCES_EXTENSION = '.text'
 # the htaccess bit doesn't seem to work on the ssh upload
 STATIC_PATHS = [
      'extra/favicon.ico',
-     'extra/htaccess'
+     'extra/htaccess',
+     'extra/ytjohn-key.pub',
      ]
 
 
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
-    'extra/htaccess': {'path': '.htaccess'}
+    'extra/htaccess': {'path': '.htaccess'},
+    'extra/ytjohn-key.pub': {'path': 'ytjohn-key.pub'}
     }
 
 
