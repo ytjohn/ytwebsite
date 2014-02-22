@@ -10,6 +10,14 @@ Date: 2013-03-24
    <li><a href="http://www.yourtech.us/stack">Stack Exchange: wwww.yourtech.us/stack</a></li>
   </ul>
 
+
+
+
+If you want to provide me access to a server for work, my ssh public key is listed below, or you can [download it](/ytjohn-key.pub)
+
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfPoyO3FlX5QgRWBIE8DbFZNVe0aBXabxlcNoMOWnBmyzTSPc4WNpxgs50+mqX2rVV5y1L/Dxs99+RHedNiqYRVnLDOB12CkFyoSDesydFrzBJ4pLKK0wmBDPhS7ZGtoXWXF7xq89faqj3POXEgmmvZKBldGXabTrqyxesifsL4+HjXtq+SE86R0BoqZJkC19Ijcv2KfCe4fDngaKcNXCxnmWBL7gSHHlbuM69x1TWMWYgrwnhONxakO4NGsXmllw7CCzABko+Ql9+QLrzYUTEc17UaFI3tdOMMIkcgXRAvxKrZWbrmZrb4C/qxd3tI6/O+k+PTphF/em/nq/oPLS9 ytjohn@yourtech
+
+
 If you want to email me securely, I utilize GPG. My public key is [online](http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x3ADEC236B7E2FC61). Any text you encrypt using this key and send me (which you can do [here](http://www.hanewin.net/encrypt/PGcrypt.htm)) can only be read be me.
 
     -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -40,11 +48,5 @@ If you want to email me securely, I utilize GPG. My public key is [online](http:
     +ajbRCAstW8Ktw==
     =jcb/
     -----END PGP PUBLIC KEY BLOCK-----
-
-
-
-If you want to provide me access to a server for work, my ssh public key is listed below, or you can [download it](|filename|ytjohn-key.pub)
-
-    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfPoyO3FlX5QgRWBIE8DbFZNVe0aBXabxlcNoMOWnBmyzTSPc4WNpxgs50+mqX2rVV5y1L/Dxs99+RHedNiqYRVnLDOB12CkFyoSDesydFrzBJ4pLKK0wmBDPhS7ZGtoXWXF7xq89faqj3POXEgmmvZKBldGXabTrqyxesifsL4+HjXtq+SE86R0BoqZJkC19Ijcv2KfCe4fDngaKcNXCxnmWBL7gSHHlbuM69x1TWMWYgrwnhONxakO4NGsXmllw7CCzABko+Ql9+QLrzYUTEc17UaFI3tdOMMIkcgXRAvxKrZWbrmZrb4C/qxd3tI6/O+k+PTphF/em/nq/oPLS9 ytjohn@yourtech
 
 
