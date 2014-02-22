@@ -43,7 +43,7 @@ If you want to email me securely, I utilize GPG. My public key is [online](http:
 
 
 
-If you want to provide me access to a server for work, my ssh public key is:
+If you want to provide me access to a server for work, my ssh public key is listed below, or you can [download it](|filename|ytjohn-key.pub)
 
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfPoyO3FlX5QgRWBIE8DbFZNVe0aBXabxlcNoMOWnBmyzTSPc4WNpxgs50+mqX2rVV5y1L/Dxs99+RHedNiqYRVnLDOB12CkFyoSDesydFrzBJ4pLKK0wmBDPhS7ZGtoXWXF7xq89faqj3POXEgmmvZKBldGXabTrqyxesifsL4+HjXtq+SE86R0BoqZJkC19Ijcv2KfCe4fDngaKcNXCxnmWBL7gSHHlbuM69x1TWMWYgrwnhONxakO4NGsXmllw7CCzABko+Ql9+QLrzYUTEc17UaFI3tdOMMIkcgXRAvxKrZWbrmZrb4C/qxd3tI6/O+k+PTphF/em/nq/oPLS9 ytjohn@yourtech
 
