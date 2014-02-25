@@ -9,6 +9,18 @@ RewriteEngine On
 # /p/providing-access.html -> /p.contact.html
 # /p/contact.html 
 
+# Make some URL's nicer
+RedirectPermanent /resume /p/resume.html
+RedirectPermanent /resume.html /p/resume.html
+RedirectPermanent /p/resume /p/resume.html
+RedirectPermanent /contact /p/contact.html
+RedirectPermanent /p/contact /p/contact.html
+RedirectPermanent /posts /category/posts.html
+
+# Fix source URLs, needs testing
+# http://www.yourtech.us/2014/02/c270-review.text/
+# RedirectPermanent ^/(.*)/(.*)/(.*).text/$ /$1/$2/$3.text/$3.md
+
 # Preserve some old URLs
 RedirectPermanent /p/contracting.html /p/contact.html
 RedirectPermanent /p/providing-access.html /p/contact.html
