@@ -14,7 +14,7 @@ John Hogenmiller
 
 - (814) 317-6804
 - john@hogenmiller.net
-- Updated: April 10th, 2013
+- Updated: March 13, 2014
 
 ## Objective
 
@@ -35,8 +35,23 @@ To obtain a position that utilizes my technical skills and abilities, while allo
 
 ## Employment History
 
+### Verisign, Reston, VA
+**Global Resolutions Operations Engineer - Jun 2013 to present**
+
+- Developed Vagrant environments emulating production environment for deployment testing.
+- Work with hieradata to separate site or host specific data from logic.
+- Developed a system to automatically bootstrap new puppetmasters on demand.
+- Build highly available content distribution sites by integrating DevOps technologies including Cobbler, Jenkins, Puppet, and YAML.
+- Document software and hardware configurations in flat, version controlled yaml format and build systems to generate configurations from the same.
+- Develop modules in Python/Django for an internal device management system, specifically data export APIs for integration with other systems.
+- Actively upgrading monitoring applications and configuration, including Nagios and NRPE checks, global messaging bus, and internal HUD (Heads Up Display). 
+- Migrated monitoring systems from hand provisioned design to fully automated package and puppet based installation.
+- Advise development team on building Puppet modules and associated hieradata to work within the existing production environment.
+- Addressed numerous inconsistencies with infrastructure data (such as package repository and cobbler profiles) to ensure consistent build and installation experience across the entire infrastructure.
+- Working with multiple teams to replace colocated EOL multi-server hardware with an appliance-like, single server virtualized platform.
+
 ### Penn State University Outreach, State College, PA
-**DevOps Engineer  - 2013 to present**
+**DevOps Engineer  - February 2013 to June 2013**
 
 - Developed and documented workflows for standing up new services.
 - Documented existing environmental layouts for all teams.
