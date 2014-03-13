@@ -12,9 +12,9 @@ View this in other formats: [PDF][pdf], [OpenOffice/odt][odt], [MS Word/docx][do
 John Hogenmiller
 ================
 
-- (814) 317-6804
-- john@hogenmiller.net
-- Updated: March 13, 2014
+- (814) 317-6804  
+- john@hogenmiller.net  
+- Updated: March 13, 2014  
 
 ## Objective
 
