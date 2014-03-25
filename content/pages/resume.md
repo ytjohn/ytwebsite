@@ -42,6 +42,8 @@ To obtain a position that utilizes my technical skills and abilities, while allo
 - Work with hieradata to separate site or host specific data from logic.
 - Developed a system to automatically bootstrap new puppetmasters on demand.
 - Build highly available content distribution sites by integrating DevOps technologies including Cobbler, Jenkins, Puppet, and YAML.
+- Use ansible to orchestrate software upgrades and verify functionality.
+- Develop an ansible "toolbox" including configuration, playbooks and dynamic inventory files.
 - Document software and hardware configurations in flat, version controlled yaml format and build systems to generate configurations from the same.
 - Develop modules in Python/Django for an internal device management system, specifically data export APIs for integration with other systems.
 - Actively upgrading monitoring applications and configuration, including Nagios and NRPE checks, global messaging bus, and internal HUD (Heads Up Display). 
@@ -49,6 +51,7 @@ To obtain a position that utilizes my technical skills and abilities, while allo
 - Advise development team on building Puppet modules and associated hieradata to work within the existing production environment.
 - Addressed numerous inconsistencies with infrastructure data (such as package repository and cobbler profiles) to ensure consistent build and installation experience across the entire infrastructure.
 - Working with multiple teams to replace colocated EOL multi-server hardware with an appliance-like, single server virtualized platform.
+- Created jenkins projects that will validate and update git repositories automatically following key database updates.
 
 ### Penn State University Outreach, State College, PA
 **DevOps Engineer  - February 2013 to June 2013**
