@@ -8,6 +8,7 @@ Date: 2013-03-24
    <li><a href="http://www.yourtech.us/plus">google+ www.yourtech.us/plus</a></li>
    <li><a href="http://www.yourtech.us/gh">github: www.yourtech.us/gh</a></li>
    <li><a href="http://www.yourtech.us/stack">Stack Exchange: wwww.yourtech.us/stack</a></li>
+   <li><a href="http://www.yourtech.us/in">LinkedIn: www.yourtech.us/in</a></li>
   </ul>
 
 
